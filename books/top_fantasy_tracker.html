@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 Top Fantasy Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            height: 20px;
+            border-radius: 5px;
+        }
+        .progress-bar.in-progress { background-color: #f1c40f; }
+        .progress-bar.completed { background-color: #2ecc71; }
+        .progress-bar.not-started { background-color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+<header>2023 Top Fantasy Tracker</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Series</th>
+            <th>Author</th>
+            <th>Reading Status</th>
+            <th>Series Status</th>
+            <th>Total # of Books</th>
+            <th>Total # of Books Read</th>
+            <th>Progress</th>
+            <th>Title of Next Read</th>
+            <th>Next Book Status</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>The Stormlight Archive</td>
+            <td>Brandon Sanderson</td>
+            <td>Up to Date</td>
+            <td>Ongoing</td>
+            <td>10</td>
+            <td>4</td>
+            <td>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 40%;"></div>
+                </div>
+            </td>
+            <td>The Knights of Wind and Truth</td>
+            <td>Waiting for Release</td>
+            <td>Waiting for Release</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Middle-Earth Universe</td>
+            <td>J.R.R. Tolkien</td>
+            <td>In Progress</td>
+            <td>Completed</td>
+            <td>4</td>
+            <td>1</td>
+            <td>
+                <div class="progress-bar-container">
+                    <div class="progress-bar in-progress" style="width: 25%;"></div>
+                </div>
+            </td>
+            <td>The Fellowship of the Ring</td>
+            <td>Owned</td>
+            <td>Only counting the main series</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>First Law World</td>
+            <td>Joe Abercrombie</td>
+            <td>Not Started</td>
+            <td>Completed</td>
+            <td>9</td>
+            <td>0</td>
+            <td>
+                <div class="progress-bar-container">
+                    <div class="progress-bar not-started" style="width: 0%;"></div>
+                </div>
+            </td>
+            <td>The Blade Itself</td>
+            <td>Owned</td>
+            <td></td>
+        </tr>
+        <!-- More rows can be added similarly -->
+    </tbody>
+</table>
+
+</body>
+</html>
