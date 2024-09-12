@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
     <title>2023 Top Fantasy Tracker</title>
     <style>
         body {
@@ -35,6 +35,9 @@
         .progress-bar-container {
             background-color: #ddd;
             border-radius: 5px;
+            position: relative;
+            height: 20px;
+            width: 100%;
         }
         .progress-bar {
             height: 20px;
@@ -75,7 +78,7 @@
             <td>10</td>
             <td>4</td>
             <td>
-                <div class="progress-bar-container">
+                <div class="progress-bar-container" title="40%">
                     <div class="progress-bar in-progress" style="width: 40%;"></div>
                 </div>
             </td>
@@ -92,7 +95,7 @@
             <td>4</td>
             <td>1</td>
             <td>
-                <div class="progress-bar-container">
+                <div class="progress-bar-container" title="25%">
                     <div class="progress-bar in-progress" style="width: 25%;"></div>
                 </div>
             </td>
@@ -109,7 +112,7 @@
             <td>9</td>
             <td>0</td>
             <td>
-                <div class="progress-bar-container">
+                <div class="progress-bar-container" title="0%">
                     <div class="progress-bar not-started" style="width: 0%;"></div>
                 </div>
             </td>
