@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
     <title>2023 Top Fantasy Tracker</title>
     <style>
+        /* General Styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212;
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: #1f1f1f;
+            color: #ffffff;
             padding: 10px 0;
             text-align: center;
             font-size: 24px;
+            border-bottom: 2px solid #333;
         }
         table {
             width: 100%;
@@ -25,15 +28,18 @@
         }
         th, td {
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
             text-align: left;
         }
         th {
-            background-color: #333;
-            color: white;
+            background-color: #2c2c2c;
+            color: #ffffff;
+        }
+        td {
+            background-color: #1e1e1e;
         }
         .progress-bar-container {
-            background-color: #ddd;
+            background-color: #333;
             border-radius: 5px;
             position: relative;
             height: 20px;
@@ -46,6 +52,25 @@
         .progress-bar.in-progress { background-color: #f1c40f; }
         .progress-bar.completed { background-color: #2ecc71; }
         .progress-bar.not-started { background-color: #e74c3c; }
+
+        /* Hover Tooltip Styling */
+        .progress-bar-container:hover::after {
+            content: attr(title);
+            position: absolute;
+            background-color: #2ecc71;
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 5px;
+            top: -30px;
+            right: 0;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        /* Table Row Hover */
+        tbody tr:hover {
+            background-color: #292929;
+        }
     </style>
 </head>
 <body>
