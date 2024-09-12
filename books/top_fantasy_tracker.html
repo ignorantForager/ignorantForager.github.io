@@ -79,18 +79,27 @@
 
 <script>
     fetch('top_fantasy_tracker.csv')
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+    })
     .then(text => {
+        console.log(text);  // Log the CSV content to check if it's being fetched
         const data = parseCSV(text);
         populateTable(data);
+    })
+    .catch(error => {
+        console.error('Error fetching the CSV file:', error);
     });
 
     function parseCSV(csv) {
-        const lines = csv.split("\\n");
-        lines.shift(); // Remove header line
+        const lines = csv.split("\n").filter(line => line.trim() !== ""); // Filter out any blank lines
+        lines.shift(); // Remove the header line
         return lines.map(line => {
             const cells = line.split(",");
-            return cells;
+            return cells.map(cell => cell.trim());  // Trim whitespace
         });
     }
 
@@ -101,12 +110,13 @@
             row.forEach((cell, index) => {
                 const newCell = newRow.insertCell();
                 if (index === 7) { // Special handling for progress bar
+                    const progressValue = cell; // Assume it's a number between 0 and 100
                     const progressBarContainer = document.createElement('div');
                     progressBarContainer.className = 'progress-bar-container';
-                    progressBarContainer.title = cell + '%';
+                    progressBarContainer.title = progressValue + '%'; // Tooltip showing percentage
                     const progressBar = document.createElement('div');
-                    progressBar.className = `progress-bar ${cell > 0 ? (cell < 100 ? 'in-progress' : 'completed') : 'not-started'}`;
-                    progressBar.style.width = cell + '%';
+                    progressBar.className = `progress-bar ${progressValue > 0 ? (progressValue < 100 ? 'in-progress' : 'completed') : 'not-started'}`;
+                    progressBar.style.width = progressValue + '%'; // Set width as percentage
                     progressBarContainer.appendChild(progressBar);
                     newCell.appendChild(progressBarContainer);
                 } else {
@@ -116,6 +126,7 @@
         });
     }
 </script>
+
 
 </body>
 </html>
