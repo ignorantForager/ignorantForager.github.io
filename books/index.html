@@ -28,16 +28,20 @@
         }
         .container {
             text-align: center;
-            z-index: 1; /* Makes sure the content stays above the overlay */
+            z-index: 1; /* Ensures content is above the overlay */
             color: white;
+            max-width: 800px; /* Limits the width of the content */
+            padding: 20px; /* Adds some padding for breathing room */
         }
         h1 {
             font-size: 48px;
             margin-bottom: 20px;
         }
         p {
-            font-size: 20px;
+            font-size: 18px; /* Reduces font size slightly for readability */
+            line-height: 1.6; /* Adds line spacing for better readability */
             margin-bottom: 40px;
+            text-align: justify; /* Aligns text for a cleaner look */
         }
         a {
             background-color: #2ecc71;
@@ -58,10 +62,7 @@
     <div class="container">
         <h1>Welcome to the Fantasy Book Tracker</h1>
         <p>Tracking my progress in favorite fantasy series!</p>
-        <p>The Reddit Fantasy Top Novels List is a bi-annual community-driven poll organized by the r/Fantasy subreddit.
-            Every two years, users vote on their favorite fantasy books and series, creating a ranked list that showcases the most beloved works within the genre.
-            These polls are highly anticipated in the community because they represent a snapshot of current tastes in fantasy literature, balancing long-standing
-            fan favorites with newer, innovative works. The list often serves as a guide for readers seeking top recommendations from trusted fantasy fans.</p>
+        <p>The Reddit Fantasy Top Novels List is a bi-annual community-driven poll organized by the r/Fantasy subreddit. Every two years, users vote on their favorite fantasy books and series, creating a ranked list that showcases the most beloved works within the genre. These polls are highly anticipated in the community because they represent a snapshot of current tastes in fantasy literature, balancing long-standing fan favorites with newer, innovative works. The list often serves as a guide for readers seeking top recommendations from trusted fantasy fans.</p>
         <a href="top_fantasy_tracker.html">Enter the Tracker</a>
     </div>
 </body>
