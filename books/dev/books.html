@@ -67,6 +67,19 @@
         .progress-bar.in-progress { background-color: #f1c40f; }
         .progress-bar.completed { background-color: #2ecc71; }
         .progress-bar.not-started { background-color: #e74c3c; }
+        .expand-button {
+            cursor: pointer;
+            font-size: 16px;
+            padding-right: 10px;
+        }
+        .hidden-row {
+            display: none;
+        }
+        .book-status {
+            font-size: 12px;
+            color: #ccc;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +89,7 @@
 <table id="trackerTable">
     <thead>
         <tr>
+            <th></th>
             <th>#</th>
             <th>Series</th>
             <th>Author</th>
@@ -94,55 +108,81 @@
 </table>
 
 <script>
-    fetch('top_fantasy_tracker.csv')
+    fetch('top_fantasy_tracker.json')
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.text();
+        return response.json();
     })
-    .then(text => {
-        console.log(text);  // Log the CSV content to check if it's being fetched
-        const data = parseCSV(text);
+    .then(data => {
         populateTable(data);
     })
     .catch(error => {
-        console.error('Error fetching the CSV file:', error);
+        console.error('Error fetching the JSON file:', error);
     });
-
-    function parseCSV(csv) {
-        const lines = csv.split("\n").filter(line => line.trim() !== ""); // Filter out any blank lines
-        lines.shift(); // Remove the header line
-        return lines.map(line => {
-            const cells = line.split(",");
-            return cells.map(cell => cell.trim());  // Trim whitespace
-        });
-    }
 
     function populateTable(data) {
         const table = document.getElementById('trackerTable').getElementsByTagName('tbody')[0];
-        data.forEach(row => {
+        Object.keys(data).forEach(key => {
+            const series = data[key];
+            
+            // Main row for series
             const newRow = table.insertRow();
-            row.forEach((cell, index) => {
-                const newCell = newRow.insertCell();
-                if (index === 7) { // Special handling for progress bar
-                    const progressValue = cell; // Assume it's a number between 0 and 100
-                    const progressBarContainer = document.createElement('div');
-                    progressBarContainer.className = 'progress-bar-container';
-                    progressBarContainer.title = progressValue + '%'; // Tooltip showing percentage
-                    const progressBar = document.createElement('div');
-                    progressBar.className = `progress-bar ${progressValue > 0 ? (progressValue < 100 ? 'in-progress' : 'completed') : 'not-started'}`;
-                    progressBar.style.width = progressValue + '%'; // Set width as percentage
-                    progressBarContainer.appendChild(progressBar);
-                    newCell.appendChild(progressBarContainer);
-                } else {
-                    newCell.textContent = cell;
-                }
-            });
+            newRow.setAttribute('data-id', key);
+
+            // Expand button
+            const expandCell = newRow.insertCell(0);
+            expandCell.innerHTML = `<span class="expand-button" onclick="toggleBooks(${key})">+</span>`;
+
+            // Series details
+            newRow.insertCell(1).textContent = key;
+            newRow.insertCell(2).textContent = series.Series;
+            newRow.insertCell(3).textContent = series.Author;
+            newRow.insertCell(4).textContent = series['Reading Status'];
+            newRow.insertCell(5).textContent = series['Series Status'];
+            newRow.insertCell(6).textContent = series['Total # of Books'];
+            newRow.insertCell(7).textContent = series['Total # of Books Read'];
+
+            // Progress bar
+            const progressCell = newRow.insertCell(8);
+            const progressValue = series.Progress;
+            const progressBarContainer = document.createElement('div');
+            progressBarContainer.className = 'progress-bar-container';
+            progressBarContainer.title = progressValue + '%'; // Tooltip showing percentage
+            const progressBar = document.createElement('div');
+            progressBar.className = `progress-bar ${progressValue > 0 ? (progressValue < 100 ? 'in-progress' : 'completed') : 'not-started'}`;
+            progressBar.style.width = progressValue + '%'; // Set width as percentage
+            progressBarContainer.appendChild(progressBar);
+            progressCell.appendChild(progressBarContainer);
+
+            newRow.insertCell(9).textContent = series['Title of Next Read'];
+            newRow.insertCell(10).textContent = series['Next Book Status'];
+
+            // Hidden row for book details
+            const bookRow = table.insertRow();
+            bookRow.className = 'hidden-row';
+            bookRow.setAttribute('id', `books-${key}`);
+
+            const bookCell = bookRow.insertCell(0);
+            bookCell.colSpan = 11;
+            bookCell.innerHTML = createBooksHTML(series.Books);
         });
     }
-</script>
 
+    function toggleBooks(id) {
+        const bookRow = document.getElementById(`books-${id}`);
+        bookRow.style.display = bookRow.style.display === 'table-row' ? 'none' : 'table-row';
+    }
+
+    function createBooksHTML(books) {
+        return books.map(book => `
+            <div>
+                ${book.Title} <span class="book-status">(${book.Status})</span>
+            </div>
+        `).join('');
+    }
+</script>
 
 </body>
 </html>
