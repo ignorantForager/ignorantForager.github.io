@@ -5,107 +5,107 @@
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
     <title>2023 Top Fantasy Tracker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #1f1f1f;
-            color: #ffffff;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 24px;
-            border-bottom: 2px solid #333;
-        }
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #555;
-        }
-        thead th:first-child {
-            border-top-left-radius: 10px;
-        }
-        thead th:last-child {
-            border-top-right-radius: 10px;
-        }
-        tbody tr:last-child td:first-child {
-            border-bottom-left-radius: 10px;
-        }
-        tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 10px;
-        }
-        th {
-            background-color: #2c2c2c;
-        }
-        td {
-            background-color: #1e1e1e;
-        }
-        tbody tr:hover {
-            background-color: #292929;
-        }
-        .progress-bar-container {
-            background-color: #333;
-            border-radius: 5px;
-            position: relative;
-            height: 20px;
-            width: 100%;
-        }
-        .progress-bar {
-            height: 20px;
-            border-radius: 5px;
-        }
-        .progress-bar.in-progress { background-color: #f1c40f; }
-        .progress-bar.completed { background-color: #2ecc71; }
-        .progress-bar.not-started { background-color: #e74c3c; }
-        .expand-button {
-            cursor: pointer;
-            font-size: 16px;
-            padding-right: 10px;
-        }
-        .hidden-row {
-            display: none;
-        }
-        .books-section {
-            padding-left: 30px;
-            margin-top: 10px;
-        }
-        .book-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        .book-title {
-            flex: 1;
-            margin-right: 10px;
-        }
-        .book-status {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            color: #fff;
-            display: inline-block;
-            text-align: center;
-        }
-        .completed-status {
-            background-color: #2ecc71;
-        }
-        .in-progress-status {
-            background-color: #f1c40f;
-        }
-        .not-started-status {
-            background-color: #e74c3c;
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #1f1f1f;
+        color: #ffffff;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 24px;
+        border-bottom: 2px solid #333;
+    }
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #555;
+    }
+    thead th:first-child {
+        border-top-left-radius: 10px;
+    }
+    thead th:last-child {
+        border-top-right-radius: 10px;
+    }
+    tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+    tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+    th {
+        background-color: #2c2c2c;
+    }
+    td {
+        background-color: #1e1e1e;
+    }
+    tbody tr:hover {
+        background-color: #292929;
+    }
+    .progress-bar-container {
+        background-color: #333;
+        border-radius: 5px;
+        position: relative;
+        height: 20px;
+        width: 100%;
+    }
+    .progress-bar {
+        height: 20px;
+        border-radius: 5px;
+    }
+    .progress-bar.in-progress { background-color: #f1c40f; }
+    .progress-bar.completed { background-color: #2ecc71; }
+    .progress-bar.not-started { background-color: #e74c3c; }
+    .expand-button {
+        cursor: pointer;
+        font-size: 16px;
+        padding-right: 10px;
+    }
+    .hidden-row {
+        display: none;
+    }
+    .books-section {
+        padding-left: 30px;
+        margin-top: 10px;
+    }
+    .book-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        margin-bottom: 5px;
+    }
+    .book-title {
+        margin-right: 10px;
+    }
+    .book-status {
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+    }
+    .completed-status {
+        background-color: #2ecc71;
+    }
+    .in-progress-status {
+        background-color: #f1c40f;
+    }
+    .not-started-status {
+        background-color: #e74c3c;
+    }
+</style>
+
 
 </head>
 <body>
@@ -166,16 +166,15 @@
             expandCell.appendChild(expandButton);
 
             // Series details
-            newRow.insertCell(1).textContent = key;
-            newRow.insertCell(2).textContent = series.Series;
-            newRow.insertCell(3).textContent = series.Author;
-            newRow.insertCell(4).textContent = series['Reading Status'];
-            newRow.insertCell(5).textContent = series['Series Status'];
-            newRow.insertCell(6).textContent = series['Total # of Books'];
-            newRow.insertCell(7).textContent = series['Total # of Books Read'];
+            newRow.insertCell(1).textContent = series.Series;
+            newRow.insertCell(2).textContent = series.Author;
+            newRow.insertCell(3).textContent = series['Reading Status'];
+            newRow.insertCell(4).textContent = series['Series Status'];
+            newRow.insertCell(5).textContent = series['Total # of Books'];
+            newRow.insertCell(6).textContent = series['Total # of Books Read'];
 
             // Progress bar
-            const progressCell = newRow.insertCell(8);
+            const progressCell = newRow.insertCell(7);
             const progressValue = series.Progress;
             const progressBarContainer = document.createElement('div');
             progressBarContainer.className = 'progress-bar-container';
@@ -188,8 +187,8 @@
 
             // Title and status of next book
             const nextBook = getNextBook(series.Books);
-            newRow.insertCell(9).textContent = nextBook.title;
-            newRow.insertCell(10).textContent = nextBook.status;
+            newRow.insertCell(8).textContent = nextBook.title;
+            newRow.insertCell(9).textContent = nextBook.status;
 
             // Hidden row for book details
             const bookRow = table.insertRow();
@@ -197,7 +196,7 @@
             bookRow.setAttribute('id', `books-${key}`);
 
             const bookCell = bookRow.insertCell(0);
-            bookCell.colSpan = 11;
+            bookCell.colSpan = 10;
             bookCell.innerHTML = createBooksHTML(series.Books);
         });
     }
@@ -233,6 +232,7 @@
         return nextBook ? { title: nextBook.Title, status: nextBook.Status } : { title: '', status: 'Completed' };
     }
 </script>
+
 
 </body>
 </html>
