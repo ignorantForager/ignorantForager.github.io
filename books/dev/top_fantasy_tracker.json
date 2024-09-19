@@ -1,0 +1,29 @@
+{
+    "1": {
+        "Series": "The Stormlight Archive",
+        "Author": "Brandon Sanderson",
+        "Reading Status": "Up To Date",
+        "Series Status": "Ongoing",
+        "Total # of Books": 10,
+        "Total # of Books Read": 4,
+        "Progress": 40,
+        "Books": [
+            {
+                "Title": "The Way of Kings",
+                "Status": "Completed"
+            },
+            {
+                "Title": "Words of Radiance",
+                "Status": "Completed"
+            },
+            {
+                "Title": "Oathbringer",
+                "Status": "Completed"
+            },
+            {
+                "Title": "Rhythm of War",
+                "Status": "In Progress"
+            }
+        ]
+    }
+}
