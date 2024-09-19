@@ -81,11 +81,12 @@
         }
         .book-item {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
             margin-bottom: 5px;
         }
         .book-title {
             flex: 1;
+            margin-right: 10px;
         }
         .book-status {
             padding: 3px 8px;
@@ -155,7 +156,11 @@
 
             // Expand button
             const expandCell = newRow.insertCell(0);
-            expandCell.innerHTML = `<span class="expand-button" onclick="toggleBooks(${key})">+</span>`;
+            const expandButton = document.createElement('span');
+            expandButton.className = 'expand-button';
+            expandButton.textContent = '+';
+            expandButton.onclick = () => toggleBooks(key, expandButton);
+            expandCell.appendChild(expandButton);
 
             // Series details
             newRow.insertCell(1).textContent = key;
@@ -178,8 +183,10 @@
             progressBarContainer.appendChild(progressBar);
             progressCell.appendChild(progressBarContainer);
 
-            newRow.insertCell(9).textContent = series['Title of Next Read'];
-            newRow.insertCell(10).textContent = series['Next Book Status'];
+            // Title and status of next book
+            const nextBook = getNextBook(series.Books);
+            newRow.insertCell(9).textContent = nextBook.title;
+            newRow.insertCell(10).textContent = nextBook.status;
 
             // Hidden row for book details
             const bookRow = table.insertRow();
@@ -192,9 +199,11 @@
         });
     }
 
-    function toggleBooks(id) {
+    function toggleBooks(id, button) {
         const bookRow = document.getElementById(`books-${id}`);
-        bookRow.style.display = bookRow.style.display === 'table-row' ? 'none' : 'table-row';
+        const isExpanded = bookRow.style.display === 'table-row';
+        bookRow.style.display = isExpanded ? 'none' : 'table-row';
+        button.textContent = isExpanded ? '+' : '-';
     }
 
     function createBooksHTML(books) {
@@ -214,6 +223,11 @@
         if (status === 'Completed') return 'completed-status';
         if (status === 'In Progress') return 'in-progress-status';
         return 'not-started-status';
+    }
+
+    function getNextBook(books) {
+        const nextBook = books.find(book => book.Status !== 'Completed');
+        return nextBook ? { title: nextBook.Title, status: nextBook.Status } : { title: '', status: 'Completed' };
     }
 </script>
 
