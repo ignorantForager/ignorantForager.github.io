@@ -25,5 +25,32 @@
                 "Status": "In Progress"
             }
         ]
+    },
+    "2": {
+        "Series": "Mistborn",
+        "Author": "Brandon Sanderson",
+        "Reading Status": "Started",
+        "Series Status": "Completed",
+        "Total # of Books": 6,
+        "Total # of Books Read": 3,
+        "Progress": 50,
+        "Books": [
+            {
+                "Title": "The Final Empire",
+                "Status": "Completed"
+            },
+            {
+                "Title": "The Well of Ascension",
+                "Status": "Completed"
+            },
+            {
+                "Title": "The Hero of Ages",
+                "Status": "Completed"
+            },
+            {
+                "Title": "The Alloy of Law",
+                "Status": "Not Started"
+            }
+        ]
     }
 }
