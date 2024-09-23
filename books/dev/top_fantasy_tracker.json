@@ -20,14 +20,17 @@
         "Author": "Brandon Sanderson",
         "Reading Status": "Started",
         "Series Status": "Completed",
-        "Total # of Books": 6,
-        "Total # of Books Read": 3,
-        "Progress": 50,
+        "Total # of Books": 7,
+        "Total # of Books Read": 7,
+        "Progress": 100,
         "Books": [
             { "Title": "The Final Empire", "Status": "Completed" },
             { "Title": "The Well of Ascension", "Status": "Completed" },
             { "Title": "The Hero of Ages", "Status": "Completed" },
-            { "Title": "The Alloy of Law", "Status": "Not Started" }
+            { "Title": "The Alloy of Law", "Status": "Completed" },
+            { "Title": "Shadows of Self", "Status": "Completed" },
+            { "Title": "The Bands of Mourning", "Status": "Completed" },
+            { "Title": "The Lost Metal", "Status": "Completed" }
         ]
     }
 }
