@@ -8,7 +8,10 @@
         "Total # of Books Read": 4,
         "Progress": 40,
         "Books": [
-            { "Title": "The Way of Kings", "Status": "Completed" },
+            {
+                "Title": "The Way of Kings",
+                "Status": "Completed"
+            },
             { "Title": "Words of Radiance", "Status": "Completed" },
             { "Title": "Oathbringer", "Status": "Completed" },
             { "Title": "Rhythm of War", "Status": "Completed" }
