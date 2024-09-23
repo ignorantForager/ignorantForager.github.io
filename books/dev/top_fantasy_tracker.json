@@ -8,22 +8,11 @@
         "Total # of Books Read": 4,
         "Progress": 40,
         "Books": [
-            {
-                "Title": "The Way of Kings",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Words of Radiance",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Oathbringer",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Rhythm of War",
-                "Status": "In Progress"
-            }
+            { "Title": "The Way of Kings", "Status": "Completed" },
+            { "Title": "Words of Radiance", "Status": "Completed" },
+            { "Title": "Oathbringer", "Status": "Completed" },
+            { "Title": "Rhythm of War", "Status": "Completed" }
+            { "Title": "The Knights of Wind and Truth", "Status": "Not Started" }
         ]
     },
     "2": {
@@ -35,22 +24,10 @@
         "Total # of Books Read": 3,
         "Progress": 50,
         "Books": [
-            {
-                "Title": "The Final Empire",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Well of Ascension",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Hero of Ages",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Alloy of Law",
-                "Status": "Not Started"
-            }
+            { "Title": "The Final Empire", "Status": "Completed" },
+            { "Title": "The Well of Ascension", "Status": "Completed" },
+            { "Title": "The Hero of Ages", "Status": "Completed" },
+            { "Title": "The Alloy of Law", "Status": "Not Started" }
         ]
     }
 }
