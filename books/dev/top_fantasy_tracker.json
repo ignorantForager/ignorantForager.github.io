@@ -263,7 +263,7 @@
         "Progress": 18,
         "Books": [
             {
-                "Title": "Assassin\u00e2\u20ac\u2122s Apprentice",
+                "Title": "Assassin's Apprentice",
                 "Status": "Completed"
             },
             {
@@ -271,7 +271,7 @@
                 "Status": "Completed"
             },
             {
-                "Title": "Assassin\u00e2\u20ac\u2122s Quest",
+                "Title": "Assassin's Quest",
                 "Status": "Completed"
             },
             {
@@ -287,7 +287,7 @@
                 "Status": "Not Started"
             },
             {
-                "Title": "Fool\u00e2\u20ac\u2122s Errand",
+                "Title": "Fool's Errand",
                 "Status": "Not Started"
             },
             {
@@ -295,7 +295,7 @@
                 "Status": "Not Started"
             },
             {
-                "Title": "Fool\u00e2\u20ac\u2122s Fate",
+                "Title": "Fool's Fate",
                 "Status": "Not Started"
             },
             {
@@ -315,15 +315,15 @@
                 "Status": "Not Started"
             },
             {
-                "Title": "Fool\u00e2\u20ac\u2122s Assassin",
+                "Title": "Fool's Assassin",
                 "Status": "Not Started"
             },
             {
-                "Title": "Fool\u00e2\u20ac\u2122s Quest",
+                "Title": "Fool's Quest",
                 "Status": "Not Started"
             },
             {
-                "Title": "Assassin\u00e2\u20ac\u2122s Fate",
+                "Title": "Assassin's Fate",
                 "Status": "Not Started"
             }
         ]
