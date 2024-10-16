@@ -8,26 +8,11 @@
         "Total # of Books Read": 4,
         "Progress": 80,
         "Books": [
-            {
-                "Title": "The Way of Kings",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Words of Radiance",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Oathbringer",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Rhythm of War",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Knights of Wind and Truth",
-                "Status": "Not Started"
-            }
+            { "Title": "The Way of Kings", "Status": "Completed" },
+            { "Title": "Words of Radiance", "Status": "Completed" },
+            { "Title": "Oathbringer", "Status": "Completed" },
+            { "Title": "Rhythm of War", "Status": "Completed" },
+            { "Title": "The Knights of Wind and Truth", "Status": "Not Started" }
         ]
     },
     "2": {
@@ -39,22 +24,10 @@
         "Total # of Books Read": 1,
         "Progress": 25,
         "Books": [
-            {
-                "Title": "The Hobbit",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Fellowship of the Ring",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Two Towers",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Return of the King",
-                "Status": "Not Started"
-            }
+            { "Title": "The Hobbit", "Status": "Completed" },
+            { "Title": "The Fellowship of the Ring", "Status": "Not Started" },
+            { "Title": "The Two Towers", "Status": "Not Started" },
+            { "Title": "The Return of the King", "Status": "Not Started" }
         ]
     },
     "3": {
@@ -66,42 +39,15 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Blade Itself",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Before They Are Hanged",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Last Argument of Kings",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Best Served Cold",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Heroes",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Red Country",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Little Hatred",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Trouble with Peace",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Wisdom of Crowds",
-                "Status": "Not Started"
-            }
+            { "Title": "The Blade Itself", "Status": "Not Started" },
+            { "Title": "Before They Are Hanged", "Status": "Not Started" },
+            { "Title": "Last Argument of Kings", "Status": "Not Started" },
+            { "Title": "Best Served Cold", "Status": "Not Started" },
+            { "Title": "The Heroes", "Status": "Not Started" },
+            { "Title": "Red Country", "Status": "Not Started" },
+            { "Title": "A Little Hatred", "Status": "Not Started" },
+            { "Title": "The Trouble with Peace", "Status": "Not Started" },
+            { "Title": "The Wisdom of Crowds", "Status": "Not Started" }
         ]
     },
     "4": {
@@ -113,34 +59,13 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "A Game of Thrones",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Clash of Kings",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Storm of Swords",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Feast for Crows",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Dance with Dragons",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Winds of Winter",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Dream of Spring",
-                "Status": "Not Started"
-            }
+            { "Title": "A Game of Thrones", "Status": "Not Started" },
+            { "Title": "A Clash of Kings", "Status": "Not Started" },
+            { "Title": "A Storm of Swords", "Status": "Not Started" },
+            { "Title": "A Feast for Crows", "Status": "Not Started" },
+            { "Title": "A Dance with Dragons", "Status": "Not Started" },
+            { "Title": "The Winds of Winter", "Status": "Not Started" },
+            { "Title": "A Dream of Spring", "Status": "Not Started" }
         ]
     },
     "5": {
@@ -152,34 +77,13 @@
         "Total # of Books Read": 7,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "The Final Empire",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Well of Ascension",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Hero of Ages",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Alloy of Law",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Shadows of Self",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Bands of Mourning",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Lost Metal",
-                "Status": "Completed"
-            }
+            { "Title": "The Final Empire", "Status": "Completed" },
+            { "Title": "The Well of Ascension", "Status": "Completed" },
+            { "Title": "The Hero of Ages", "Status": "Completed" },
+            { "Title": "Alloy of Law", "Status": "Completed" },
+            { "Title": "Shadows of Self", "Status": "Completed" },
+            { "Title": "Bands of Mourning", "Status": "Completed" },
+            { "Title": "The Lost Metal", "Status": "Completed" }
         ]
     },
     "6": {
@@ -191,66 +95,21 @@
         "Total # of Books Read": 15,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "The Eye of the World",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Great Hunt",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Dragon Reborn",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Shadow Rising",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Fires of Heaven",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Lord of Chaos",
-                "Status": "Completed"
-            },
-            {
-                "Title": "A Crown of Swords",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Path of Daggers",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Winter's Heart",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Crossroads of Twilight",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Knife of Dreams",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Gathering Storm",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Towers of Midnight",
-                "Status": "Completed"
-            },
-            {
-                "Title": "A Memory of Light",
-                "Status": "Completed"
-            },
-            {
-                "Title": "New Spring",
-                "Status": "Completed"
-            }
+            { "Title": "The Eye of the World", "Status": "Completed" },
+            { "Title": "The Great Hunt", "Status": "Completed" },
+            { "Title": "The Dragon Reborn", "Status": "Completed" },
+            { "Title": "The Shadow Rising", "Status": "Completed" },
+            { "Title": "The Fires of Heaven", "Status": "Completed" },
+            { "Title": "Lord of Chaos", "Status": "Completed" },
+            { "Title": "A Crown of Swords", "Status": "Completed" },
+            { "Title": "The Path of Daggers", "Status": "Completed" },
+            { "Title": "Winter's Heart", "Status": "Completed" },
+            { "Title": "Crossroads of Twilight", "Status": "Completed" },
+            { "Title": "Knife of Dreams", "Status": "Completed" },
+            { "Title": "The Gathering Storm", "Status": "Completed" },
+            { "Title": "Towers of Midnight", "Status": "Completed" },
+            { "Title": "A Memory of Light", "Status": "Completed" },
+            { "Title": "New Spring", "Status": "Completed" }
         ]
     },
     "7": {
@@ -262,70 +121,22 @@
         "Total # of Books Read": 3,
         "Progress": 18,
         "Books": [
-            {
-                "Title": "Assassin's Apprentice",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Royal Assassin",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Assassin's Quest",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Ship of Magic",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Mad Ship",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ship of Destiny",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Fool's Errand",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Golden Fool",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Fool's Fate",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dragon Keeper",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dragon Haven",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "City of Dragons",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Blood of Dragons",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Fool's Assassin",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Fool's Quest",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Assassin's Fate",
-                "Status": "Not Started"
-            }
+            { "Title": "Assassin's Apprentice", "Status": "Completed" },
+            { "Title": "Royal Assassin", "Status": "Completed" },
+            { "Title": "Assassin's Quest", "Status": "Completed" },
+            { "Title": "Ship of Magic", "Status": "Not Started" },
+            { "Title": "The Mad Ship", "Status": "Not Started" },
+            { "Title": "Ship of Destiny", "Status": "Not Started" },
+            { "Title": "Fool's Errand", "Status": "Not Started" },
+            { "Title": "The Golden Fool", "Status": "Not Started" },
+            { "Title": "Fool's Fate", "Status": "Not Started" },
+            { "Title": "Dragon Keeper", "Status": "Not Started" },
+            { "Title": "Dragon Haven", "Status": "Not Started" },
+            { "Title": "City of Dragons", "Status": "Not Started" },
+            { "Title": "Blood of Dragons", "Status": "Not Started" },
+            { "Title": "Fool's Assassin", "Status": "Not Started" },
+            { "Title": "Fool's Quest", "Status": "Not Started" },
+            { "Title": "Assassin's Fate", "Status": "Not Started" }
         ]
     },
     "8": {
@@ -337,170 +148,47 @@
         "Total # of Books Read": 1,
         "Progress": 2,
         "Books": [
-            {
-                "Title": "The Colour of Magic",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Light Fantastic",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Equal Rites",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Mort",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Sourcery",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wyrd Sisters",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Pyramids",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Guards! Guards!",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Eric",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Moving Pictures",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Reaper Man",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Witches Abroad",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Small Gods",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Lords and Ladies",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Men at Arms",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Soul Music",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Interesting Times",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Maskerade",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Feet of Clay",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Hogfather",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Jingo",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Last Continent",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Carpe Jugulum",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Fifth Elephant",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Truth",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Thief of Time",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Last Hero",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Amazing Maurice and His Educated Rodents",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Night Watch",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Wee Free Men",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Monstrous Regiment",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Hat Full of Sky",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Going Postal",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Thud!",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wintersmith",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Making Money",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Unseen Academicals",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "I Shall Wear Midnight",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Snuff",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Raising Steam",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Shepherd's Crown",
-                "Status": "Not Started"
-            }
+            { "Title": "The Colour of Magic", "Status": "Completed" },
+            { "Title": "The Light Fantastic", "Status": "Not Started" },
+            { "Title": "Equal Rites", "Status": "Not Started" },
+            { "Title": "Mort", "Status": "Not Started" },
+            { "Title": "Sourcery", "Status": "Not Started" },
+            { "Title": "Wyrd Sisters", "Status": "Not Started" },
+            { "Title": "Pyramids", "Status": "Not Started" },
+            { "Title": "Guards! Guards!", "Status": "Not Started" },
+            { "Title": "Eric", "Status": "Not Started" },
+            { "Title": "Moving Pictures", "Status": "Not Started" },
+            { "Title": "Reaper Man", "Status": "Not Started" },
+            { "Title": "Witches Abroad", "Status": "Not Started" },
+            { "Title": "Small Gods", "Status": "Not Started" },
+            { "Title": "Lords and Ladies", "Status": "Not Started" },
+            { "Title": "Men at Arms", "Status": "Not Started" },
+            { "Title": "Soul Music", "Status": "Not Started" },
+            { "Title": "Interesting Times", "Status": "Not Started" },
+            { "Title": "Maskerade", "Status": "Not Started" },
+            { "Title": "Feet of Clay", "Status": "Not Started" },
+            { "Title": "Hogfather", "Status": "Not Started" },
+            { "Title": "Jingo", "Status": "Not Started" },
+            { "Title": "The Last Continent", "Status": "Not Started" },
+            { "Title": "Carpe Jugulum", "Status": "Not Started" },
+            { "Title": "The Fifth Elephant", "Status": "Not Started" },
+            { "Title": "The Truth", "Status": "Not Started" },
+            { "Title": "Thief of Time", "Status": "Not Started" },
+            { "Title": "The Last Hero", "Status": "Not Started" },
+            { "Title": "The Amazing Maurice and His Educated Rodents", "Status": "Not Started" },
+            { "Title": "Night Watch", "Status": "Not Started" },
+            { "Title": "The Wee Free Men", "Status": "Not Started" },
+            { "Title": "Monstrous Regiment", "Status": "Not Started" },
+            { "Title": "A Hat Full of Sky", "Status": "Not Started" },
+            { "Title": "Going Postal", "Status": "Not Started" },
+            { "Title": "Thud!", "Status": "Not Started" },
+            { "Title": "Wintersmith", "Status": "Not Started" },
+            { "Title": "Making Money", "Status": "Not Started" },
+            { "Title": "Unseen Academicals", "Status": "Not Started" },
+            { "Title": "I Shall Wear Midnight", "Status": "Not Started" },
+            { "Title": "Snuff", "Status": "Not Started" },
+            { "Title": "Raising Steam", "Status": "Not Started" },
+            { "Title": "The Shepherd's Crown", "Status": "Not Started" }
         ]
     },
     "9": {
@@ -512,46 +200,16 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Gardens of the Moon",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Deadhouse Gates",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Memories of Ice",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "House of Chains",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Midnight Tides",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Bonehunters",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Reaper's Gale",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Stonewielder",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Orb Sceptre Throne",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Crippled God",
-                "Status": "Not Started"
-            }
+            { "Title": "Gardens of the Moon", "Status": "Not Started" },
+            { "Title": "Deadhouse Gates", "Status": "Not Started" },
+            { "Title": "Memories of Ice", "Status": "Not Started" },
+            { "Title": "House of Chains", "Status": "Not Started" },
+            { "Title": "Midnight Tides", "Status": "Not Started" },
+            { "Title": "The Bonehunters", "Status": "Not Started" },
+            { "Title": "Reaper's Gale", "Status": "Not Started" },
+            { "Title": "Stonewielder", "Status": "Not Started" },
+            { "Title": "Orb Sceptre Throne", "Status": "Not Started" },
+            { "Title": "The Crippled God", "Status": "Not Started" }
         ]
     },
     "10": {
@@ -563,18 +221,9 @@
         "Total # of Books Read": 3,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Jade City",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Jade War",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Jade Legacy",
-                "Status": "Completed"
-            }
+            { "Title": "Jade City", "Status": "Completed" },
+            { "Title": "Jade War", "Status": "Completed" },
+            { "Title": "Jade Legacy", "Status": "Completed" }
         ]
     },
     "11": {
@@ -586,22 +235,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Lies of Locke Lamora",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Red Seas Under Red Skies",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Republic of Thieves",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Thorn of Emberlain",
-                "Status": "Not Started"
-            }
+            { "Title": "The Lies of Locke Lamora", "Status": "Not Started" },
+            { "Title": "Red Seas Under Red Skies", "Status": "Not Started" },
+            { "Title": "The Republic of Thieves", "Status": "Not Started" },
+            { "Title": "The Thorn of Emberlain", "Status": "Not Started" }
         ]
     },
     "12": {
@@ -613,38 +250,14 @@
         "Total # of Books Read": 8,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Harry Potter and the Philosopher's Stone",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Chamber of Secrets",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Prisoner of Azkaban",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Goblet of Fire",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Order of the Phoenix",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Half-Blood Prince",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Deathly Hallows",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Harry Potter and the Cursed Child",
-                "Status": "Completed"
-            }
+            { "Title": "Harry Potter and the Philosopher's Stone", "Status": "Completed" },
+            { "Title": "Harry Potter and the Chamber of Secrets", "Status": "Completed" },
+            { "Title": "Harry Potter and the Prisoner of Azkaban", "Status": "Completed" },
+            { "Title": "Harry Potter and the Goblet of Fire", "Status": "Completed" },
+            { "Title": "Harry Potter and the Order of the Phoenix", "Status": "Completed" },
+            { "Title": "Harry Potter and the Half-Blood Prince", "Status": "Completed" },
+            { "Title": "Harry Potter and the Deathly Hallows", "Status": "Completed" },
+            { "Title": "Harry Potter and the Cursed Child", "Status": "Completed" }
         ]
     },
     "13": {
@@ -656,18 +269,9 @@
         "Total # of Books Read": 2,
         "Progress": 66,
         "Books": [
-            {
-                "Title": "The Name of the Wind",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Wise Man's Fear",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Doors of Stone",
-                "Status": "Not Started"
-            }
+            { "Title": "The Name of the Wind", "Status": "Completed" },
+            { "Title": "The Wise Man's Fear", "Status": "Completed" },
+            { "Title": "The Doors of Stone", "Status": "Not Started" }
         ]
     },
     "14": {
@@ -679,30 +283,12 @@
         "Total # of Books Read": 5,
         "Progress": 83,
         "Books": [
-            {
-                "Title": "Red Rising",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Golden Son",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Morning Star",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Iron Gold",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Dark Age",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Light Bringer",
-                "Status": "Not Started"
-            }
+            { "Title": "Red Rising", "Status": "Completed" },
+            { "Title": "Golden Son", "Status": "Completed" },
+            { "Title": "Morning Star", "Status": "Completed" },
+            { "Title": "Iron Gold", "Status": "Completed" },
+            { "Title": "Dark Age", "Status": "Completed" },
+            { "Title": "Light Bringer", "Status": "Not Started" }
         ]
     },
     "15": {
@@ -714,30 +300,12 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Dune",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dune Messiah",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Children of Dune",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "God Emperor of Dune",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Heretics of Dune",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Chapterhouse: Dune",
-                "Status": "Not Started"
-            }
+            { "Title": "Dune", "Status": "Not Started" },
+            { "Title": "Dune Messiah", "Status": "Not Started" },
+            { "Title": "Children of Dune", "Status": "Not Started" },
+            { "Title": "God Emperor of Dune", "Status": "Not Started" },
+            { "Title": "Heretics of Dune", "Status": "Not Started" },
+            { "Title": "Chapterhouse: Dune", "Status": "Not Started" }
         ]
     },
     "16": {
@@ -749,74 +317,23 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Storm Front",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Full Moon",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Grave Peril",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Summer Knight",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Death Masks",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Blood Rights",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dead Beat",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Proven Guilty",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "White Night",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Small Favor",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Turn Coat",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Changes",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ghost Story",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Cold Days",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Skin Game",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Peace Talks",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Battle Ground",
-                "Status": "Not Started"
-            }
+            { "Title": "Storm Front", "Status": "Not Started" },
+            { "Title": "Full Moon", "Status": "Not Started" },
+            { "Title": "Grave Peril", "Status": "Not Started" },
+            { "Title": "Summer Knight", "Status": "Not Started" },
+            { "Title": "Death Masks", "Status": "Not Started" },
+            { "Title": "Blood Rights", "Status": "Not Started" },
+            { "Title": "Dead Beat", "Status": "Not Started" },
+            { "Title": "Proven Guilty", "Status": "Not Started" },
+            { "Title": "White Night", "Status": "Not Started" },
+            { "Title": "Small Favor", "Status": "Not Started" },
+            { "Title": "Turn Coat", "Status": "Not Started" },
+            { "Title": "Changes", "Status": "Not Started" },
+            { "Title": "Ghost Story", "Status": "Not Started" },
+            { "Title": "Cold Days", "Status": "Not Started" },
+            { "Title": "Skin Game", "Status": "Not Started" },
+            { "Title": "Peace Talks", "Status": "Not Started" },
+            { "Title": "Battle Ground", "Status": "Not Started" }
         ]
     },
     "17": {
@@ -828,54 +345,18 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Unsouled",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Soulsmith",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Blackflame",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Skysworn",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ghostwater",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Underlord",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Uncrowned",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wintersteel",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Bloodline",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Repaer",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dreadgod",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Waybound",
-                "Status": "Not Started"
-            }
+            { "Title": "Unsouled", "Status": "Not Started" },
+            { "Title": "Soulsmith", "Status": "Not Started" },
+            { "Title": "Blackflame", "Status": "Not Started" },
+            { "Title": "Skysworn", "Status": "Not Started" },
+            { "Title": "Ghostwater", "Status": "Not Started" },
+            { "Title": "Underlord", "Status": "Not Started" },
+            { "Title": "Uncrowned", "Status": "Not Started" },
+            { "Title": "Wintersteel", "Status": "Not Started" },
+            { "Title": "Bloodline", "Status": "Not Started" },
+            { "Title": "Repaer", "Status": "Not Started" },
+            { "Title": "Dreadgod", "Status": "Not Started" },
+            { "Title": "Waybound", "Status": "Not Started" }
         ]
     },
     "18": {
@@ -887,34 +368,13 @@
         "Total # of Books Read": 4,
         "Progress": 57,
         "Books": [
-            {
-                "Title": "All Systems Red",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Artificial Condition",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Rogue Protocol",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Exit Strategy",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Network Effect",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Fugitive Telemetry",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "System Collapse",
-                "Status": "Not Started"
-            }
+            { "Title": "All Systems Red", "Status": "Completed" },
+            { "Title": "Artificial Condition", "Status": "Completed" },
+            { "Title": "Rogue Protocol", "Status": "Completed" },
+            { "Title": "Exit Strategy", "Status": "Completed" },
+            { "Title": "Network Effect", "Status": "Not Started" },
+            { "Title": "Fugitive Telemetry", "Status": "Not Started" },
+            { "Title": "System Collapse", "Status": "Not Started" }
         ]
     },
     "19": {
@@ -926,18 +386,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Hundred Thousand Kingdoms",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Broken Kingdoms",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Kingdom of Gods",
-                "Status": "Not Started"
-            }
+            { "Title": "The Hundred Thousand Kingdoms", "Status": "Not Started" },
+            { "Title": "The Broken Kingdoms", "Status": "Not Started" },
+            { "Title": "The Kingdom of Gods", "Status": "Not Started" }
         ]
     },
     "20": {
@@ -949,30 +400,12 @@
         "Total # of Books Read": 3,
         "Progress": 50,
         "Books": [
-            {
-                "Title": "A Wizard of Earthsea",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Tombs of Atuan",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Farthest Shore",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Tehanu",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Tales from Earthsea",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Other Wind",
-                "Status": "Not Started"
-            }
+            { "Title": "A Wizard of Earthsea", "Status": "Completed" },
+            { "Title": "The Tombs of Atuan", "Status": "Completed" },
+            { "Title": "The Farthest Shore", "Status": "Completed" },
+            { "Title": "Tehanu", "Status": "Not Started" },
+            { "Title": "Tales from Earthsea", "Status": "Not Started" },
+            { "Title": "The Other Wind", "Status": "Not Started" }
         ]
     },
     "21": {
@@ -984,22 +417,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Gideon the Ninth",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Harrow the Ninth",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Nona the Ninth",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Alecto the Ninth",
-                "Status": "Not Started"
-            }
+            { "Title": "Gideon the Ninth", "Status": "Not Started" },
+            { "Title": "Harrow the Ninth", "Status": "Not Started" },
+            { "Title": "Nona the Ninth", "Status": "Not Started" },
+            { "Title": "Alecto the Ninth", "Status": "Not Started" }
         ]
     },
     "22": {
@@ -1011,38 +432,14 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Last Wish",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Sword of Destiny",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Blood of Elves",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Time of Contempt",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Baptism of Fire",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Tower of Swallows",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Lady of the Lake",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Season of Storms",
-                "Status": "Not Started"
-            }
+            { "Title": "The Last Wish", "Status": "Not Started" },
+            { "Title": "Sword of Destiny", "Status": "Not Started" },
+            { "Title": "Blood of Elves", "Status": "Not Started" },
+            { "Title": "Time of Contempt", "Status": "Not Started" },
+            { "Title": "Baptism of Fire", "Status": "Not Started" },
+            { "Title": "The Tower of Swallows", "Status": "Not Started" },
+            { "Title": "The Lady of the Lake", "Status": "Not Started" },
+            { "Title": "Season of Storms", "Status": "Not Started" }
         ]
     },
     "23": {
@@ -1054,10 +451,7 @@
         "Total # of Books Read": 1,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Piranesi",
-                "Status": "Completed"
-            }
+            { "Title": "Piranesi", "Status": "Completed" }
         ]
     },
     "24": {
@@ -1069,38 +463,14 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Gunslinger",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Drawing of the Three",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Waste Lands",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wizards and Glass",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Wind Through the Keyhole",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wolves of the Calla",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Song of Susannah",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Dark Tower",
-                "Status": "Not Started"
-            }
+            { "Title": "The Gunslinger", "Status": "Not Started" },
+            { "Title": "The Drawing of the Three", "Status": "Not Started" },
+            { "Title": "The Waste Lands", "Status": "Not Started" },
+            { "Title": "Wizards and Glass", "Status": "Not Started" },
+            { "Title": "The Wind Through the Keyhole", "Status": "Not Started" },
+            { "Title": "Wolves of the Calla", "Status": "Not Started" },
+            { "Title": "Song of Susannah", "Status": "Not Started" },
+            { "Title": "The Dark Tower", "Status": "Not Started" }
         ]
     },
     "25": {
@@ -1112,42 +482,15 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Leviathan Wakes",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Caliban's War",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Abaddon's Gate",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Cibola Burn",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Nemesis Games",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Babylon's Ashes",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Persepolis Rising",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Tiamat's Wrath",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Leviathan Falls",
-                "Status": "Not Started"
-            }
+            { "Title": "Leviathan Wakes", "Status": "Not Started" },
+            { "Title": "Caliban's War", "Status": "Not Started" },
+            { "Title": "Abaddon's Gate", "Status": "Not Started" },
+            { "Title": "Cibola Burn", "Status": "Not Started" },
+            { "Title": "Nemesis Games", "Status": "Not Started" },
+            { "Title": "Babylon's Ashes", "Status": "Not Started" },
+            { "Title": "Persepolis Rising", "Status": "Not Started" },
+            { "Title": "Tiamat's Wrath", "Status": "Not Started" },
+            { "Title": "Leviathan Falls", "Status": "Not Started" }
         ]
     },
     "26": {
@@ -1159,22 +502,10 @@
         "Total # of Books Read": 1,
         "Progress": 25,
         "Books": [
-            {
-                "Title": "Hyperion",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Fall of Hyperion",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Endymion",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Rise of Endymion",
-                "Status": "Not Started"
-            }
+            { "Title": "Hyperion", "Status": "Completed" },
+            { "Title": "The Fall of Hyperion", "Status": "Not Started" },
+            { "Title": "Endymion", "Status": "Not Started" },
+            { "Title": "The Rise of Endymion", "Status": "Not Started" }
         ]
     },
     "27": {
@@ -1186,10 +517,7 @@
         "Total # of Books Read": 1,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Jonathan Strange & Mr. Norrell",
-                "Status": "Completed"
-            }
+            { "Title": "Jonathan Strange & Mr. Norrell", "Status": "Completed" }
         ]
     },
     "28": {
@@ -1201,18 +529,9 @@
         "Total # of Books Read": 3,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Northern Lights",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Subtle Knife",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Amber Spyglass",
-                "Status": "Completed"
-            }
+            { "Title": "Northern Lights", "Status": "Completed" },
+            { "Title": "The Subtle Knife", "Status": "Completed" },
+            { "Title": "The Amber Spyglass", "Status": "Completed" }
         ]
     },
     "29": {
@@ -1224,22 +543,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Senlin Ascends",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Arm of the Sphinx",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Hod King",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Fall of Babel",
-                "Status": "Not Started"
-            }
+            { "Title": "Senlin Ascends", "Status": "Not Started" },
+            { "Title": "Arm of the Sphinx", "Status": "Not Started" },
+            { "Title": "The Hod King", "Status": "Not Started" },
+            { "Title": "The Fall of Babel", "Status": "Not Started" }
         ]
     },
     "30": {
@@ -1251,34 +558,13 @@
         "Total # of Books Read": 5,
         "Progress": 71,
         "Books": [
-            {
-                "Title": "The Lightning Thief",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Sea of Monsters",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Titan's Curse",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Battle of the Labyrinth",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Last Olympian",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Chalice of the Gods",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wrath of the Triple Goddess",
-                "Status": "Not Started"
-            }
+            { "Title": "The Lightning Thief", "Status": "Completed" },
+            { "Title": "The Sea of Monsters", "Status": "Completed" },
+            { "Title": "The Titan's Curse", "Status": "Completed" },
+            { "Title": "The Battle of the Labyrinth", "Status": "Completed" },
+            { "Title": "The Last Olympian", "Status": "Completed" },
+            { "Title": "The Chalice of the Gods", "Status": "Not Started" },
+            { "Title": "Wrath of the Triple Goddess", "Status": "Not Started" }
         ]
     },
     "31": {
@@ -1290,30 +576,12 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Hitchhiker's Guide to the Galaxy",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Restaurant at the End of the Universe",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Life the Universe and Everything",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "So Long and Thanks for All the Fish",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Mostly Harmless",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "And Another Thing...",
-                "Status": "Not Started"
-            }
+            { "Title": "The Hitchhiker's Guide to the Galaxy", "Status": "Not Started" },
+            { "Title": "The Restaurant at the End of the Universe", "Status": "Not Started" },
+            { "Title": "Life the Universe and Everything", "Status": "Not Started" },
+            { "Title": "So Long and Thanks for All the Fish", "Status": "Not Started" },
+            { "Title": "Mostly Harmless", "Status": "Not Started" },
+            { "Title": "And Another Thing...", "Status": "Not Started" }
         ]
     },
     "32": {
@@ -1325,22 +593,10 @@
         "Total # of Books Read": 2,
         "Progress": 50,
         "Books": [
-            {
-                "Title": "The Long Way to a Small Angry Planet",
-                "Status": "Completed"
-            },
-            {
-                "Title": "A Closed and Common Orbit",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Record of a Spaceborn Few",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Galaxy and the Ground Within",
-                "Status": "Not Started"
-            }
+            { "Title": "The Long Way to a Small Angry Planet", "Status": "Completed" },
+            { "Title": "A Closed and Common Orbit", "Status": "Completed" },
+            { "Title": "Record of a Spaceborn Few", "Status": "Not Started" },
+            { "Title": "The Galaxy and the Ground Within", "Status": "Not Started" }
         ]
     },
     "33": {
@@ -1352,18 +608,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Red Sister",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Grey Sister",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Holy Sister",
-                "Status": "Not Started"
-            }
+            { "Title": "Red Sister", "Status": "Not Started" },
+            { "Title": "Grey Sister", "Status": "Not Started" },
+            { "Title": "Holy Sister", "Status": "Not Started" }
         ]
     },
     "34": {
@@ -1375,34 +622,13 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Crown Conspiracy",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Avempartha",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Nyphron Rising",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Emerald Storm",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wintertide",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Percepliquis",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Traditions",
-                "Status": "Not Started"
-            }
+            { "Title": "The Crown Conspiracy", "Status": "Not Started" },
+            { "Title": "Avempartha", "Status": "Not Started" },
+            { "Title": "Nyphron Rising", "Status": "Not Started" },
+            { "Title": "The Emerald Storm", "Status": "Not Started" },
+            { "Title": "Wintertide", "Status": "Not Started" },
+            { "Title": "Percepliquis", "Status": "Not Started" },
+            { "Title": "Traditions", "Status": "Not Started" }
         ]
     },
     "35": {
@@ -1414,18 +640,9 @@
         "Total # of Books Read": 3,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Children of Time",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Children of Ruin",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Children of Memory",
-                "Status": "Completed"
-            }
+            { "Title": "Children of Time", "Status": "Completed" },
+            { "Title": "Children of Ruin", "Status": "Completed" },
+            { "Title": "Children of Memory", "Status": "Completed" }
         ]
     },
     "36": {
@@ -1437,22 +654,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Malice",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Valor",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ruin",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wrath",
-                "Status": "Not Started"
-            }
+            { "Title": "Malice", "Status": "Not Started" },
+            { "Title": "Valor", "Status": "Not Started" },
+            { "Title": "Ruin", "Status": "Not Started" },
+            { "Title": "Wrath", "Status": "Not Started" }
         ]
     },
     "37": {
@@ -1464,10 +669,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Goblin Emperor",
-                "Status": "Not Started"
-            }
+            { "Title": "The Goblin Emperor", "Status": "Not Started" }
         ]
     },
     "38": {
@@ -1479,18 +681,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Kings of the Wyld",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Bloody Rose",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Outlaw Empire",
-                "Status": "Not Started"
-            }
+            { "Title": "Kings of the Wyld", "Status": "Not Started" },
+            { "Title": "Bloody Rose", "Status": "Not Started" },
+            { "Title": "Outlaw Empire", "Status": "Not Started" }
         ]
     },
     "39": {
@@ -1502,22 +695,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Shadow of the Torturer",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Claw of the Conciliator",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Sword of the Lictor",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Citadel of the Autarch",
-                "Status": "Not Started"
-            }
+            { "Title": "The Shadow of the Torturer", "Status": "Not Started" },
+            { "Title": "The Claw of the Conciliator", "Status": "Not Started" },
+            { "Title": "The Sword of the Lictor", "Status": "Not Started" },
+            { "Title": "The Citadel of the Autarch", "Status": "Not Started" }
         ]
     },
     "40": {
@@ -1529,30 +710,12 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Rocannon's World",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Planet of Exile",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "City of Illusions",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Left Hand of Darkness",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Dispossessed",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Telling",
-                "Status": "Not Started"
-            }
+            { "Title": "Rocannon's World", "Status": "Not Started" },
+            { "Title": "Planet of Exile", "Status": "Not Started" },
+            { "Title": "City of Illusions", "Status": "Not Started" },
+            { "Title": "The Left Hand of Darkness", "Status": "Not Started" },
+            { "Title": "The Dispossessed", "Status": "Not Started" },
+            { "Title": "The Telling", "Status": "Not Started" }
         ]
     },
     "41": {
@@ -1564,14 +727,8 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "A Memory Called Empire",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Desolation Called Peace",
-                "Status": "Not Started"
-            }
+            { "Title": "A Memory Called Empire", "Status": "Not Started" },
+            { "Title": "A Desolation Called Peace", "Status": "Not Started" }
         ]
     },
     "42": {
@@ -1583,10 +740,7 @@
         "Total # of Books Read": 1,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Warbreaker",
-                "Status": "Completed"
-            }
+            { "Title": "Warbreaker", "Status": "Completed" }
         ]
     },
     "43": {
@@ -1598,18 +752,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Promise of Blood",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Crimson Campaign",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Autumn Republic",
-                "Status": "Not Started"
-            }
+            { "Title": "Promise of Blood", "Status": "Not Started" },
+            { "Title": "The Crimson Campaign", "Status": "Not Started" },
+            { "Title": "The Autumn Republic", "Status": "Not Started" }
         ]
     },
     "44": {
@@ -1621,18 +766,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Dragonbone Chair",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Stone of Farewell",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "To Green Angel Tower",
-                "Status": "Not Started"
-            }
+            { "Title": "The Dragonbone Chair", "Status": "Not Started" },
+            { "Title": "Stone of Farewell", "Status": "Not Started" },
+            { "Title": "To Green Angel Tower", "Status": "Not Started" }
         ]
     },
     "45": {
@@ -1644,10 +780,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Project Hail Mary",
-                "Status": "Not Started"
-            }
+            { "Title": "Project Hail Mary", "Status": "Not Started" }
         ]
     },
     "46": {
@@ -1659,70 +792,22 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Curse of Chalion",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Paladin of Souls",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Hallowed Hunt",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Penric's Demone",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Penric and the Shaman",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Penric's Mission",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Mira's Last Dance",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Penric's Fox",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Prisoner of Limnos",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Orphans of Raspay",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Physicians of Vilnoc",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Masquerade in Lodi",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Assassins of Thasalon",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Knot of Shadows",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Demon Daughter",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Penric and the Bandit",
-                "Status": "Not Started"
-            }
+            { "Title": "The Curse of Chalion", "Status": "Not Started" },
+            { "Title": "Paladin of Souls", "Status": "Not Started" },
+            { "Title": "The Hallowed Hunt", "Status": "Not Started" },
+            { "Title": "Penric's Demone", "Status": "Not Started" },
+            { "Title": "Penric and the Shaman", "Status": "Not Started" },
+            { "Title": "Penric's Mission", "Status": "Not Started" },
+            { "Title": "Mira's Last Dance", "Status": "Not Started" },
+            { "Title": "Penric's Fox", "Status": "Not Started" },
+            { "Title": "The Prisoner of Limnos", "Status": "Not Started" },
+            { "Title": "The Orphans of Raspay", "Status": "Not Started" },
+            { "Title": "The Physicians of Vilnoc", "Status": "Not Started" },
+            { "Title": "Masquerade in Lodi", "Status": "Not Started" },
+            { "Title": "The Assassins of Thasalon", "Status": "Not Started" },
+            { "Title": "Knot of Shadows", "Status": "Not Started" },
+            { "Title": "Demon Daughter", "Status": "Not Started" },
+            { "Title": "Penric and the Bandit", "Status": "Not Started" }
         ]
     },
     "47": {
@@ -1734,10 +819,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "American Gods",
-                "Status": "Not Started"
-            }
+            { "Title": "American Gods", "Status": "Not Started" }
         ]
     },
     "48": {
@@ -1749,30 +831,12 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Sabriel",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Lirael",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Abhorsen",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Clariel",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Goldenhand",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Terciel and Elinor",
-                "Status": "Not Started"
-            }
+            { "Title": "Sabriel", "Status": "Not Started" },
+            { "Title": "Lirael", "Status": "Not Started" },
+            { "Title": "Abhorsen", "Status": "Not Started" },
+            { "Title": "Clariel", "Status": "Not Started" },
+            { "Title": "Goldenhand", "Status": "Not Started" },
+            { "Title": "Terciel and Elinor", "Status": "Not Started" }
         ]
     },
     "49": {
@@ -1784,82 +848,25 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Ender's Game",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Speaker for the Dead",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Xenocide",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Children of the Mind",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ender's Shadow",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadow of the Hegemon",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadow Puppets",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadow of the Giant",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A War of Gifts: An Ender Story",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ender in Exile",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadows in Flight",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Earth Unaware",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Earth Afire",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Earth Awakens",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Swarm",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Children of the Fleet",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The hive",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Last Shadow",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Queens",
-                "Status": "Not Started"
-            }
+            { "Title": "Ender's Game", "Status": "Not Started" },
+            { "Title": "Speaker for the Dead", "Status": "Not Started" },
+            { "Title": "Xenocide", "Status": "Not Started" },
+            { "Title": "Children of the Mind", "Status": "Not Started" },
+            { "Title": "Ender's Shadow", "Status": "Not Started" },
+            { "Title": "Shadow of the Hegemon", "Status": "Not Started" },
+            { "Title": "Shadow Puppets", "Status": "Not Started" },
+            { "Title": "Shadow of the Giant", "Status": "Not Started" },
+            { "Title": "A War of Gifts: An Ender Story", "Status": "Not Started" },
+            { "Title": "Ender in Exile", "Status": "Not Started" },
+            { "Title": "Shadows in Flight", "Status": "Not Started" },
+            { "Title": "Earth Unaware", "Status": "Not Started" },
+            { "Title": "Earth Afire", "Status": "Not Started" },
+            { "Title": "Earth Awakens", "Status": "Not Started" },
+            { "Title": "The Swarm", "Status": "Not Started" },
+            { "Title": "Children of the Fleet", "Status": "Not Started" },
+            { "Title": "The hive", "Status": "Not Started" },
+            { "Title": "The Last Shadow", "Status": "Not Started" },
+            { "Title": "The Queens", "Status": "Not Started" }
         ]
     },
     "50": {
@@ -1871,10 +878,7 @@
         "Total # of Books Read": 1,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Tress of the Emerald Sea",
-                "Status": "Completed"
-            }
+            { "Title": "Tress of the Emerald Sea", "Status": "Completed" }
         ]
     },
     "51": {
@@ -1886,10 +890,7 @@
         "Total # of Books Read": 1,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Circe",
-                "Status": "Completed"
-            }
+            { "Title": "Circe", "Status": "Completed" }
         ]
     },
     "52": {
@@ -1901,18 +902,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "A Deadly Education",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Last Graduate",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Golden Enclaves",
-                "Status": "Not Started"
-            }
+            { "Title": "A Deadly Education", "Status": "Not Started" },
+            { "Title": "The Last Graduate", "Status": "Not Started" },
+            { "Title": "The Golden Enclaves", "Status": "Not Started" }
         ]
     },
     "53": {
@@ -1924,26 +916,11 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Black Prism",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Blinding Knife",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Broken Eye",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Blood Mirror",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Burning White",
-                "Status": "Not Started"
-            }
+            { "Title": "The Black Prism", "Status": "Not Started" },
+            { "Title": "The Blinding Knife", "Status": "Not Started" },
+            { "Title": "The Broken Eye", "Status": "Not Started" },
+            { "Title": "The Blood Mirror", "Status": "Not Started" },
+            { "Title": "The Burning White", "Status": "Not Started" }
         ]
     },
     "54": {
@@ -1955,46 +932,16 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Black Company",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadows Linger",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The White Rose",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Silver Spike",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Shadow Games",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Dreams of Steel",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Bleak Seasons",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "She is the Darkness",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Water Sleeps",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Soldiers Live",
-                "Status": "Not Started"
-            }
+            { "Title": "The Black Company", "Status": "Not Started" },
+            { "Title": "Shadows Linger", "Status": "Not Started" },
+            { "Title": "The White Rose", "Status": "Not Started" },
+            { "Title": "The Silver Spike", "Status": "Not Started" },
+            { "Title": "Shadow Games", "Status": "Not Started" },
+            { "Title": "Dreams of Steel", "Status": "Not Started" },
+            { "Title": "Bleak Seasons", "Status": "Not Started" },
+            { "Title": "She is the Darkness", "Status": "Not Started" },
+            { "Title": "Water Sleeps", "Status": "Not Started" },
+            { "Title": "Soldiers Live", "Status": "Not Started" }
         ]
     },
     "55": {
@@ -2006,18 +953,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Traitor Baru Cormorant",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Monster Baru Cormorant",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Tyrant Baru Cormorant",
-                "Status": "Not Started"
-            }
+            { "Title": "The Traitor Baru Cormorant", "Status": "Not Started" },
+            { "Title": "The Monster Baru Cormorant", "Status": "Not Started" },
+            { "Title": "The Tyrant Baru Cormorant", "Status": "Not Started" }
         ]
     },
     "56": {
@@ -2029,34 +967,13 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Lion, The Witch, and the Wardrobe",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Prince Caspian",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Voyage of the Dawn Treader",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Silver Chair",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Horse and His Boy",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Magician's Nephew",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Last Battle",
-                "Status": "Not Started"
-            }
+            { "Title": "The Lion, The Witch, and the Wardrobe", "Status": "Not Started" },
+            { "Title": "Prince Caspian", "Status": "Not Started" },
+            { "Title": "The Voyage of the Dawn Treader", "Status": "Not Started" },
+            { "Title": "The Silver Chair", "Status": "Not Started" },
+            { "Title": "The Horse and His Boy", "Status": "Not Started" },
+            { "Title": "The Magician's Nephew", "Status": "Not Started" },
+            { "Title": "The Last Battle", "Status": "Not Started" }
         ]
     },
     "57": {
@@ -2068,46 +985,16 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Shadow and Bone",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Siege and Storm",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ruin and Rising",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Six of Crows",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Crooked Kingdom",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "King of Scars",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Rule of Wolves",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Language of Thorns",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Lives of Saints",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Demon in the Wood",
-                "Status": "Not Started"
-            }
+            { "Title": "Shadow and Bone", "Status": "Not Started" },
+            { "Title": "Siege and Storm", "Status": "Not Started" },
+            { "Title": "Ruin and Rising", "Status": "Not Started" },
+            { "Title": "Six of Crows", "Status": "Not Started" },
+            { "Title": "Crooked Kingdom", "Status": "Not Started" },
+            { "Title": "King of Scars", "Status": "Not Started" },
+            { "Title": "Rule of Wolves", "Status": "Not Started" },
+            { "Title": "The Language of Thorns", "Status": "Not Started" },
+            { "Title": "The Lives of Saints", "Status": "Not Started" },
+            { "Title": "Demon in the Wood", "Status": "Not Started" }
         ]
     },
     "58": {
@@ -2119,14 +1006,8 @@
         "Total # of Books Read": 2,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "Legends & Lattes",
-                "Status": "Completed"
-            },
-            {
-                "Title": "Bookshops & Bonedust",
-                "Status": "Completed"
-            }
+            { "Title": "Legends & Lattes", "Status": "Completed" },
+            { "Title": "Bookshops & Bonedust", "Status": "Completed" }
         ]
     },
     "59": {
@@ -2138,10 +1019,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Tigana",
-                "Status": "Not Started"
-            }
+            { "Title": "Tigana", "Status": "Not Started" }
         ]
     },
     "60": {
@@ -2153,10 +1031,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Lions of Al-Rassan",
-                "Status": "Not Started"
-            }
+            { "Title": "The Lions of Al-Rassan", "Status": "Not Started" }
         ]
     },
     "61": {
@@ -2168,42 +1043,15 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Kushiel's Dart",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Kushiel's Chosen",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Kushiel's Avatar",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Kushiel's Scion",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Kushiel's Justice",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Kushiel's Mercy",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Naamah's Kiss",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Naamah's Curse",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Naamah's Blessing",
-                "Status": "Not Started"
-            }
+            { "Title": "Kushiel's Dart", "Status": "Not Started" },
+            { "Title": "Kushiel's Chosen", "Status": "Not Started" },
+            { "Title": "Kushiel's Avatar", "Status": "Not Started" },
+            { "Title": "Kushiel's Scion", "Status": "Not Started" },
+            { "Title": "Kushiel's Justice", "Status": "Not Started" },
+            { "Title": "Kushiel's Mercy", "Status": "Not Started" },
+            { "Title": "Naamah's Kiss", "Status": "Not Started" },
+            { "Title": "Naamah's Curse", "Status": "Not Started" },
+            { "Title": "Naamah's Blessing", "Status": "Not Started" }
         ]
     },
     "62": {
@@ -2215,34 +1063,13 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Darkness That Comes Before",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Warrior Prophet",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Thousandfold Thought",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Judging Eye",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The White-Luck Warrior",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Great Ordeal",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Unholy Consult",
-                "Status": "Not Started"
-            }
+            { "Title": "The Darkness That Comes Before", "Status": "Not Started" },
+            { "Title": "The Warrior Prophet", "Status": "Not Started" },
+            { "Title": "The Thousandfold Thought", "Status": "Not Started" },
+            { "Title": "The Judging Eye", "Status": "Not Started" },
+            { "Title": "The White-Luck Warrior", "Status": "Not Started" },
+            { "Title": "The Great Ordeal", "Status": "Not Started" },
+            { "Title": "The Unholy Consult", "Status": "Not Started" }
         ]
     },
     "63": {
@@ -2254,18 +1081,9 @@
         "Total # of Books Read": 3,
         "Progress": 100,
         "Books": [
-            {
-                "Title": "The Poppy War",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Dragon Republic",
-                "Status": "Completed"
-            },
-            {
-                "Title": "The Burning God",
-                "Status": "Completed"
-            }
+            { "Title": "The Poppy War", "Status": "Completed" },
+            { "Title": "The Dragon Republic", "Status": "Completed" },
+            { "Title": "The Burning God", "Status": "Completed" }
         ]
     },
     "64": {
@@ -2277,10 +1095,7 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Library at Mount Char",
-                "Status": "Not Started"
-            }
+            { "Title": "The Library at Mount Char", "Status": "Not Started" }
         ]
     },
     "65": {
@@ -2292,74 +1107,23 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Alanna: The First Adventure",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "In the Hand of the Goddess",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Woman Who Rides Like a Man",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Lioness Rampant",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wild Magic",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Wolf-Speaker",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Emperor Mage",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Realms of the Gods",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "First Test",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Page",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Squire",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Lady Knight",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Trickster's Choice",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Trickster's Queen",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Terrier",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Bloodhound",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Mastiff",
-                "Status": "Not Started"
-            }
+            { "Title": "Alanna: The First Adventure", "Status": "Not Started" },
+            { "Title": "In the Hand of the Goddess", "Status": "Not Started" },
+            { "Title": "The Woman Who Rides Like a Man", "Status": "Not Started" },
+            { "Title": "Lioness Rampant", "Status": "Not Started" },
+            { "Title": "Wild Magic", "Status": "Not Started" },
+            { "Title": "Wolf-Speaker", "Status": "Not Started" },
+            { "Title": "Emperor Mage", "Status": "Not Started" },
+            { "Title": "The Realms of the Gods", "Status": "Not Started" },
+            { "Title": "First Test", "Status": "Not Started" },
+            { "Title": "Page", "Status": "Not Started" },
+            { "Title": "Squire", "Status": "Not Started" },
+            { "Title": "Lady Knight", "Status": "Not Started" },
+            { "Title": "Trickster's Choice", "Status": "Not Started" },
+            { "Title": "Trickster's Queen", "Status": "Not Started" },
+            { "Title": "Terrier", "Status": "Not Started" },
+            { "Title": "Bloodhound", "Status": "Not Started" },
+            { "Title": "Mastiff", "Status": "Not Started" }
         ]
     },
     "67": {
@@ -2371,18 +1135,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Worm",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Glow-Worm",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Ward",
-                "Status": "Not Started"
-            }
+            { "Title": "Worm", "Status": "Not Started" },
+            { "Title": "Glow-Worm", "Status": "Not Started" },
+            { "Title": "Ward", "Status": "Not Started" }
         ]
     },
     "68": {
@@ -2394,22 +1149,10 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "A Shadow in Summer",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "A Betrayal in Winter",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "An Autumn War",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Price of Spring",
-                "Status": "Not Started"
-            }
+            { "Title": "A Shadow in Summer", "Status": "Not Started" },
+            { "Title": "A Betrayal in Winter", "Status": "Not Started" },
+            { "Title": "An Autumn War", "Status": "Not Started" },
+            { "Title": "The Price of Spring", "Status": "Not Started" }
         ]
     },
     "69": {
@@ -2421,18 +1164,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "Howl's Moving Castle",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "Castle in the Air",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "House of Many Ways",
-                "Status": "Not Started"
-            }
+            { "Title": "Howl's Moving Castle", "Status": "Not Started" },
+            { "Title": "Castle in the Air", "Status": "Not Started" },
+            { "Title": "House of Many Ways", "Status": "Not Started" }
         ]
     },
     "70": {
@@ -2444,18 +1178,9 @@
         "Total # of Books Read": 0,
         "Progress": 0,
         "Books": [
-            {
-                "Title": "The Shadow of the Gods",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Hunger of the Gods",
-                "Status": "Not Started"
-            },
-            {
-                "Title": "The Fury of the Gods",
-                "Status": "Not Started"
-            }
+            { "Title": "The Shadow of the Gods", "Status": "Not Started" },
+            { "Title": "The Hunger of the Gods", "Status": "Not Started" },
+            { "Title": "The Fury of the Gods", "Status": "Not Started" }
         ]
     }
 }
