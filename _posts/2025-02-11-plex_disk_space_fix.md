@@ -1,7 +1,7 @@
 ---
 title: Fixing Plex Docker Failures: Resolving Disk Space Issues and Optimizing Storage
 date: 2025-02-11 00:00:00 -7
-categories: [homelab, plex, docker]
+categories: [homelab, plex]
 tags: [homelab, plex, docker, storage]
 ---
 

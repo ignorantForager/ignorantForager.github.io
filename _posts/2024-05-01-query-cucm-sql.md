@@ -1,7 +1,7 @@
 ---
 title: Querying CUCM Databse using SQL
 date: 2024-05-01 00:00:00 -7
-categories: [cisco, cucm, sql]
+categories: [networking, cisco]
 tags: [cisco,cucm,sql,api,postman]
 ---
 ## Exploring Cisco Unity Call Manager (CUCM) Database Access via Postman and SOAP/AXL API

@@ -1,7 +1,7 @@
 ---
 title: A Practical Approach to Finding 100GB QSFPs
 date: 2024-05-02 00:00:00 -7
-categories: [cisco, powershell]
+categories: [networking, cisco]
 tags: [cisco,powershell,plink,qsfp]
 ---
 ## Automating 100GB QSFP Transceiver Inventory with PowerShell
