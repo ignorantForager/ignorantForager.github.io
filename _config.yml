@@ -16,7 +16,7 @@ timezone: America/Los_Angeles
 
 title: HomeLab Documents # the main title
 
-tagline: My Homelab in Writing # it will display as the subtitle
+tagline: My Homelab in writing # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A personal documentation site for my homelab setup, configurations, and experiments. Mostly for my own reference, but publicly available in case it helps others.
