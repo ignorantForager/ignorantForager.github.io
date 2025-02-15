@@ -1,5 +1,5 @@
 ---
-title: Querying CUCM Databse using SQL
+title: Querying CUCM Database using SQL
 date: 2024-05-01 00:00:00 -7
 categories: [networking, cisco]
 tags: [cisco,cucm,sql,api,postman]
