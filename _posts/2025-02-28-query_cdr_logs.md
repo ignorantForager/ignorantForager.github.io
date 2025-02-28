@@ -1,6 +1,6 @@
 ---
 title: Querying Service Desk Call Metrics with Python
-date: 2025-02-28 00:00:00 -7
+date: 2025-02-28 07:00:00 -7
 categories: [networking, cisco]
 tags: [cisco,cucm,sql,api,python]
 ---
@@ -213,7 +213,7 @@ print("---------------------------\n")
 
 ## Remaining Challenges
 
-This solution is about **75% automated**. The biggest remaining manual task is **downloading the CSV file**. Additionally, I still **import the data into Excel** for visualization, though I know Python has libraries for this. However, I lack the access to Python’s visualization tools, which is a limitation for now.
+This solution is about **75% automated** (98.7% of all stats are made up, this one included). The biggest remaining manual task is **downloading the CSV file**. Additionally, I still **import the data into Excel** for visualization, though I know Python has libraries for this. However, I lack the access to Python’s visualization tools, which is a limitation for now.
 
 ## Conclusion
 
