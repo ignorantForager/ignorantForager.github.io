@@ -5,56 +5,98 @@ order: 5
 toc: false
 ---
 <style>
-  /* ----- Table Width and Responsiveness Styles ----- */
+  /* ----- General Table Wrapper and Base Table Styles ----- */
+  .table-responsive {
+    /* This Bootstrap class should handle horizontal scrolling if content overflows */
+    /* No extra styles needed unless Chirpy overrides it heavily */
+  }
+
+  .table-responsive .table { /* Base styles for the table itself */
+    width: 100%; /* Make table try to fit its container */
+    /* Default colors that will be overridden by dark mode */
+    color: var(--bs-table-color, #212529); /* Default Bootstrap text */
+    background-color: var(--bs-table-bg, #fff); /* Default Bootstrap bg */
+    border-color: var(--bs-table-border-color, #dee2e6); /* Default Bootstrap border */
+  }
+
+  /* ----- Column Width and Text Wrapping Styles ----- */
+  /* These apply in both light and dark mode */
+  .table-responsive .table th,
+  .table-responsive .table td {
+    vertical-align: top; /* Good default */
+  }
+
+  .table-responsive .table td:nth-child(1), /* # */
+  .table-responsive .table th:nth-child(1) {
+    width: 3em;
+    text-align: center; /* Center the rank number */
+  }
+
+  .table-responsive .table td:nth-child(2), /* Retailer */
+  .table-responsive .table th:nth-child(2) {
+    width: 100px; /* Or suitable fixed width */
+    white-space: nowrap;
+  }
+
   .table-responsive .table td:nth-child(3), /* Product */
   .table-responsive .table th:nth-child(3) {
-    min-width: 250px;
-    max-width: 400px;
+    min-width: 200px; /* Adjust as needed */
+    max-width: 350px; /* Adjust as needed */
     word-break: break-word;
-    white-space: normal !important;
+    white-space: normal !important; /* Crucial for wrapping */
   }
-  .table-responsive .table td:nth-child(1), /* # */
-  .table-responsive .table th:nth-child(1) { width: 3em; }
-  .table-responsive .table td:nth-child(2), /* Retailer */
-  .table-responsive .table th:nth-child(2) { width: 100px; white-space: nowrap; }
-  .table-responsive .table td:nth-child(4), /* Capacity */
-  .table-responsive .table th:nth-child(4) { width: 80px; }
-  .table-responsive .table td:nth-child(5), /* Price */
-  .table-responsive .table th:nth-child(5) { width: 90px; }
-  .table-responsive .table td:nth-child(6), /* $/TB */
-  .table-responsive .table th:nth-child(6) { width: 80px; }
 
-  /* ----- Dark Mode Table Theming ----- */
+  .table-responsive .table td:nth-child(4), /* Capacity (TB) */
+  .table-responsive .table th:nth-child(4) {
+    width: 80px; /* Or suitable fixed width */
+    text-align: right;
+  }
+
+  .table-responsive .table td:nth-child(5), /* Price ($) */
+  .table-responsive .table th:nth-child(5) {
+    width: 90px; /* Or suitable fixed width */
+    text-align: right;
+  }
+
+  .table-responsive .table td:nth-child(6), /* $/TB */
+  .table-responsive .table th:nth-child(6) {
+    width: 80px; /* Or suitable fixed width */
+    text-align: right;
+  }
+
+  /* ----- Dark Mode Specific Table Theming ----- */
   /* Chirpy uses [data-theme="dark"] on the <html> tag */
   [data-theme="dark"] .table-responsive .table {
-    /* Set Bootstrap table variables for dark mode */
-    --bs-table-color: var(--main-text-color, #e0e0e0);       /* Use Chirpy's main text color or a fallback */
-    --bs-table-bg: var(--card-bg, #2a2b2d);               /* Use Chirpy's card background or a fallback */
-    --bs-table-border-color: var(--main-border-color, #454545); /* Use Chirpy's border color or a fallback */
+    /* Set Bootstrap table variables for dark mode using Chirpy variables or fallbacks */
+    /* !! IMPORTANT: Replace --chirpy-text, --chirpy-card-bg, etc., with ACTUAL Chirpy variables !! */
+    --bs-table-color: var(--chirpy-text-color-dark, #e0e0e0);
+    --bs-table-bg: var(--chirpy-card-bg-dark, #2a2b2d);
+    --bs-table-border-color: var(--chirpy-border-color-dark, #454545);
     
-    /* Striped rows */
-    --bs-table-striped-color: var(--main-text-color, #e0e0e0);
-    --bs-table-striped-bg: rgba(255, 255, 255, 0.04); /* Subtle light stripe on dark bg */
-                                                      /* Or try: var(--sidebar-bg, #1e1e1e); if you want a darker stripe */
+    /* Striped rows for dark mode */
+    --bs-table-striped-color: var(--chirpy-text-color-dark, #e0e0e0);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.04); /* Subtle light stripe */
+                                                      
+    /* Hover effect for dark mode (optional) */
+    --bs-table-hover-color: var(--chirpy-text-color-dark-hover, #f0f0f0);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.075);
 
-    /* Hover effect (optional, but good for consistency) */
-    --bs-table-hover-color: var(--main-text-color, #f0f0f0);
-    --bs-table-hover-bg: rgba(255, 255, 255, 0.075); /* Slightly more prominent hover */
-
-    color: var(--bs-table-color); /* Apply text color to the table itself */
+    /* This ensures the root table text color is set based on the BS variable */
+    color: var(--bs-table-color);
   }
 
-  /* Ensure table headers also get styled correctly */
+  /* Table headers in dark mode */
   [data-theme="dark"] .table-responsive .table th {
-    color: var(--main-text-color, #f0f0f0);
-    background-color: var(--table-header-bg-dark, #343a40); /* A common dark header color */
-                                                            /* Or try: var(--card-bg, #2a2b2d) if you want it same as cells */
-    border-color: var(--main-border-color, #454545);
+    /* !! IMPORTANT: Replace --chirpy-text, --chirpy-header-bg etc. with ACTUAL Chirpy variables !! */
+    color: var(--chirpy-header-text-color-dark, #f0f0f0);
+    background-color: var(--chirpy-header-bg-dark, #343a40); 
+    border-color: var(--chirpy-border-color-dark, #454545);
   }
 
-  /* Ensure links within the table are styled for dark mode */
+  /* Links within the table in dark mode */
   [data-theme="dark"] .table-responsive .table a {
-    color: var(--link-color-dark, #6cb6ff) !important; /* Use Chirpy's dark link color or a fallback */
+    /* !! IMPORTANT: Replace --chirpy-link-color-dark with ACTUAL Chirpy variable !! */
+    color: var(--chirpy-link-color-dark, #6cb6ff) !important; /* !important might be needed for links */
   }
 </style>
 
