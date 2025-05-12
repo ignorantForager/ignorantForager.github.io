@@ -5,70 +5,68 @@ order: 5
 toc: false
 ---
 <style>
-  /* Target the "Product" column (usually the 3rd child in our table) */
-  .table-responsive .table td:nth-child(3),
+  /* ----- Table Width and Responsiveness Styles ----- */
+  .table-responsive .table td:nth-child(3), /* Product */
   .table-responsive .table th:nth-child(3) {
-    min-width: 250px; /* Give it a reasonable minimum width */
-    max-width: 400px; /* But also a maximum width */
-    word-break: break-word; /* Allow long words/titles to break and wrap */
-    white-space: normal !important; /* Ensure text wraps */
+    min-width: 250px;
+    max-width: 400px;
+    word-break: break-word;
+    white-space: normal !important;
+  }
+  .table-responsive .table td:nth-child(1), /* # */
+  .table-responsive .table th:nth-child(1) { width: 3em; }
+  .table-responsive .table td:nth-child(2), /* Retailer */
+  .table-responsive .table th:nth-child(2) { width: 100px; white-space: nowrap; }
+  .table-responsive .table td:nth-child(4), /* Capacity */
+  .table-responsive .table th:nth-child(4) { width: 80px; }
+  .table-responsive .table td:nth-child(5), /* Price */
+  .table-responsive .table th:nth-child(5) { width: 90px; }
+  .table-responsive .table td:nth-child(6), /* $/TB */
+  .table-responsive .table th:nth-child(6) { width: 80px; }
+
+  /* ----- Dark Mode Table Theming ----- */
+  /* Chirpy uses [data-theme="dark"] on the <html> tag */
+  [data-theme="dark"] .table-responsive .table {
+    /* Set Bootstrap table variables for dark mode */
+    --bs-table-color: var(--main-text-color, #e0e0e0);       /* Use Chirpy's main text color or a fallback */
+    --bs-table-bg: var(--card-bg, #2a2b2d);               /* Use Chirpy's card background or a fallback */
+    --bs-table-border-color: var(--main-border-color, #454545); /* Use Chirpy's border color or a fallback */
+    
+    /* Striped rows */
+    --bs-table-striped-color: var(--main-text-color, #e0e0e0);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.04); /* Subtle light stripe on dark bg */
+                                                      /* Or try: var(--sidebar-bg, #1e1e1e); if you want a darker stripe */
+
+    /* Hover effect (optional, but good for consistency) */
+    --bs-table-hover-color: var(--main-text-color, #f0f0f0);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.075); /* Slightly more prominent hover */
+
+    color: var(--bs-table-color); /* Apply text color to the table itself */
   }
 
-  /* You might want to give other columns a fixed or max width too */
-  .table-responsive .table td:nth-child(1), /* # */
-  .table-responsive .table th:nth-child(1) {
-    width: 3em; /* Fixed width for rank */
+  /* Ensure table headers also get styled correctly */
+  [data-theme="dark"] .table-responsive .table th {
+    color: var(--main-text-color, #f0f0f0);
+    background-color: var(--table-header-bg-dark, #343a40); /* A common dark header color */
+                                                            /* Or try: var(--card-bg, #2a2b2d) if you want it same as cells */
+    border-color: var(--main-border-color, #454545);
   }
-  .table-responsive .table td:nth-child(2), /* Retailer */
-  .table-responsive .table th:nth-child(2) {
-    width: 100px;
-    white-space: nowrap;
-  }
-  .table-responsive .table td:nth-child(4), /* Capacity */
-  .table-responsive .table th:nth-child(4) {
-    width: 80px;
-  }
-   .table-responsive .table td:nth-child(5), /* Price */
-  .table-responsive .table th:nth-child(5) {
-    width: 90px;
-  }
-   .table-responsive .table td:nth-child(6), /* $/TB */
-  .table-responsive .table th:nth-child(6) {
-    width: 80px;
+
+  /* Ensure links within the table are styled for dark mode */
+  [data-theme="dark"] .table-responsive .table a {
+    color: var(--link-color-dark, #6cb6ff) !important; /* Use Chirpy's dark link color or a fallback */
   }
 </style>
-<div class="mb-5"> <!-- Add some margin below timestamp/status -->
-  <em>Last Updated: {{ site.data.hdd_prices.last_updated | default: "N/A" }}</em>
 
-  <div class="status-section my-3" style="font-size: 0.9em; border: 1px solid #ccc; padding: 5px 15px; border-radius: 5px; background-color: #f9f9f9;">
-    <!-- Basic status display - style further as needed -->
-    <strong>Scraper Status:</strong>
-    <ul>
-      {% for site_status in site.data.hdd_prices.scraper_status %}
-        <li>{{ site_status[0] }}: {{ site_status[1].status }}
-          {% if site_status[1].status == 'Success' %}
-             ({{ site_status[1].count | default: 0 }} items{% if site_status[1].details %}, {{ site_status[1].details }}{% endif %})
-          {% elsif site_status[1].error %}
-             (Error: {{ site_status[1].error }})
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-    {% assign failed_count = 0 %}
-    {% for site_status in site.data.hdd_prices.scraper_status %}
-      {% if site_status[1].status == 'Failed' %}
-         {% assign failed_count = failed_count | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-    {% if failed_count > 0 %}
-      <p style="color: orange;">Note: One or more scrapers failed. Results may be incomplete.</p>
-    {% endif %}
-  </div>
+<!-- Rest of your Liquid code for status, table, etc. -->
+<div class="mb-5">
+  <em>Last Updated: {{ site.data.hdd_prices.last_updated | default: "N/A" }}</em>
+  <!-- ... status Liquid ... -->
 </div>
 
 {% if site.data.hdd_prices.drives and site.data.hdd_prices.drives.size > 0 %}
-  <div class="table-responsive"> <!-- Wrapper for horizontal scrolling on small screens if needed -->
-    <table class="table table-striped"> <!-- Chirpy uses Bootstrap tables, these classes should apply -->
+  <div class="table-responsive">
+    <table class="table table-striped"> <!-- Keep these classes -->
       <thead>
         <tr>
           <th class="text-center">#</th>
