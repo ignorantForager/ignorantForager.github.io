@@ -7,15 +7,13 @@ toc: false
 <style>
   /* ----- General Table Wrapper and Base Table Styles ----- */
   .table-responsive {
-    /* This Bootstrap class should handle horizontal scrolling if content overflows */
+    /* Bootstrap class for horizontal scrolling */
   }
 
-  .table-responsive .table { /* Base styles for the table itself */
+  .table-responsive .table {
     width: 100%;
-    /* Default light mode colors (will be overridden by dark mode) */
-    color: var(--bs-table-color, #212529);
-    background-color: var(--bs-table-bg, #fff);
-    border-color: var(--bs-table-border-color, #dee2e6);
+    /* Default light mode Bootstrap variables will be used by default.
+       Dark mode overrides these using Chirpy's variables. */
   }
 
   /* ----- Column Width and Text Wrapping Styles ----- */
@@ -64,34 +62,51 @@ toc: false
   }
 
   /* ----- Dark Mode Specific Table Theming ----- */
-  [data-theme="dark"] .table-responsive .table {
-    /* Set Bootstrap table variables for dark mode using your identified Chirpy variables */
-    --bs-table-color: var(--text-color, rgb(175, 176, 177));       /* Your --text-color */
-    --bs-table-bg: var(--main-bg, rgb(27, 27, 30));               /* Your --main-bg (or use #2a2b2d if main-bg is too dark for table) */
-    --bs-table-border-color: var(--main-border-color, rgb(44, 45, 45)); /* Your --main-border-color */
-    
-    /* Striped rows for dark mode */
-    --bs-table-striped-color: var(--text-color, rgb(175, 176, 177));
-    --bs-table-striped-bg: rgba(255, 255, 255, 0.04); /* Subtle light stripe, or try a darker version of --main-bg */
-                                                      
-    /* Hover effect for dark mode (optional) */
-    --bs-table-hover-color: var(--text-color, rgb(200, 200, 200)); /* Slightly lighter text on hover */
-    --bs-table-hover-bg: rgba(255, 255, 255, 0.075); /* Slightly more prominent hover */
+  /* Chirpy uses [data-theme="dark"] on the <html> tag */
 
-    /* This ensures the root table text color is set based on the BS variable */
-    color: var(--bs-table-color);
+  /* Target the table and set general dark mode properties */
+  [data-theme="dark"] .table-responsive .table {
+    color: var(--text-color); /* rgb(175, 176, 177) */
+    border-color: var(--tb-border-color); /* var(--tb-odd-bg) which is rgb(31, 31, 34) */
+    /* General background for the table if needed, though rows will override */
+    /* background-color: var(--main-bg); */
   }
 
-  /* Table headers in dark mode */
+  /* Table Headers in dark mode */
   [data-theme="dark"] .table-responsive .table th {
-    color: var(--text-color, rgb(200, 200, 200)); /* Slightly lighter/brighter for header text */
-    background-color: var(--card-header-bg, #292929);  /* Your --card-header-bg */
-    border-color: var(--main-border-color, rgb(44, 45, 45));
+    color: var(--text-color); /* Or a slightly brighter version if needed */
+    background-color: var(--card-header-bg, #292929); /* Your identified header bg, or var(--main-bg) */
+    border-color: var(--tb-border-color);
+  }
+
+  /* Table Body Rows in dark mode - using Chirpy's table variables! */
+  [data-theme="dark"] .table-responsive .table tbody tr {
+    /* Default row background will be the general table bg or inherited */
+  }
+  
+  /* Odd rows for striping - use Chirpy's --tb-odd-bg */
+  [data-theme="dark"] .table-responsive .table.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: var(--tb-odd-bg); /* rgb(31, 31, 34) */
+    color: var(--text-color);
+  }
+  
+  /* Even rows for striping - use Chirpy's --tb-even-bg (if different from default cell)*/
+  /* Bootstrap default for striped tables is that even rows take the normal table cell bg */
+  /* If --tb-even-bg is the same as the default table cell background, you might not need this explicit rule */
+  [data-theme="dark"] .table-responsive .table.table-striped > tbody > tr:nth-of-type(even) > * {
+     background-color: var(--tb-even-bg); /* rgb(27, 27, 30) */
+     color: var(--text-color);
+  }
+
+  /* Hover effect for table rows in dark mode */
+  [data-theme="dark"] .table-responsive .table tbody tr:hover > * {
+    background-color: var(--tb-hover-bg); /* rgb(45, 56, 62) */
+    color: var(--text-color); /* Or a slightly brighter hover text color */
   }
 
   /* Links within the table in dark mode */
   [data-theme="dark"] .table-responsive .table a {
-    color: var(--link-color, rgb(138, 180, 248)) !important; /* Your --link-color, !important might be needed */
+    color: var(--link-color) !important; /* rgb(138, 180, 248) */
   }
 </style>
 
