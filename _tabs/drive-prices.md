@@ -1,12 +1,8 @@
 ---
-layout: page
 title: HDD Price Comparison
 icon: fas fa-hdd
 order: 5
-# Optional Chirpy front matter:
-# toc: false # Disable table of contents if desired
-# comments: false # Disable comments if desired
-# sitemap: false # Exclude from sitemap if desired
+toc: false
 ---
 
 <div class="mb-5"> <!-- Add some margin below timestamp/status -->
