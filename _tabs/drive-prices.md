@@ -4,7 +4,39 @@ icon: fas fa-hdd
 order: 5
 toc: false
 ---
+<style>
+  /* Target the "Product" column (usually the 3rd child in our table) */
+  .table-responsive .table td:nth-child(3),
+  .table-responsive .table th:nth-child(3) {
+    min-width: 250px; /* Give it a reasonable minimum width */
+    max-width: 400px; /* But also a maximum width */
+    word-break: break-word; /* Allow long words/titles to break and wrap */
+    white-space: normal !important; /* Ensure text wraps */
+  }
 
+  /* You might want to give other columns a fixed or max width too */
+  .table-responsive .table td:nth-child(1), /* # */
+  .table-responsive .table th:nth-child(1) {
+    width: 3em; /* Fixed width for rank */
+  }
+  .table-responsive .table td:nth-child(2), /* Retailer */
+  .table-responsive .table th:nth-child(2) {
+    width: 100px;
+    white-space: nowrap;
+  }
+  .table-responsive .table td:nth-child(4), /* Capacity */
+  .table-responsive .table th:nth-child(4) {
+    width: 80px;
+  }
+   .table-responsive .table td:nth-child(5), /* Price */
+  .table-responsive .table th:nth-child(5) {
+    width: 90px;
+  }
+   .table-responsive .table td:nth-child(6), /* $/TB */
+  .table-responsive .table th:nth-child(6) {
+    width: 80px;
+  }
+</style>
 <div class="mb-5"> <!-- Add some margin below timestamp/status -->
   <em>Last Updated: {{ site.data.hdd_prices.last_updated | default: "N/A" }}</em>
 
