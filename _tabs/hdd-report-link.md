@@ -27,7 +27,7 @@ For now, let's make this page simply provide a prominent link.
 -->
 
 <p class="lead text-center mt-5">
-  <a href="{{ '/hdd_prices_report.html' | relative_url }}" class="btn btn-lg btn-primary">View HDD Price Report</a>
+  <a href="{{ 'pages/hdd_prices_report.html' | relative_url }}" class="btn btn-lg btn-primary">View HDD Price Report</a>
 </p>
 
 <p class="text-center text-muted">
