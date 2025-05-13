@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDD Price per TB (Amazon, Newegg, SPD)</title>
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --bg-color: #ffffff; --text-color: #333333; --link-color: #007bff;
+            --border-color: #dddddd; --header-bg-color: #f8f8f8; --hover-bg-color: #f1f1f1;
+            --subtle-text-color: #555555; --button-bg: #eee; --button-text: #333;
+            --button-border: #ccc;
+            --status-border: #ddd; --status-bg: #f9f9f9;
+            --error-border: #e57373; --error-bg: #ffebee; --error-text: #c62828;
+        }
+        body.dark-mode {
+            --bg-color: #121212; --text-color: #e0e0e0; --link-color: #80bfff;
+            --border-color: #444444; --header-bg-color: #2a2a2a; --hover-bg-color: #333333;
+            --subtle-text-color: #aaaaaa; --button-bg: #333; --button-text: #eee;
+            --button-border: #555;
+            --status-border: #555; --status-bg: #222;
+            --error-border: #e57373; --error-bg: #4e3434; --error-text: #ffcdd2;
+        }
+        /* General Styles */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; width: 100%; flex-grow: 1; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        h1 { margin: 0; font-size: 1.8em; flex-basis: 100%; margin-bottom: 10px; text-align:center; }
+        .subtitle, .timestamp { text-align: center; color: var(--subtle-text-color); font-size: 0.9em; margin-top: 5px; width: 100%; }
+        .timestamp { margin-bottom: 10px; }
+        /* Status Section */
+        .status-section { background-color: var(--status-bg); border: 1px solid var(--status-border); padding: 5px 15px; margin-bottom: 20px; border-radius: 5px; font-size: 0.9em; }
+        .status-section h3 { margin: 5px 0; font-size: 1em; }
+        .status-section ul { margin: 5px 0 5px 20px; padding: 0; }
+        .status-section li { margin-bottom: 3px; }
+        /* Theme Toggle Button */
+        #themeToggle { padding: 8px 12px; background-color: var(--button-bg); color: var(--button-text); border: 1px solid var(--button-border); border-radius: 5px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s, border-color 0.2s; order: 3; margin-left:auto; }
+        #themeToggle:hover { background-color: var(--hover-bg-color); }
+        /* Table Styles */
+        .results-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95em; border: 1px solid var(--border-color); }
+        .results-table th, .results-table td { border: 1px solid var(--border-color); padding: 10px 8px; text-align: left; vertical-align: top; }
+        .results-table th { background-color: var(--header-bg-color); font-weight: bold; text-align: center; }
+        .results-table td:nth-child(1), .results-table td:nth-child(4), .results-table td:nth-child(5), .results-table td:nth-child(6) { text-align: right; white-space: nowrap; }
+        .results-table td:nth-child(3) { word-break: break-word; } /* Product */
+        .results-table a { color: var(--link-color); text-decoration: none; }
+        .results-table a:hover { text-decoration: underline; }
+        .results-table tbody tr:hover { background-color: var(--hover-bg-color); }
+        /* Error Message Styling */
+        .error-container { text-align: center; margin-top: 40px; padding: 20px; border: 1px solid var(--error-border); background-color: var(--error-bg); color: var(--error-text); border-radius: 5px; }
+        .error { font-weight: bold; margin-bottom: 5px; }
+        .error-detail { font-size: 0.9em; }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            header { justify-content: center; }
+            #themeToggle { margin-top: 10px; margin-left:0; }
+            h1 { font-size: 1.5em; }
+            .results-table th, .results-table td { padding: 6px 4px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HDD Prices (Amazon, Newegg, ServerPartDeals)</h1>
+            <p class="subtitle">Sorted by price per terabyte ($/TB).</p>
+            <p class="timestamp">Last Updated: 2025-05-13 07:44:23 Pacific Daylight Time</p>
+            <button id="themeToggle">Toggle Theme</button>
+        </header>
+
+         <div class="status-section">
+             <h3>Scraper Status:</h3>
+             <ul><li>Amazon: Success (93 items from 4 page(s))</li><li>Newegg: Success (100 items from 1 large page)</li><li>ServerPartDeals: Success (20 items)</li></ul>
+         </div>
+
+        
+        <table class="dataframe results-table">
+  <thead>
+    <tr style="text-align: center;">
+      <th>#</th>
+      <th>Retailer</th>
+      <th>Product</th>
+      <th>Capacity (TB)</th>
+      <th>Price ($)</th>
+      <th>$/TB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-02F74" target="_blank" title="RefurbishedSeagate ST18000NM004J Exos X18 ST18000NM004J 18 TB Hard Drive - Internal - SAS (12Gb/s SAS)">RefurbishedSeagate ST18000NM004J Exos X18 ST18000NM004J 18 TB Hard Drive - Internal - SAS (12Gb/s SAS)</a></td>
+      <td>18.00</td>
+      <td>198.99</td>
+      <td>11.05</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-ST14000NM0408-3-5in-Drive-Renewed/dp/B0F4XZDR53/ref=sr_1_6?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-6" target="_blank" title="Seagate Exos X14 ST14000NM0408 14TB 7.2K RPM CMR SATA 6Gb/s 512e 3.5in Hard Drive (Renewed)">Seagate Exos X14 ST14000NM0408 14TB 7.2K RPM CMR SATA 6Gb/s 512e 3.5in Hard Drive (Renewed)</a></td>
+      <td>14.00</td>
+      <td>159.99</td>
+      <td>11.43</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-st24000nm000c-24tb-7-2k-rpm-sata-6gb-s-512n-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos 24TB SATA HDD ST24000NM000C">Recertified Exos 24TB SATA HDD ST24000NM000C</a></td>
+      <td>24.00</td>
+      <td>274.99</td>
+      <td>11.46</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-st20000dm001-20tb-for-daily-computing-7200-rpm/p/N82E16822185110" target="_blank" title="Seagate BarraCuda ST20000DM001 20TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate BarraCuda ST20000DM001 20TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>20.00</td>
+      <td>229.99</td>
+      <td>11.50</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-06MR-00020?Item=9SIA5ADKBC4855&cm_sp=SP-_-2623190-_-0-_-2-_-9SIA5ADKBC4855-_-internal hard drive-_-drive|hard|internal-_-15" target="_blank" title="RefurbishedMDD (MDD20TGSA25672E) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5inch Internal Enterprise Hard Drive">RefurbishedMDD (MDD20TGSA25672E) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5inch Internal Enterprise Hard Drive</a></td>
+      <td>20.00</td>
+      <td>229.99</td>
+      <td>11.50</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-st26000nm000c-26tb-7-2k-rpm-sata-6gb-s-512e-cmr-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos 26TB SATA HDD ST26000NM000C">Recertified Exos 26TB SATA HDD ST26000NM000C</a></td>
+      <td>26.00</td>
+      <td>299.99</td>
+      <td>11.54</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Exos-ST24000NM000C-Enterprise-Renewed/dp/B0DH6PMDY3/ref=sr_1_13?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-13" target="_blank" title="Seagate Exos ST24000NM000C 24TB 7.2K RPM SATA 6Gb/s 512e 3.5in Enterprise Hard Drive (Renewed)">Seagate Exos ST24000NM000C 24TB 7.2K RPM SATA 6Gb/s 512e 3.5in Enterprise Hard Drive (Renewed)</a></td>
+      <td>24.00</td>
+      <td>279.99</td>
+      <td>11.67</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc550-wuh721818al5204-0f38353-18tb-7-2k-rpm-sas-12gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Western Digital Ultrastar DC HC550 WUH721818AL5204 0F38353 18TB 7.2K RPM SAS 12Gb/s 512e 3.5in Recertified Hard Drive">Western Digital Ultrastar DC HC550 WUH721818AL5204 0F38353 18TB 7.2K RPM SAS 12Gb/s 512e 3.5in Recertified Hard Drive</a></td>
+      <td>18.00</td>
+      <td>209.99</td>
+      <td>11.67</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/MDD-MDD20TSATA25672E-256MB-Internal-Enterprise/dp/B0BYTYCP14/ref=sr_1_59?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-59" target="_blank" title="MDD (MDD20TSATA25672E) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Enterprise Hard Drive - 5 Years Warranty (Renewed)">MDD (MDD20TSATA25672E) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Enterprise Hard Drive - 5 Years Warranty (Renewed)</a></td>
+      <td>20.00</td>
+      <td>234.99</td>
+      <td>11.75</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-7200RPM-3-5-inch-Enterprise-ST22000NM000C/dp/B0DFDTPR74/ref=sr_1_65?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-65" target="_blank" title="Seagate Exos 22TB SATA HDD 6Gb/s 7200RPM 3.5-inch Enterprise Hard Drive (ST22000NM000C) (Renewed)">Seagate Exos 22TB SATA HDD 6Gb/s 7200RPM 3.5-inch Enterprise Hard Drive (ST22000NM000C) (Renewed)</a></td>
+      <td>22.00</td>
+      <td>259.99</td>
+      <td>11.82</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-st22000nm000c-22tb-7-2k-rpm-sata-6gb-s-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos 22TB SATA HDD ST22000NM000C">Recertified Exos 22TB SATA HDD ST22000NM000C</a></td>
+      <td>22.00</td>
+      <td>259.99</td>
+      <td>11.82</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Recertified-Exos-Internal-Drive/dp/B0DTSG1MT1/ref=sr_1_69?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-69" target="_blank" title="Seagate (Recertified Exos X 26TB Internal Hard Drive HDD - 3.5 in CMR SATA 6Gb/s, 7200 RPM, 512MB Cache, 2.5M MTBF (ST26000NM000C) , Renewed">Seagate (Recertified Exos X 26TB Internal Hard Drive HDD - 3.5 in CMR SATA 6Gb/s, 7200 RPM, 512MB Cache, 2.5M MTBF (ST26000NM000C) , Renewed</a></td>
+      <td>26.00</td>
+      <td>309.99</td>
+      <td>11.92</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/MDD-MD20TS25672NAS-Internal-Network-Storage/dp/B0C3FBQNC9/ref=sr_1_90?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-90" target="_blank" title="MDD (MD20TS25672NAS) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive (for NAS, Network Storage) - 5 Years Warranty">MDD (MD20TS25672NAS) 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive (for NAS, Network Storage) - 5 Years Warranty</a></td>
+      <td>20.00</td>
+      <td>239.99</td>
+      <td>12.00</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Recertified-Exos-Internal-Drive/dp/B0DTSVC7H7/ref=sr_1_14?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-14" target="_blank" title="Seagate (Recertified Exos X 28TB Internal Hard Drive HDD - 3.5 in CMR SATA 6Gb/s, 7200 RPM, 512MB Cache, 2.5M MTBF (ST28000NM000C), Renewed">Seagate (Recertified Exos X 28TB Internal Hard Drive HDD - 3.5 in CMR SATA 6Gb/s, 7200 RPM, 512MB Cache, 2.5M MTBF (ST28000NM000C), Renewed</a></td>
+      <td>28.00</td>
+      <td>339.99</td>
+      <td>12.14</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-st28000nm000c-28tb-7-2k-rpm-sata-6gb-s-512e-cmr-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos 28TB SATA HDD ST28000NM000C">Recertified Exos 28TB SATA HDD ST28000NM000C</a></td>
+      <td>28.00</td>
+      <td>339.99</td>
+      <td>12.14</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc530-wuh721414al5204-0f31052-14tb-7-2k-rpm-sas-12gb-s-3-5-recertified-hard-drive" target="_blank" title="Recertified Ultrastar DC HC530 14TB SAS HDD WUH721414AL5204">Recertified Ultrastar DC HC530 14TB SAS HDD WUH721414AL5204</a></td>
+      <td>14.00</td>
+      <td>169.99</td>
+      <td>12.14</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-st20000nm002c-20tb-enterprise-7200-rpm/p/1Z4-002P-02M93?Item=9SIA5ADKF68974&cm_sp=SP-_-2842479-_-0-_-3-_-9SIA5ADKF68974-_-internal hard drive-_-drive|hard|internal-_-24" target="_blank" title="RefurbishedSeagate Exos ST20000NM002C 20TB 7200RPM SATA 6Gb/s 256MB Cache CMR 3.5-Inch Enterprise Hard Drive">RefurbishedSeagate Exos ST20000NM002C 20TB 7200RPM SATA 6Gb/s 256MB Cache CMR 3.5-Inch Enterprise Hard Drive</a></td>
+      <td>20.00</td>
+      <td>244.95</td>
+      <td>12.25</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-HUH728080ALE604-Ultrastar-Platform-Enterprise/dp/B07MCVVGB9/ref=sr_1_44?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-44" target="_blank" title="HGST HUH728080ALE604 Ultrastar He8 (Helium Platform) 8TB 7200RPM 128MB Cache SATA 6.0Gb/s 3.5inch Internal Enterprise Hard Drive - 0F23668 (Renewed)">HGST HUH728080ALE604 Ultrastar He8 (Helium Platform) 8TB 7200RPM 128MB Cache SATA 6.0Gb/s 3.5inch Internal Enterprise Hard Drive - 0F23668 (Renewed)</a></td>
+      <td>8.00</td>
+      <td>99.99</td>
+      <td>12.50</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Exos-X20-ST20000NM007D-Renewed/dp/B0DFZ573X3/ref=sr_1_51?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-51" target="_blank" title="Seagate Exos X20 ST20000NM007D 20TB 7.2K RPM SATA 6Gb/s 3.5in Hard Drive (Renewed)">Seagate Exos X20 ST20000NM007D 20TB 7.2K RPM SATA 6Gb/s 3.5in Hard Drive (Renewed)</a></td>
+      <td>20.00</td>
+      <td>249.99</td>
+      <td>12.50</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-st24000dm001-24tb-for-daily-computing-7200-rpm/p/N82E16822185109" target="_blank" title="Seagate BarraCuda ST24000DM001 24TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate BarraCuda ST24000DM001 24TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>24.00</td>
+      <td>299.99</td>
+      <td>12.50</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc550-wuh721814al5201-0f38527-14tb-7-2k-rpm-sas-12gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified Ultrastar DC HC550 14TB SAS HDD WUH721814AL5201">Recertified Ultrastar DC HC550 14TB SAS HDD WUH721814AL5201</a></td>
+      <td>14.00</td>
+      <td>179.99</td>
+      <td>12.86</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc550-wuh721814al5204-0f38528-14tb-7-2k-rpm-sas-12gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified Ultrastar DC HC550 14TB SAS HDD WUH721814AL5204">Recertified Ultrastar DC HC550 14TB SAS HDD WUH721814AL5204</a></td>
+      <td>14.00</td>
+      <td>179.99</td>
+      <td>12.86</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Ultrastar-HC510-7200RPM-Drive/dp/B09VY75NLH/ref=sr_1_95?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-95" target="_blank" title="HGST WD Ultrastar DC HC510 10TB 7200RPM SATA 6Gb/s 3.5" SED Hard Drive - HUH721010ALE601 (0F27605) (Renewed)">HGST WD Ultrastar DC HC510 10TB 7200RPM SATA 6Gb/s 3.5" SED Hard Drive - HUH721010ALE601 (0F27605) (Renewed)</a></td>
+      <td>10.00</td>
+      <td>129.44</td>
+      <td>12.94</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Enterprise-Cache-Internal-ST10000NM0016-Refurbished/dp/B07H8PHXYH/ref=sr_1_8?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-8" target="_blank" title="Seagate Enterprise Capacity 3.5 HDD 10TB (Helium) 7200RPM SATA 6Gb/s 256 MB Cache Internal Bare Drive (ST10000NM0016) (Renewed)">Seagate Enterprise Capacity 3.5 HDD 10TB (Helium) 7200RPM SATA 6Gb/s 256 MB Cache Internal Bare Drive (ST10000NM0016) (Renewed)</a></td>
+      <td>10.00</td>
+      <td>129.99</td>
+      <td>13.00</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-st16000dm001-16tb-for-daily-computing-7200-rpm/p/N82E16822185111" target="_blank" title="Seagate BarraCuda ST16000DM001 16TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate BarraCuda ST16000DM001 16TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>16.00</td>
+      <td>209.99</td>
+      <td>13.12</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-x16-st16000nm002c-16tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos X16 16TB SATA HDD ST16000NM002C">Recertified Exos X16 16TB SATA HDD ST16000NM002C</a></td>
+      <td>16.00</td>
+      <td>209.99</td>
+      <td>13.12</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/MaxDigital-7200RPM-Enterprise-Internal-Warranty/dp/B072WLQTCM/ref=sr_1_50?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-50" target="_blank" title="MaxDigital 3TB 7200RPM 64MB Cache SATA 6.0Gb/s (Enterprise Storage) 3.5inch Internal Hard Drive (Renewed)">MaxDigital 3TB 7200RPM 64MB Cache SATA 6.0Gb/s (Enterprise Storage) 3.5inch Internal Hard Drive (Renewed)</a></td>
+      <td>3.00</td>
+      <td>39.99</td>
+      <td>13.33</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-006T-00018?Item=9SIA5AD4820994&cm_sp=SP-_-2623190-_-0-_-2-_-9SIA5AD4820994-_-internal hard drive-_-drive|hard|internal-_-9" target="_blank" title="WL 3TB 64MB Cache 5400RPM SATA III (6.0Gb/s) (Low Power & Heavy Duty) 3.5" Internal Hard Drive (NAS & CCTV DVR) w/1 Year Warranty">WL 3TB 64MB Cache 5400RPM SATA III (6.0Gb/s) (Low Power & Heavy Duty) 3.5" Internal Hard Drive (NAS & CCTV DVR) w/1 Year Warranty</a></td>
+      <td>3.00</td>
+      <td>39.99</td>
+      <td>13.33</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc550-wuh721818al5201-0f38352-18tb-7-2k-rpm-sas-12gb-s-sed-3-5-recertified-hard-drive" target="_blank" title="Recertified Ultrastar DC HC550 18TB SAS HDD WUH721818AL5201">Recertified Ultrastar DC HC550 18TB SAS HDD WUH721818AL5201</a></td>
+      <td>18.00</td>
+      <td>239.99</td>
+      <td>13.33</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-skyhawk-surveillance-st12000vx0007-12tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Seagate SkyHawk Surveillance ST12000VX0007 12TB 7.2K RPM SATA 6Gb/s 512e 3.5in Recertified Hard Drive">Seagate SkyHawk Surveillance ST12000VX0007 12TB 7.2K RPM SATA 6Gb/s 512e 3.5in Recertified Hard Drive</a></td>
+      <td>12.00</td>
+      <td>159.99</td>
+      <td>13.33</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Recertified-Exos-X16-ST14000NM001G/dp/B08JYQKVJP/ref=sr_1_99?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-99" target="_blank" title="Seagate (Recertified) Exos X16 16TB 7200 RPM SATA 6Gb/s 256MB Cache 3.5-Inch Internal Data Center HDD Enterprise Hard Drive (ST16000NM001G)">Seagate (Recertified) Exos X16 16TB 7200 RPM SATA 6Gb/s 256MB Cache 3.5-Inch Internal Data Center HDD Enterprise Hard Drive (ST16000NM001G)</a></td>
+      <td>16.00</td>
+      <td>214.99</td>
+      <td>13.44</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-x20-st20000nm007d-20tb-7-2k-rpm-sata-6gb-s-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos X20 20TB SATA HDD ST20000NM007D">Recertified Exos X20 20TB SATA HDD ST20000NM007D</a></td>
+      <td>20.00</td>
+      <td>269.99</td>
+      <td>13.50</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Enterprise-Hyperscale-7200rpm-Improved/dp/B0CF5XVHMS/ref=sr_1_83?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-83" target="_blank" title="Seagate Exos X18 Enterprise 16TB HDD, CMR 3.5" Hyperscale SATA 6GB/s, 7200rpm, 512e, 4Kn Fast Format, Low Latency with Improved Caching, Model No.: ST16000NM000J (Refurbished)">Seagate Exos X18 Enterprise 16TB HDD, CMR 3.5" Hyperscale SATA 6GB/s, 7200rpm, 512e, 4Kn Fast Format, Low Latency with Improved Caching, Model No.: ST16000NM000J (Refurbished)</a></td>
+      <td>16.00</td>
+      <td>218.99</td>
+      <td>13.69</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Ultrastar-HUH728080ALE604-3-5-Inch-Enterprise/dp/B079TL4TDJ/ref=sr_1_84?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-84" target="_blank" title="HGST Ultrastar He8 HDD HUH728080ALE604 8TB 7200RPM 128MB Cache SATA 6.0Gb/s 3.5-Inch Enterprise Server Data Center Hard Drive (Renewed)">HGST Ultrastar He8 HDD HUH728080ALE604 8TB 7200RPM 128MB Cache SATA 6.0Gb/s 3.5-Inch Enterprise Server Data Center Hard Drive (Renewed)</a></td>
+      <td>8.00</td>
+      <td>109.50</td>
+      <td>13.69</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/MaxDigitalData-MD10000GSA12872-7200RPM-3-5inch-Internal/dp/B09GRVT9ZM/ref=sr_1_94?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-94" target="_blank" title="MaxDigitalData (MD10000GSA25672) 10TB 7200RPM SATA 6Gb/s 256MB Cache 3.5inch Internal Desktop Hard Drive - 3 Years Warranty (Renewed)">MaxDigitalData (MD10000GSA25672) 10TB 7200RPM SATA 6Gb/s 256MB Cache 3.5inch Internal Desktop Hard Drive - 3 Years Warranty (Renewed)</a></td>
+      <td>10.00</td>
+      <td>136.99</td>
+      <td>13.70</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x16-st16000nm001g-16tb/p/1Z4-002P-022G3?Item=9SIA5ADJM01620&cm_sp=SP-_-2623296-_-0-_-0-_-9SIA5ADJM01620-_-internal hard drive-_-drive|hard|internal-_-18" target="_blank" title="RefurbishedSeagate Exos X16 16TB 7.2K RPM SATA 6Gb/s 512e/4Kn 256MB 3.5" Enterprise HDD - ST16000NM001G">RefurbishedSeagate Exos X16 16TB 7.2K RPM SATA 6Gb/s 512e/4Kn 256MB 3.5" Enterprise HDD - ST16000NM001G</a></td>
+      <td>16.00</td>
+      <td>219.99</td>
+      <td>13.75</td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Ultrastar-7200RPM-WUH721818ALE6L4/dp/B09NP4Y2JC/ref=sr_1_38?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-38" target="_blank" title="Western Digital Ultrastar DC HC550 18TB 7200RPM 3.5" SATA Hard Drive WUH721818ALE6L4 (Renewed)">Western Digital Ultrastar DC HC550 18TB 7200RPM 3.5" SATA Hard Drive WUH721818ALE6L4 (Renewed)</a></td>
+      <td>18.00</td>
+      <td>249.99</td>
+      <td>13.89</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Ultrastar-HUH721212ALE600-3-5-Inch-Internal/dp/B07Y8GF5M6/ref=sr_1_19?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-19" target="_blank" title="HGST - WD Ultrastar DC HC520 HDD | HUH721212ALE601 | 12TB 7200RPM SATA 6Gb/s 256MB Cache 3.5-Inch | ISE 512e | Helium Data Center Internal Hard Disk Drive (Renewed)">HGST - WD Ultrastar DC HC520 HDD | HUH721212ALE601 | 12TB 7200RPM SATA 6Gb/s 256MB Cache 3.5-Inch | ISE 512e | Helium Data Center Internal Hard Disk Drive (Renewed)</a></td>
+      <td>12.00</td>
+      <td>167.99</td>
+      <td>14.00</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Internal-Security-ST12000VX0017-0007/dp/B0DMNJ6T7H/ref=sr_1_62?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-62" target="_blank" title="Seagate Skyhawk 12TB Video Internal Hard Drive HDD-3.5 Inch SATA 6Gb/s 7200PRM 256MB Cache for DVR NVR Security Camera System with Rescue Services (ST12000VX0017/0007) (Renewed)">Seagate Skyhawk 12TB Video Internal Hard Drive HDD-3.5 Inch SATA 6Gb/s 7200PRM 256MB Cache for DVR NVR Security Camera System with Rescue Services (ST12000VX0017/0007) (Renewed)</a></td>
+      <td>12.00</td>
+      <td>168.00</td>
+      <td>14.00</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Ultrastar-HUH721010ALE600-0F27452-Enterprise/dp/B07DL3HHXD/ref=sr_1_81?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-81" target="_blank" title="HGST Ultrastar He10 | HUH721010ALE600 (0F27452) | Power Disable | 10TB SATA 6.0Gb/s 7200 RPM 256MB Cache 3.5in HDD | 512e | Enterprise Hard Drive (Renewed)">HGST Ultrastar He10 | HUH721010ALE600 (0F27452) | Power Disable | 10TB SATA 6.0Gb/s 7200 RPM 256MB Cache 3.5in HDD | 512e | Enterprise Hard Drive (Renewed)</a></td>
+      <td>10.00</td>
+      <td>139.99</td>
+      <td>14.00</td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-skyhawk-ai-st12000ve0007-12tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified SkyHawk AI 12TB SATA HDD ST12000VE0007">Recertified SkyHawk AI 12TB SATA HDD ST12000VE0007</a></td>
+      <td>12.00</td>
+      <td>169.99</td>
+      <td>14.17</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Deskstar-3-5-Inch-7200RPM-Internal/dp/B0B7ZF2Q1W/ref=sr_1_10?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-10" target="_blank" title="HGST Deskstar HDN724040ALE640 4TB 7200RPM SATA 6.0Gb/s 64MB Cache 3.5-inch Internal NAS Hard Drive (0S03664) (Renewed)">HGST Deskstar HDN724040ALE640 4TB 7200RPM SATA 6.0Gb/s 64MB Cache 3.5-inch Internal NAS Hard Drive (0S03664) (Renewed)</a></td>
+      <td>4.00</td>
+      <td>56.99</td>
+      <td>14.25</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-x18-st14000nm000j-14tb-7-2k-rpm-sata-6gb-s-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos X18 14TB SATA HDD ST14000NM000J">Recertified Exos X18 14TB SATA HDD ST14000NM000J</a></td>
+      <td>14.00</td>
+      <td>199.98</td>
+      <td>14.28</td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Ultrastar-7200RPM-Heaty-Duty-Internal/dp/B0738FC6NY/ref=sr_1_58?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-58" target="_blank" title="HGST Ultrastar 3TB 64MB Cache 7200RPM SATA III 6.0Gb/s 3.5in (Heaty-Duty, 24/7) Internal Hard Drive for CCTV DVR, NAS, PC/MAC (Renewed)">HGST Ultrastar 3TB 64MB Cache 7200RPM SATA III 6.0Gb/s 3.5in (Heaty-Duty, 24/7) Internal Hard Drive for CCTV DVR, NAS, PC/MAC (Renewed)</a></td>
+      <td>3.00</td>
+      <td>42.99</td>
+      <td>14.33</td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st20000ne000-20tb/p/1Z4-002P-026F3" target="_blank" title="RefurbishedST20000NE000 - Seagate IronWolf Pro 20TB SATA 6Gb/s 7200RPM 256MB Cache 3.5-inch Hard Drive">RefurbishedST20000NE000 - Seagate IronWolf Pro 20TB SATA 6Gb/s 7200RPM 256MB Cache 3.5-inch Hard Drive</a></td>
+      <td>20.00</td>
+      <td>289.99</td>
+      <td>14.50</td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-x22-st20000nm004e-20tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos X22 20TB SATA HDD ST20000NM004E">Recertified Exos X22 20TB SATA HDD ST20000NM004E</a></td>
+      <td>20.00</td>
+      <td>289.99</td>
+      <td>14.50</td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-7200RPM-Internal-Certified-Refurbished/dp/B06XY89VH9/ref=sr_1_31?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-31" target="_blank" title="Seagate 3TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5in (Heavy Duty) Internal Desktop Hard Drive for PC, Mac, NAS, CCTV DVR (Renewed)">Seagate 3TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5in (Heavy Duty) Internal Desktop Hard Drive for PC, Mac, NAS, CCTV DVR (Renewed)</a></td>
+      <td>3.00</td>
+      <td>43.99</td>
+      <td>14.66</td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Constellation-ST33000651NS-Internal-Drive/dp/B004TLVKYQ/ref=sr_1_43?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-43" target="_blank" title="Seagate Constellation Es.2 St33000651ns 3 Tb 3.5 Internal Hard Drive - Sata - 7200 Rpm - 64 Mb Buffer">Seagate Constellation Es.2 St33000651ns 3 Tb 3.5 Internal Hard Drive - Sata - 7200 Rpm - 64 Mb Buffer</a></td>
+      <td>3.00</td>
+      <td>43.99</td>
+      <td>14.66</td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/MDD-MDD4TSATA6472DVR-7200RPM-Internal-Surveillance/dp/B0BS8K1P6W/ref=sr_1_73?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-73" target="_blank" title="MDD (MDD4TSATA6472DVR) 4TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5inch Internal Surveillance Hard Drive (Renewed)">MDD (MDD4TSATA6472DVR) 4TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5inch Internal Surveillance Hard Drive (Renewed)</a></td>
+      <td>4.00</td>
+      <td>58.99</td>
+      <td>14.75</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-constellation-es-3-st4000nm0033-4tb/p/N82E16822178504" target="_blank" title="RefurbishedSeagate Constellation ES.3 ST4000NM0033 4TB 7200 RPM 128MB Cache SATA 6.0Gb/s 3.5" Enterprise Internal Hard Drive Bare Drive">RefurbishedSeagate Constellation ES.3 ST4000NM0033 4TB 7200 RPM 128MB Cache SATA 6.0Gb/s 3.5" Enterprise Internal Hard Drive Bare Drive</a></td>
+      <td>4.00</td>
+      <td>59.44</td>
+      <td>14.86</td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Internal-Security-Application-Optimization/dp/B0DR7YXHVQ/ref=sr_1_29?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-29" target="_blank" title="Seagate Skyhawk AI 12tb HDD 3.5 Inch SATA 6Gb/s 7200PRM 256MB Cache for NAS Internal Hard Drive for DVR NVR Security Camera System AI Application Optimization (Renewed)">Seagate Skyhawk AI 12tb HDD 3.5 Inch SATA 6Gb/s 7200PRM 256MB Cache for NAS Internal Hard Drive for DVR NVR Security Camera System AI Application Optimization (Renewed)</a></td>
+      <td>12.00</td>
+      <td>179.00</td>
+      <td>14.92</td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/7200RPM-Enterprise-Server-Desktop-Warranty/dp/B016YZDBZK/ref=sr_1_66?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-66" target="_blank" title="White Label WL 4TB 7200RPM 64MB Cache SATA 6.0Gb/s (Enterprise Grade) 3.5" Hard Drive (for Server, RAID, NAS, DVR, Desktop PC)">White Label WL 4TB 7200RPM 64MB Cache SATA 6.0Gb/s (Enterprise Grade) 3.5" Hard Drive (for Server, RAID, NAS, DVR, Desktop PC)</a></td>
+      <td>4.00</td>
+      <td>59.88</td>
+      <td>14.97</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Blue-Internal-Drive/dp/B0CMQ8XBBR/ref=sr_1_5?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-5" target="_blank" title="Western Digital 8TB WD Blue PC Internal Hard Drive HDD - 5640 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD80EAAZ">Western Digital 8TB WD Blue PC Internal Hard Drive HDD - 5640 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD80EAAZ</a></td>
+      <td>8.00</td>
+      <td>119.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-Drive-Performance/dp/B084QBB99H/ref=sr_1_16?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-16" target="_blank" title="Seagate BarraCuda Pro 12TB Internal Hard Drive Performance HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 256MB Cache for Computer Desktop PC Laptop – Frustration Free Packaging (ST12000DM0007) (Renewed)">Seagate BarraCuda Pro 12TB Internal Hard Drive Performance HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 256MB Cache for Computer Desktop PC Laptop – Frustration Free Packaging (ST12000DM0007) (Renewed)</a></td>
+      <td>12.00</td>
+      <td>179.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Deskstar-HDS724040ALE640-0F14681-Internal/dp/B016APSNFM/ref=sr_1_36?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-36" target="_blank" title="HGST Deskstar HDS724040ALE640 0F14681 7K4000 4TB 7.2K RPM 64MB SATA Internal HDD">HGST Deskstar HDS724040ALE640 0F14681 7K4000 4TB 7.2K RPM 64MB SATA Internal HDD</a></td>
+      <td>4.00</td>
+      <td>59.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Enterprise-Capacity-128MB-Cache-3-5-Inch/dp/B07WK4MC7X/ref=sr_1_49?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-49" target="_blank" title="Seagate Enterprise Capacity 3.5 HDD 6TB 7200 RPM 512e SATA 6Gb/s 128MB-Cache 3.5-Inch Hard Disk Drive - ST6000NM0024 (Renewed)">Seagate Enterprise Capacity 3.5 HDD 6TB 7200 RPM 512e SATA 6Gb/s 128MB-Cache 3.5-Inch Hard Disk Drive - ST6000NM0024 (Renewed)</a></td>
+      <td>6.00</td>
+      <td>89.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>57</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/HGST-Deskstar-3-5-Inch-0F14681-HDS724040ALE640/dp/B0084JFLUS/ref=sr_1_72?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-72" target="_blank" title="HGST Deskstar 3.5-Inch 4TB 7200 RPM SATA III 6Gbps 64MB Cache Internal Hard Drive (0F14681) (HDS724040ALE640)">HGST Deskstar 3.5-Inch 4TB 7200 RPM SATA III 6Gbps 64MB Cache Internal Hard Drive (0F14681) (HDS724040ALE640)</a></td>
+      <td>4.00</td>
+      <td>59.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/western-digital-ultrastar-dc-hc530-wuh721414ale6l4-0f31284-14tb-7-2k-rpm-sata-6gb-s-512e-512mb-3-5-se-manufacturer-recertified-hdd" target="_blank" title="Manufacturer Recertified Ultrastar DC HC530 WUH721414ALE6L4 14TB SATA 7.2K 3.5 HDD">Manufacturer Recertified Ultrastar DC HC530 WUH721414ALE6L4 14TB SATA 7.2K 3.5 HDD</a></td>
+      <td>14.00</td>
+      <td>209.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-ironwolf-pro-st16000ne000-16tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Seagate IronWolf Pro ST16000NE000 16TB 7.2K RPM SATA 6Gb/s 512e 3.5in Recertified Hard Drive">Seagate IronWolf Pro ST16000NE000 16TB 7.2K RPM SATA 6Gb/s 512e 3.5in Recertified Hard Drive</a></td>
+      <td>16.00</td>
+      <td>239.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-ironwolf-pro-st20000ne000-20tb-7-2k-rpm-sata-6gb-s-512e-3-5-recertified-hard-drive" target="_blank" title="Recertified IronWolf Pro 20TB SATA HDD ST20000NE000">Recertified IronWolf Pro 20TB SATA HDD ST20000NE000</a></td>
+      <td>20.00</td>
+      <td>299.99</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/7200RPM-Cache-Internal-Desktop-Warranty/dp/B00X37FQBU/ref=sr_1_61?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-61" target="_blank" title="WL 3TB 7200RPM 64MB Cache SATA III 6.0Gb/s 3.5" Internal Desktop Hard Drive (For RAID, NAS, DVR, Desktop PC) w/1 Year Warranty">WL 3TB 7200RPM 64MB Cache SATA III 6.0Gb/s 3.5" Internal Desktop Hard Drive (For RAID, NAS, DVR, Desktop PC) w/1 Year Warranty</a></td>
+      <td>3.00</td>
+      <td>45.88</td>
+      <td>15.29</td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-IronWolf-16TB-Internal-Drive/dp/B086TZXBZG/ref=sr_1_33?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-33" target="_blank" title="Seagate IronWolf Pro 16TB NAS – 3.5 Inch SATA 6GB/S 7200 RPM 256MB Cache for Raid Network Attached Storage (ST16000NE000) (Renewed) Internal Hard Drive">Seagate IronWolf Pro 16TB NAS – 3.5 Inch SATA 6GB/S 7200 RPM 256MB Cache for Raid Network Attached Storage (ST16000NE000) (Renewed) Internal Hard Drive</a></td>
+      <td>16.00</td>
+      <td>249.99</td>
+      <td>15.62</td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-IronWolf-12TB-Internal-Drive/dp/B075XPBD5B/ref=sr_1_21?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-21" target="_blank" title="Seagate (Recertified) 12TB IronWolf NAS SATA Hard Drive 6Gb/s 256MB Cache 3.5-Inch Internal Hard Drive for NAS Servers, Personal Cloud Storage (ST12000VN0007)">Seagate (Recertified) 12TB IronWolf NAS SATA Hard Drive 6Gb/s 256MB Cache 3.5-Inch Internal Hard Drive for NAS Servers, Personal Cloud Storage (ST12000VN0007)</a></td>
+      <td>12.00</td>
+      <td>189.99</td>
+      <td>15.83</td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-Internal-3-5-Inch-ST8000DM004/dp/B075WYBQXJ/ref=sr_1_24?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-24" target="_blank" title="Seagate BarraCuda Internal Hard Drive 8TB SATA 6Gb/s 256MB Cache 3.5-Inch (ST8000DM004),Mechanical Hard Disk">Seagate BarraCuda Internal Hard Drive 8TB SATA 6Gb/s 256MB Cache 3.5-Inch (ST8000DM004),Mechanical Hard Disk</a></td>
+      <td>8.00</td>
+      <td>129.99</td>
+      <td>16.25</td>
+    </tr>
+    <tr>
+      <td>65</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Enterprise-Capacity-Cache-Internal-ST4000NM0033/dp/B07JKVTM6F/ref=sr_1_30?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-30" target="_blank" title="Seagate 4TB Enterprise Capacity HDD 7200RPM SATA 6Gbps 128 MB Cache Internal Bare Drive (ST4000NM0033) (Renewed)">Seagate 4TB Enterprise Capacity HDD 7200RPM SATA 6Gbps 128 MB Cache Internal Bare Drive (ST4000NM0033) (Renewed)</a></td>
+      <td>4.00</td>
+      <td>64.99</td>
+      <td>16.25</td>
+    </tr>
+    <tr>
+      <td>66</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-skyhawk-ai-st16000ve002-16tb/p/1B4-00VK-00653" target="_blank" title="Seagate SKYHAWK AI 16TB SATA 6.0Gb/s Internal Hard Drive ST16000VE002">Seagate SKYHAWK AI 16TB SATA 6.0Gb/s Internal Hard Drive ST16000VE002</a></td>
+      <td>16.00</td>
+      <td>263.75</td>
+      <td>16.48</td>
+    </tr>
+    <tr>
+      <td>67</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-Drive-3-5-Inch/dp/B07H289S7C/ref=sr_1_3?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-3" target="_blank" title="Seagate BarraCuda 8TB Internal Hard Drive HDD – 3.5 Inch Sata 6 Gb/s 5400 RPM 256MB Cache for Computer Desktop PC (ST8000DMZ04/004)">Seagate BarraCuda 8TB Internal Hard Drive HDD – 3.5 Inch Sata 6 Gb/s 5400 RPM 256MB Cache for Computer Desktop PC (ST8000DMZ04/004)</a></td>
+      <td>8.00</td>
+      <td>134.99</td>
+      <td>16.87</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-ne-st8000dm004-8tb-hard-drive-for-daily-computing-5400-rpm/p/N82E16822183793?Item=N82E16822183793&cm_sp=SP-_-2849648-_-0-_-6-_-22-183-793-_-internal hard drive-_-drive|hard-_-6" target="_blank" title="Seagate BarraCuda NE-ST8000DM004 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate BarraCuda NE-ST8000DM004 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>8.00</td>
+      <td>134.99</td>
+      <td>16.87</td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-ne-st8000dm004-8tb-hard-drive-for-daily-computing-5400-rpm/p/N82E16822183793" target="_blank" title="Seagate BarraCuda NE-ST8000DM004 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate BarraCuda NE-ST8000DM004 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>8.00</td>
+      <td>134.99</td>
+      <td>16.87</td>
+    </tr>
+    <tr>
+      <td>70</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-skyhawk-ai-st16000ve002-16tb/p/N82E16822184942" target="_blank" title="Seagate SkyHawk AI ST16000VE002 16TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate SkyHawk AI ST16000VE002 16TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>16.00</td>
+      <td>272.25</td>
+      <td>17.02</td>
+    </tr>
+    <tr>
+      <td>71</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-02386" target="_blank" title="Seagate Skyhawk AI 16TB Video Internal Hard Drive HDD - 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with Drive Health Management and in-House Rescue Services (ST1 (ST16000VE002)">Seagate Skyhawk AI 16TB Video Internal Hard Drive HDD - 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with Drive Health Management and in-House Rescue Services (ST1 (ST16000VE002)</a></td>
+      <td>16.00</td>
+      <td>272.25</td>
+      <td>17.02</td>
+    </tr>
+    <tr>
+      <td>72</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Exos-Internal-Drive-Enterprise/dp/B09V4QZPQX/ref=sr_1_28?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-28" target="_blank" title="Seagate Exos 7E8 4TB Internal Hard Drive Enterprise HDD – 3.5 Inch 512n SATA 6Gb/s, 7200RPM, 256MB Cache – Frustration Free Packaging (ST4000NM000A) (Renewed)">Seagate Exos 7E8 4TB Internal Hard Drive Enterprise HDD – 3.5 Inch 512n SATA 6Gb/s, 7200RPM, 256MB Cache – Frustration Free Packaging (ST4000NM000A) (Renewed)</a></td>
+      <td>4.00</td>
+      <td>69.99</td>
+      <td>17.50</td>
+    </tr>
+    <tr>
+      <td>73</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Blue-Internal-Drive/dp/B0C4DPRHS2/ref=sr_1_48?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-48" target="_blank" title="Western Digital 4TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD40EZAZ (WD Factory Recertified) (Renewed)">Western Digital 4TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD40EZAZ (WD Factory Recertified) (Renewed)</a></td>
+      <td>4.00</td>
+      <td>69.99</td>
+      <td>17.50</td>
+    </tr>
+    <tr>
+      <td>74</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x16-st16000nm001g-16tb/p/1Z4-002P-015K6" target="_blank" title="Seagate Exos 16TB Enterprise HDD X16 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive ST16000NM001G">Seagate Exos 16TB Enterprise HDD X16 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive ST16000NM001G</a></td>
+      <td>16.00</td>
+      <td>279.99</td>
+      <td>17.50</td>
+    </tr>
+    <tr>
+      <td>75</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-7e8-st4000nm000a-4tb-7-2k-rpm-sata-6gb-s-512n-3-5-recertified-hard-drive" target="_blank" title="Recertified Exos 7E8 4TB SATA HDD ST4000NM000A">Recertified Exos 7E8 4TB SATA HDD ST4000NM000A</a></td>
+      <td>4.00</td>
+      <td>69.99</td>
+      <td>17.50</td>
+    </tr>
+    <tr>
+      <td>76</td>
+      <td>ServerPartDeals</td>
+      <td><a href="https://serverpartdeals.com/collections/manufacturer-recertified-drives/products/seagate-exos-7e8-st4000nm0035-4tb-7-2k-rpm-sata-6gb-s-512n-128mb-cache-3-5-manufacturer-recertified-hdd" target="_blank" title="Manufacturer Recertified Exos 7E8 ST4000NM0035 4TB SATA 7.2K 3.5 HDD">Manufacturer Recertified Exos 7E8 ST4000NM0035 4TB SATA 7.2K 3.5 HDD</a></td>
+      <td>4.00</td>
+      <td>69.99</td>
+      <td>17.50</td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st18000nt001-18tb/p/N82E16822185072" target="_blank" title="Seagate IronWolf Pro ST18000NT001 18TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate IronWolf Pro ST18000NT001 18TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>18.00</td>
+      <td>318.99</td>
+      <td>17.72</td>
+    </tr>
+    <tr>
+      <td>78</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Blue-Internal-Drive/dp/B0CX5LX5GJ/ref=sr_1_67?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-67" target="_blank" title="Western Digital 4TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD40EZAX (Renewed)">Western Digital 4TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD40EZAX (Renewed)</a></td>
+      <td>4.00</td>
+      <td>70.99</td>
+      <td>17.75</td>
+    </tr>
+    <tr>
+      <td>79</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st12000vn0007-12tb/p/N82E16822172025" target="_blank" title="Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST12000VN0007">Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST12000VN0007</a></td>
+      <td>12.00</td>
+      <td>213.84</td>
+      <td>17.82</td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-02M53" target="_blank" title="Seagate SkyHawk AI ST12000VE001 12TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate SkyHawk AI ST12000VE001 12TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>12.00</td>
+      <td>214.79</td>
+      <td>17.90</td>
+    </tr>
+    <tr>
+      <td>81</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-Performance-Gaming-3-5-Inch-Internal/dp/B0CYQXNCVZ/ref=sr_1_26?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-26" target="_blank" title="Toshiba X300 16TB Performance & Gaming 3.5-Inch Internal Hard Drive – CMR SATA 6 GB/s 7200 RPM 512 MB Cache - HDWR51GXZSTA">Toshiba X300 16TB Performance & Gaming 3.5-Inch Internal Hard Drive – CMR SATA 6 GB/s 7200 RPM 512 MB Cache - HDWR51GXZSTA</a></td>
+      <td>16.00</td>
+      <td>289.99</td>
+      <td>18.12</td>
+    </tr>
+    <tr>
+      <td>82</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-N300-3-5-Inch-Internal-Drive/dp/B0CLTBCPF1/ref=sr_1_25?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-25" target="_blank" title="Toshiba N300 18TB NAS 3.5-Inch Internal Hard Drive - CMR SATA 6 Gb/s 7200 RPM 512 MB Cache - HDWG51JXZSTA">Toshiba N300 18TB NAS 3.5-Inch Internal Hard Drive - CMR SATA 6 Gb/s 7200 RPM 512 MB Cache - HDWG51JXZSTA</a></td>
+      <td>18.00</td>
+      <td>328.99</td>
+      <td>18.28</td>
+    </tr>
+    <tr>
+      <td>83</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x18-st16000nm000j-16tb/p/1Z4-002P-022S9?Item=1Z4-002P-022S9&cm_sp=SP-_-2839700-_-0-_-2-_-1Z4-002P-022S9-_-internal hard drive-_-drive|hard|internal-_-12" target="_blank" title="Seagate Exos 16TB Enterprise HDD X18 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive (ST16000NM000J)">Seagate Exos 16TB Enterprise HDD X18 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive (ST16000NM000J)</a></td>
+      <td>16.00</td>
+      <td>299.00</td>
+      <td>18.69</td>
+    </tr>
+    <tr>
+      <td>84</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x18-st16000nm000j-16tb/p/1Z4-002P-022S9" target="_blank" title="Seagate Exos 16TB Enterprise HDD X18 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive (ST16000NM000J)">Seagate Exos 16TB Enterprise HDD X18 SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive (ST16000NM000J)</a></td>
+      <td>16.00</td>
+      <td>299.00</td>
+      <td>18.69</td>
+    </tr>
+    <tr>
+      <td>85</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd242kryz-24tb-for-enterprise-storage-7200-rpm/p/1Z4-0002-01PU4" target="_blank" title="WD Gold WD242KRYZ 24 TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - Storage System, Data Center, Server Device Supported - 7200rpm">WD Gold WD242KRYZ 24 TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - Storage System, Data Center, Server Device Supported - 7200rpm</a></td>
+      <td>24.00</td>
+      <td>449.99</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <td>86</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-7e10-st8000nm018b-8tb/p/N82E16822185061" target="_blank" title="Seagate Exos 7E10 ST8000NM018B 8TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive, 512e/4KN">Seagate Exos 7E10 ST8000NM018B 8TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive, 512e/4KN</a></td>
+      <td>8.00</td>
+      <td>149.99</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <td>87</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st16000nt001-16tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822185073" target="_blank" title="Seagate IronWolf Pro ST16000NT001 16TB 7200 RPM 256MB Cache 3.5" Internal Hard Drive - OEM">Seagate IronWolf Pro ST16000NT001 16TB 7200 RPM 256MB Cache 3.5" Internal Hard Drive - OEM</a></td>
+      <td>16.00</td>
+      <td>299.99</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <td>88</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-02MF7" target="_blank" title="Seagate Exos 7E10 ST8000NM018B 8TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive, 512e/4KN - OEM">Seagate Exos 7E10 ST8000NM018B 8TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive, 512e/4KN - OEM</a></td>
+      <td>8.00</td>
+      <td>149.99</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st12000vn0008-12tb-hard-drive/p/1Z4-002P-02KX1" target="_blank" title="Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ( ST12000VN0008 )">Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ( ST12000VN0008 )</a></td>
+      <td>12.00</td>
+      <td>226.99</td>
+      <td>18.92</td>
+    </tr>
+    <tr>
+      <td>90</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x20-st20000nm007d-20tb-hard-drive-for-enterprise-storage-7200-rpm/p/N82E16822185011" target="_blank" title="Seagate Exos X20 ST20000NM007D 20TB 7200 RPM 256MB Cache 3.5" Internal Hard Drive">Seagate Exos X20 ST20000NM007D 20TB 7200 RPM 256MB Cache 3.5" Internal Hard Drive</a></td>
+      <td>20.00</td>
+      <td>379.99</td>
+      <td>19.00</td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st12000ne0008-12tb-enterprise-nas-hard-drives-7200-rpm/p/1Z4-002P-02M24" target="_blank" title="Seagate IronWolf Pro 12TB ST12000NE0008 NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST12000NE0008">Seagate IronWolf Pro 12TB ST12000NE0008 NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST12000NE0008</a></td>
+      <td>12.00</td>
+      <td>234.66</td>
+      <td>19.55</td>
+    </tr>
+    <tr>
+      <td>92</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-archive-hdd-v2-st5000as0011-5tb/p/N82E16822178752" target="_blank" title="Seagate Archive HDD v2 ST5000AS0011 5TB 5900 RPM 128MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive - Bare Drive">Seagate Archive HDD v2 ST5000AS0011 5TB 5900 RPM 128MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive - Bare Drive</a></td>
+      <td>5.00</td>
+      <td>98.00</td>
+      <td>19.60</td>
+    </tr>
+    <tr>
+      <td>93</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/synology-hat3310-16t-16tb-for-nas-systems-7200-rpm/p/N82E16822108844" target="_blank" title="Synology HAT3310 16TB Plus Series SATA III 3.5" Internal NAS HDD (HAT3310-16T)">Synology HAT3310 16TB Plus Series SATA III 3.5" Internal NAS HDD (HAT3310-16T)</a></td>
+      <td>16.00</td>
+      <td>313.99</td>
+      <td>19.62</td>
+    </tr>
+    <tr>
+      <td>94</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st10000ne0008-10tb/p/1JW-001N-00026" target="_blank" title="Seagate IronWolf Pro 10TB NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST10000NE0008">Seagate IronWolf Pro 10TB NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST10000NE0008</a></td>
+      <td>10.00</td>
+      <td>198.99</td>
+      <td>19.90</td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-enterprise-capacity-3-5-st8000nm0075-8tb/p/1WK-0048-00027" target="_blank" title="Seagate Enterprise Capacity 3.5'' HDD 8TB 7200 RPM 512e SAS 12Gb/s 256MB Cache Internal Hard Drive ST8000NM0075">Seagate Enterprise Capacity 3.5'' HDD 8TB 7200 RPM 512e SAS 12Gb/s 256MB Cache Internal Hard Drive ST8000NM0075</a></td>
+      <td>8.00</td>
+      <td>159.95</td>
+      <td>19.99</td>
+    </tr>
+    <tr>
+      <td>96</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-10TB-Internal-Drive/dp/B08TZPS4QQ/ref=sr_1_11?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-11" target="_blank" title="Western Digital 10TB WD Red Plus NAS Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, CMR, 256 MB Cache, 3.5" - WD101EFBX">Western Digital 10TB WD Red Plus NAS Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, CMR, 256 MB Cache, 3.5" - WD101EFBX</a></td>
+      <td>10.00</td>
+      <td>199.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>97</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-ST2000DM001-7200RPM-Internal/dp/B088P8C6G6/ref=sr_1_18?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-18" target="_blank" title="Seagate Barracuda ST2000DM001 2TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5" Internal Desktop Hard Drive - 3 Year Warranty (Renewed)">Seagate Barracuda ST2000DM001 2TB 7200RPM 64MB Cache SATA 6.0Gb/s 3.5" Internal Desktop Hard Drive - 3 Year Warranty (Renewed)</a></td>
+      <td>2.00</td>
+      <td>39.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>98</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-20TB-Internal-Drive/dp/B09TBF6GHJ/ref=sr_1_30?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-30" target="_blank" title="Western Digital 20TB WD Red Pro NAS Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, CMR, 512 MB Cache, 3.5" - WD201KFGX">Western Digital 20TB WD Red Pro NAS Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, CMR, 512 MB Cache, 3.5" - WD201KFGX</a></td>
+      <td>20.00</td>
+      <td>400.00</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>99</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Exos-Enterprise-Internal-Drive/dp/B0CM293XCL/ref=sr_1_35?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-35" target="_blank" title="Seagate Exos X24 24TB Enterprise Internal Hard Drive HDD - 6GB/s SATA 7200RPM 2.5M MTBF (ST24000NM002H)">Seagate Exos X24 24TB Enterprise Internal Hard Drive HDD - 6GB/s SATA 7200RPM 2.5M MTBF (ST24000NM002H)</a></td>
+      <td>24.00</td>
+      <td>479.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-256MB-3-5-Inch-Enterprise-ST8000NM0055/dp/B016AG0ITU/ref=sr_1_45?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-45" target="_blank" title="Seagate 8TB Enterprise Capacity 3.5 HDD 7200RPM SATA 6Gbps 256 MB Cache Internal Bare Drive (ST8000NM0055)">Seagate 8TB Enterprise Capacity 3.5 HDD 7200RPM SATA 6Gbps 256 MB Cache Internal Bare Drive (ST8000NM0055)</a></td>
+      <td>8.00</td>
+      <td>160.00</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-Enterprise-Internal-Operation-MG04ACA400E/dp/B0716ZNGWR/ref=sr_1_80?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-80" target="_blank" title="Toshiba 4TB Enterprise Internal Hard Drive – MG Series 3.5" SATA HDD for Server, Storage, 24/7 Operation, Hyperscale, Cloud (MG04ACA400E)">Toshiba 4TB Enterprise Internal Hard Drive – MG Series 3.5" SATA HDD for Server, Storage, 24/7 Operation, Hyperscale, Cloud (MG04ACA400E)</a></td>
+      <td>4.00</td>
+      <td>79.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st20000nt001-20tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822185071" target="_blank" title="Seagate IronWolf Pro ST20000NT001 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate IronWolf Pro ST20000NT001 20TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>20.00</td>
+      <td>399.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-plus-wd101efbx-10tb/p/1B4-005X-001D5" target="_blank" title="WD Red Plus 10TB NAS Hard Disk Drive - 7200 RPM Class SATA 6Gb/s, CMR, 256MB Cache, 3.5 Inch - WD101EFBX-NE">WD Red Plus 10TB NAS Hard Disk Drive - 7200 RPM Class SATA 6Gb/s, CMR, 256MB Cache, 3.5 Inch - WD101EFBX-NE</a></td>
+      <td>10.00</td>
+      <td>199.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st12000vn0008-12tb/p/1JW-001N-00027" target="_blank" title="Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage NE-ST12000VN0008">Seagate IronWolf 12TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage NE-ST12000VN0008</a></td>
+      <td>12.00</td>
+      <td>239.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>105</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-00Z6-000H8?Item=9SIA5ADK574507&cm_sp=SP-_-2623296-_-0-_-0-_-9SIA5ADK574507-_-internal hard drive-_-drive|hard|internal-_-21" target="_blank" title="Avolusion PRO-T5 Series 6TB USB 3.0 External Gaming Hard Drive ( PS5 Game Console ) (White) - 2 Year Warranty">Avolusion PRO-T5 Series 6TB USB 3.0 External Gaming Hard Drive ( PS5 Game Console ) (White) - 2 Year Warranty</a></td>
+      <td>6.00</td>
+      <td>119.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>106</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x24-st24000nm002h-24tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822185105" target="_blank" title="Seagate Exos X24 24TB 7200 RPM SATA 512MB Cache 6.0Gb/s 3.5-Inch Enterprise Internal Hard Drives (ST24000NM002H)">Seagate Exos X24 24TB 7200 RPM SATA 512MB Cache 6.0Gb/s 3.5-Inch Enterprise Internal Hard Drives (ST24000NM002H)</a></td>
+      <td>24.00</td>
+      <td>479.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st24000nt002-24tb-7200-rpm/p/N82E16822185104" target="_blank" title="Seagate IronWolf Pro ST24000NT002 24TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate IronWolf Pro ST24000NT002 24TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>24.00</td>
+      <td>479.99</td>
+      <td>20.00</td>
+    </tr>
+    <tr>
+      <td>108</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st16000vn001-16tb/p/N82E16822184805" target="_blank" title="Seagate IronWolf 16TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST16000VN001">Seagate IronWolf 16TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST16000VN001</a></td>
+      <td>16.00</td>
+      <td>323.37</td>
+      <td>20.21</td>
+    </tr>
+    <tr>
+      <td>109</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd221kryz-22tb-for-enterprise-storage-7200-rpm/p/N82E16822234525" target="_blank" title="Western Digital 22TB WD Gold Enterprise Class SATA Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, 512 MB Cache, 3.5" - WD221KRYZ">Western Digital 22TB WD Gold Enterprise Class SATA Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, 512 MB Cache, 3.5" - WD221KRYZ</a></td>
+      <td>22.00</td>
+      <td>449.99</td>
+      <td>20.45</td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/western-digital-ultrastar-dc-hc570-0f48155-22tb/p/1Z4-0003-001A4" target="_blank" title="WD WUH722222ALE6L4 Ultrastar DC HC570 0F48155 22TB 512MB Cache 7200RPM SATA 6.0Gb/s 512E SE 3.5" Internal Hard Drive">WD WUH722222ALE6L4 Ultrastar DC HC570 0F48155 22TB 512MB Cache 7200RPM SATA 6.0Gb/s 512E SE 3.5" Internal Hard Drive</a></td>
+      <td>22.00</td>
+      <td>449.99</td>
+      <td>20.45</td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st14000ne0008-14tb/p/N82E16822184760" target="_blank" title="Seagate IronWolf Pro 14TB NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST14000NE0008">Seagate IronWolf Pro 14TB NAS Hard Drive 7200 RPM 256MB Cache CMR SATA 6.0Gb/s 3.5" Internal HDD ST14000NE0008</a></td>
+      <td>14.00</td>
+      <td>287.00</td>
+      <td>20.50</td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/purple-pro-wd221purp-22tb-for-video-surveillance-7200-rpm/p/N82E16822234526" target="_blank" title="WD Purple Pro WD221PURP 22TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">WD Purple Pro WD221PURP 22TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>22.00</td>
+      <td>456.99</td>
+      <td>20.77</td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/blue-wd60ezax-6tb-for-daily-computing-5400-rpm/p/N82E16822234535" target="_blank" title="WD Blue 6TB Desktop Hard Disk Drive - 5400 RPM SATA 6Gb/s 256MB Cache 3.5 Inch - WD60EZAX">WD Blue 6TB Desktop Hard Disk Drive - 5400 RPM SATA 6Gb/s 256MB Cache 3.5 Inch - WD60EZAX</a></td>
+      <td>6.00</td>
+      <td>124.99</td>
+      <td>20.83</td>
+    </tr>
+    <tr>
+      <td>114</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x16-st10000nm001g-10tb/p/N82E16822184842" target="_blank" title="Seagate Exos X16 10TB 7200 RPM SATA 6Gb/s 3.5-Inch Enterprise Hard Drive (ST10000NM001G)">Seagate Exos X16 10TB 7200 RPM SATA 6Gb/s 3.5-Inch Enterprise Hard Drive (ST10000NM001G)</a></td>
+      <td>10.00</td>
+      <td>209.00</td>
+      <td>20.90</td>
+    </tr>
+    <tr>
+      <td>115</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Synology-HAT3300-Plus-SATA-HAT3300-4T/dp/B0C7FPRSK3/ref=sr_1_91?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-91" target="_blank" title="Synology HAT3300 4TB Plus Series SATA HDD 3.5" (HAT3300-4T)">Synology HAT3300 4TB Plus Series SATA HDD 3.5" (HAT3300-4T)</a></td>
+      <td>4.00</td>
+      <td>83.95</td>
+      <td>20.99</td>
+    </tr>
+    <tr>
+      <td>116</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-enterprise-capacity-3-5-st8000nm0065-8tb/p/N82E16822178843" target="_blank" title="Seagate Enterprise Capacity 3.5'' HDD 8TB 7200 RPM 4Kn SAS 12Gb/s 256MB Cache Internal Hard Drive ST8000NM0065">Seagate Enterprise Capacity 3.5'' HDD 8TB 7200 RPM 4Kn SAS 12Gb/s 256MB Cache Internal Hard Drive ST8000NM0065</a></td>
+      <td>8.00</td>
+      <td>168.99</td>
+      <td>21.12</td>
+    </tr>
+    <tr>
+      <td>117</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Bulk-ST4000NM0033-Constellation-ES-3/dp/B00B3N18MW/ref=sr_1_71?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-71" target="_blank" title="Seagate Constellation ES.3 ST4000NM0033 4 TB Hard Drive - 3.5 Internal - SATA">Seagate Constellation ES.3 ST4000NM0033 4 TB Hard Drive - 3.5 Internal - SATA</a></td>
+      <td>4.00</td>
+      <td>85.00</td>
+      <td>21.25</td>
+    </tr>
+    <tr>
+      <td>118</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-st4000dm004-4tb-for-daily-computing-5400-rpm/p/N82E16822179299" target="_blank" title="Seagate BarraCuda ST4000DM004 4TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives Bare Drive - OEM">Seagate BarraCuda ST4000DM004 4TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives Bare Drive - OEM</a></td>
+      <td>4.00</td>
+      <td>84.99</td>
+      <td>21.25</td>
+    </tr>
+    <tr>
+      <td>119</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st4000vn006-4tb-hard-drive-for-nas-systems-5400-rpm/p/N82E16822185030" target="_blank" title="Seagate IronWolf ST4000VN006 4TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate IronWolf ST4000VN006 4TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>4.00</td>
+      <td>84.99</td>
+      <td>21.25</td>
+    </tr>
+    <tr>
+      <td>120</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/WD-Ultrastar-DC-HC580-WUH722424ALE6L4/dp/B0D1V2LPLX/ref=sr_1_74?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-74" target="_blank" title="WD Ultrastar DC HC580 WUH722424ALE6L4 - Hard Drive - 24 TB - Internal - 3.5" (8.9 cm) - SATA 6Gb/s - 7200 RPM - Buffer: 512 MB">WD Ultrastar DC HC580 WUH722424ALE6L4 - Hard Drive - 24 TB - Internal - 3.5" (8.9 cm) - SATA 6Gb/s - 7200 RPM - Buffer: 512 MB</a></td>
+      <td>24.00</td>
+      <td>519.99</td>
+      <td>21.67</td>
+    </tr>
+    <tr>
+      <td>121</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd161kryz-ne-16tb-for-enterprise-storage-7200-rpm/p/N82E16822234421" target="_blank" title="WD Gold 16TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 512MB Cache 3.5 Inch - NE-WD161KRYZ">WD Gold 16TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 512MB Cache 3.5 Inch - NE-WD161KRYZ</a></td>
+      <td>16.00</td>
+      <td>349.99</td>
+      <td>21.87</td>
+    </tr>
+    <tr>
+      <td>122</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x12-st12000nm0007-12tb/p/1Z4-002P-006N4" target="_blank" title="Seagate Exos Enterprise Capacity ST12000NM0007 12TB 7200 RPM SATA 6Gb/s 256MB Enterprise Hard Drive (Helium & 3.5 inch)">Seagate Exos Enterprise Capacity ST12000NM0007 12TB 7200 RPM SATA 6Gb/s 256MB Enterprise Hard Drive (Helium & 3.5 inch)</a></td>
+      <td>12.00</td>
+      <td>262.45</td>
+      <td>21.87</td>
+    </tr>
+    <tr>
+      <td>123</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd261kryz-24tb-for-enterprise-storage-7200-rpm/p/N82E16822234585" target="_blank" title="WD Gold 26TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 512MB Cache 3.5 Inch - WD261KRYZ">WD Gold 26TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 512MB Cache 3.5 Inch - WD261KRYZ</a></td>
+      <td>26.00</td>
+      <td>569.99</td>
+      <td>21.92</td>
+    </tr>
+    <tr>
+      <td>124</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/western-digital-red-pro-wd260kfgx-26tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822234582" target="_blank" title="Western Digital Red Pro WD260KFGX 26TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" HD OEM">Western Digital Red Pro WD260KFGX 26TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" HD OEM</a></td>
+      <td>26.00</td>
+      <td>569.99</td>
+      <td>21.92</td>
+    </tr>
+    <tr>
+      <td>125</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st10000ne0004-10tb/p/N82E16822179103" target="_blank" title="Seagate IronWolf Pro 10TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive ST10000NE0004">Seagate IronWolf Pro 10TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive ST10000NE0004</a></td>
+      <td>10.00</td>
+      <td>223.86</td>
+      <td>22.39</td>
+    </tr>
+    <tr>
+      <td>126</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Skyhawk-Video-Internal-House/dp/B085RH2FR7/ref=sr_1_97?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-97" target="_blank" title="Seagate Skyhawk AI 10TB Video Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with Drive Health Management and in-house Rescue Services (ST10000VEZ008)">Seagate Skyhawk AI 10TB Video Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with Drive Health Management and in-house Rescue Services (ST10000VEZ008)</a></td>
+      <td>10.00</td>
+      <td>224.45</td>
+      <td>22.45</td>
+    </tr>
+    <tr>
+      <td>127</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-IronWolf-Internal-Hard-Drive/dp/B084ZV4DXB/ref=sr_1_4?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-4" target="_blank" title="Seagate IronWolf 8TB NAS Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 7200 RPM 256MB Cache for RAID Network Attached Storage – Frustration Free Packaging (ST8000VNZ04/N004)">Seagate IronWolf 8TB NAS Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 7200 RPM 256MB Cache for RAID Network Attached Storage – Frustration Free Packaging (ST8000VNZ04/N004)</a></td>
+      <td>8.00</td>
+      <td>179.99</td>
+      <td>22.50</td>
+    </tr>
+    <tr>
+      <td>128</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-WD_Black-Performance-Internal/dp/B0D1V1SNDX/ref=sr_1_9?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-9" target="_blank" title="Western Digital 8TB WD_Black Performance Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD8002FZBX">Western Digital 8TB WD_Black Performance Internal Hard Drive HDD - 7200 RPM, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD8002FZBX</a></td>
+      <td>8.00</td>
+      <td>179.99</td>
+      <td>22.50</td>
+    </tr>
+    <tr>
+      <td>129</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-ne-st8000vn004-8tb-7200-rpm-for-nas-systems/p/N82E16822184796" target="_blank" title="Seagate IronWolf 8TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST8000VN004-NE">Seagate IronWolf 8TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST8000VN004-NE</a></td>
+      <td>8.00</td>
+      <td>179.99</td>
+      <td>22.50</td>
+    </tr>
+    <tr>
+      <td>130</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-ne-st8000vn004-8tb-7200-rpm-for-nas-systems/p/N82E16822184796?Item=N82E16822184796&cm_sp=SP-_-2850911-_-0-_-6-_-22-184-796-_-internal hard drive-_-drive|hard-_-5" target="_blank" title="Seagate IronWolf 8TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST8000VN004-NE">Seagate IronWolf 8TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST8000VN004-NE</a></td>
+      <td>8.00</td>
+      <td>179.99</td>
+      <td>22.50</td>
+    </tr>
+    <tr>
+      <td>131</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-plus-wd80efpx-8tb/p/1Z4-0002-01NP7" target="_blank" title="WD Red Plus WD80EFPX 8TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - NAS, Desktop PC Device Supported - 5640rpm">WD Red Plus WD80EFPX 8TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - NAS, Desktop PC Device Supported - 5640rpm</a></td>
+      <td>8.00</td>
+      <td>179.99</td>
+      <td>22.50</td>
+    </tr>
+    <tr>
+      <td>132</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-pro-wd142kfgx-14tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822234550" target="_blank" title="WD Red Pro WD142KFGX 14TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">WD Red Pro WD142KFGX 14TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>14.00</td>
+      <td>319.99</td>
+      <td>22.86</td>
+    </tr>
+    <tr>
+      <td>133</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-st8000ve001-8tb/p/N82E16822185034" target="_blank" title="Seagate Skyhawk AI 8TB Video Internal Hard Drive HDD - 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with in-House Rescue Services (ST8000VE001)">Seagate Skyhawk AI 8TB Video Internal Hard Drive HDD - 3.5 Inch SATA 6Gb/s 256MB Cache for DVR NVR Security Camera System with in-House Rescue Services (ST8000VE001)</a></td>
+      <td>8.00</td>
+      <td>183.00</td>
+      <td>22.88</td>
+    </tr>
+    <tr>
+      <td>134</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-x16-st12000nm001g-12tb/p/2WA-000W-003A8" target="_blank" title="Seagate Exos 12TB Enterprise HDD SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive ST12000NM001G">Seagate Exos 12TB Enterprise HDD SATA 6Gb/s 512e/4Kn 7200 RPM 256MB Cache 3.5" Internal Hard Drive ST12000NM001G</a></td>
+      <td>12.00</td>
+      <td>275.98</td>
+      <td>23.00</td>
+    </tr>
+    <tr>
+      <td>135</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/toshiba-mg09-series-mg09aca12te-12tb/p/N82E16822149830" target="_blank" title="TOSHIBA MG09 Series MG09ACA12TE 12TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Hard Drives">TOSHIBA MG09 Series MG09ACA12TE 12TB 7200 RPM 512MB Cache SATA 6.0Gb/s 3.5" Hard Drives</a></td>
+      <td>12.00</td>
+      <td>275.99</td>
+      <td>23.00</td>
+    </tr>
+    <tr>
+      <td>136</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st22000nt001-22tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822185096" target="_blank" title="Seagate IronWolf Pro 22TB Enterprise NAS Internal HDD – CMR 3.5in SATA 6Gb/s 7200 RPM (ST22000NT001)">Seagate IronWolf Pro 22TB Enterprise NAS Internal HDD – CMR 3.5in SATA 6Gb/s 7200 RPM (ST22000NT001)</a></td>
+      <td>22.00</td>
+      <td>509.00</td>
+      <td>23.14</td>
+    </tr>
+    <tr>
+      <td>137</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Purple-Surveillance-Internal/dp/B0C4X6RDV8/ref=sr_1_23?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-23" target="_blank" title="Western Digital 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD43PURZ">Western Digital 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD43PURZ</a></td>
+      <td>4.00</td>
+      <td>93.99</td>
+      <td>23.50</td>
+    </tr>
+    <tr>
+      <td>138</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-skyhawk-st8000vx010-8tb-for-video-surveillance-5400-rpm/p/N82E16822185097" target="_blank" title="Seagate SkyHawk ST8000VX010 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives">Seagate SkyHawk ST8000VX010 8TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives</a></td>
+      <td>8.00</td>
+      <td>189.99</td>
+      <td>23.75</td>
+    </tr>
+    <tr>
+      <td>139</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-Internal-Drive-Performance/dp/B01IA9H22Q/ref=sr_1_70?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-70" target="_blank" title="Seagate BarraCuda Pro 10TB Internal Hard Drive Performance HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 256MB Cache for Computer Desktop PC, Data Recovery (ST10000DM0004)">Seagate BarraCuda Pro 10TB Internal Hard Drive Performance HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 256MB Cache for Computer Desktop PC, Data Recovery (ST10000DM0004)</a></td>
+      <td>10.00</td>
+      <td>237.60</td>
+      <td>23.76</td>
+    </tr>
+    <tr>
+      <td>140</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st10000vn000-10tb/p/N82E16822184973" target="_blank" title="Seagate IronWolf ST10000VN000 10TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives Bare Drive">Seagate IronWolf ST10000VN000 10TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives Bare Drive</a></td>
+      <td>10.00</td>
+      <td>245.98</td>
+      <td>24.60</td>
+    </tr>
+    <tr>
+      <td>141</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-S300-Surveillance-Internal-Drive/dp/B0CYQHCR9W/ref=sr_1_51?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-51" target="_blank" title="Toshiba S300 PRO 8TB Surveillance 3.5” Internal Hard Drive – CMR SATA 6 Gb/s 7200 RPM 512MB Cache - HDWTA80UZSVAR">Toshiba S300 PRO 8TB Surveillance 3.5” Internal Hard Drive – CMR SATA 6 Gb/s 7200 RPM 512MB Cache - HDWTA80UZSVAR</a></td>
+      <td>8.00</td>
+      <td>198.99</td>
+      <td>24.87</td>
+    </tr>
+    <tr>
+      <td>142</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Skyhawk-Video-Internal-House/dp/B0B1JPYH2Z/ref=sr_1_27?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-27" target="_blank" title="Seagate Skyhawk 4TB Video Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 64MB Cache for DVR NVR Security Camera System with Drive Health Management and in-House Rescue Services (ST4000VXZ16/016)">Seagate Skyhawk 4TB Video Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 64MB Cache for DVR NVR Security Camera System with Drive Health Management and in-House Rescue Services (ST4000VXZ16/016)</a></td>
+      <td>4.00</td>
+      <td>99.76</td>
+      <td>24.94</td>
+    </tr>
+    <tr>
+      <td>143</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Purple-Surveillance-Internal/dp/B0966TZJGJ/ref=sr_1_47?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-47" target="_blank" title="Western Digital 10TB WD Purple Pro Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD101PURP">Western Digital 10TB WD Purple Pro Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD101PURP</a></td>
+      <td>10.00</td>
+      <td>249.99</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <td>144</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-2-5-Inch-ST5000LM000/dp/B07MWDMD4J/ref=sr_1_93?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-93" target="_blank" title="SAEGATE BarraCuda Internal Hard Drive 5TB SATA 6Gb/s 128MB Cache 2.5-Inch 15mm (ST5000LM000) (Renewed)">SAEGATE BarraCuda Internal Hard Drive 5TB SATA 6Gb/s 128MB Cache 2.5-Inch 15mm (ST5000LM000) (Renewed)</a></td>
+      <td>5.00</td>
+      <td>125.00</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <td>145</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-pro-st8000nt001-8tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822185077" target="_blank" title="Seagate IronWolf Pro ST8000NT001 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">Seagate IronWolf Pro ST8000NT001 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>8.00</td>
+      <td>199.99</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <td>146</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/wd43purz-4tb-for-video-surveillance-5400-rpm/p/N82E16822234549" target="_blank" title="WD WD43PURZ 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD43URZ">WD WD43PURZ 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD43URZ</a></td>
+      <td>4.00</td>
+      <td>99.99</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <td>147</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/purple-pro-wd121purp-12tb-hard-drive-for-video-surveillance-7200-rpm/p/N82E16822234481" target="_blank" title="WD Purple Pro WD121PURP 12TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive">WD Purple Pro WD121PURP 12TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>12.00</td>
+      <td>299.99</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <td>148</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-3-5-Inch-ST3000DM008/dp/B01IEKG4NE/ref=sr_1_15?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-15" target="_blank" title="Seagate BarraCuda 3TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC (ST3000DM008)">Seagate BarraCuda 3TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC (ST3000DM008)</a></td>
+      <td>3.00</td>
+      <td>75.37</td>
+      <td>25.12</td>
+    </tr>
+    <tr>
+      <td>149</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd103kryz-10tb-for-enterprise-storage-7200-rpm/p/1Z4-0002-01PT3" target="_blank" title="WD Gold 10 TB Hard Drive - 3.5" Internal - SATA (SATA/600) - 7200rpm WD103KRYZ">WD Gold 10 TB Hard Drive - 3.5" Internal - SATA (SATA/600) - 7200rpm WD103KRYZ</a></td>
+      <td>10.00</td>
+      <td>254.86</td>
+      <td>25.49</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-skyhawk-ai-st10000ve0008-10tb/p/N82E16822184787" target="_blank" title="Seagate SkyHawk AI ST10000VE0008 10TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate SkyHawk AI ST10000VE0008 10TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>10.00</td>
+      <td>257.97</td>
+      <td>25.80</td>
+    </tr>
+    <tr>
+      <td>151</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Purple-10TB-Surveillance-Hard-Drive/dp/B082LNS4JZ/ref=sr_1_53?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-53" target="_blank" title="Western Digital 10TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD102PURZ">Western Digital 10TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD102PURZ</a></td>
+      <td>10.00</td>
+      <td>260.00</td>
+      <td>26.00</td>
+    </tr>
+    <tr>
+      <td>152</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Purple-Surveillance-Internal/dp/B08XNL4CRM/ref=sr_1_82?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-82" target="_blank" title="Western Digital 8TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 128 MB Cache, 3.5" - WD84PURZ">Western Digital 8TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 128 MB Cache, 3.5" - WD84PURZ</a></td>
+      <td>8.00</td>
+      <td>207.99</td>
+      <td>26.00</td>
+    </tr>
+    <tr>
+      <td>153</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/ST500DM002-Barracuda-internal-Certified-Refurbished/dp/B07MX8GH2F/ref=sr_1_55?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-55" target="_blank" title="Seagate Barracuda ST500DM002 500 GB 3.5 Internal Hard Drive - SATA - 7200 rpm - 16 MB Buffer (Renewed)">Seagate Barracuda ST500DM002 500 GB 3.5 Internal Hard Drive - SATA - 7200 rpm - 16 MB Buffer (Renewed)</a></td>
+      <td>0.50</td>
+      <td>13.99</td>
+      <td>27.98</td>
+    </tr>
+    <tr>
+      <td>154</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-2-5in-5400rpm-128mb/dp/B01LXO31IZ/ref=sr_1_68?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-68" target="_blank" title="Seagate Barracuda 2.5in 5tb Sata 2.5in 5400rpm 6gb/s 128mb 15">Seagate Barracuda 2.5in 5tb Sata 2.5in 5400rpm 6gb/s 128mb 15</a></td>
+      <td>5.00</td>
+      <td>141.89</td>
+      <td>28.38</td>
+    </tr>
+    <tr>
+      <td>155</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-2-5-Inch-ST5000LM000/dp/B01M0AADIX/ref=sr_1_20?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-20" target="_blank" title="Seagate BarraCuda 5TB Internal Hard Drive HDD – 2.5 Inch SATA 6Gb/s 5400 RPM 128MB Cache for Computer Desktop PC (ST5000LM000)">Seagate BarraCuda 5TB Internal Hard Drive HDD – 2.5 Inch SATA 6Gb/s 5400 RPM 128MB Cache for Computer Desktop PC (ST5000LM000)</a></td>
+      <td>5.00</td>
+      <td>143.00</td>
+      <td>28.60</td>
+    </tr>
+    <tr>
+      <td>156</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-IronWolf-10TB-Internal-Drive/dp/B085ZB51HW/ref=sr_1_79?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-79" target="_blank" title="Seagate IronWolf 10TB NAS Internal Hard Drive HDD – CMR 3.5 Inch SATA 6Gb/s 7200 RPM 256MB Cache for RAID Network Attached Storage, with Rescue Service (ST10000VN0008)">Seagate IronWolf 10TB NAS Internal Hard Drive HDD – CMR 3.5 Inch SATA 6Gb/s 7200 RPM 256MB Cache for RAID Network Attached Storage, with Rescue Service (ST10000VN0008)</a></td>
+      <td>10.00</td>
+      <td>294.50</td>
+      <td>29.45</td>
+    </tr>
+    <tr>
+      <td>157</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-desktop-hdd-st1000dm003-1tb/p/N82E16822148840" target="_blank" title="Seagate Desktop HDD ST1000DM003 1TB 64MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate Desktop HDD ST1000DM003 1TB 64MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>1.00</td>
+      <td>29.99</td>
+      <td>29.99</td>
+    </tr>
+    <tr>
+      <td>158</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Enterprise-Class-Internal/dp/B0CVMZTBJ4/ref=sr_1_29?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-29" target="_blank" title="Western Digital 8TB WD Gold Enterprise Class Internal Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD8005FRYZ">Western Digital 8TB WD Gold Enterprise Class Internal Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 256 MB Cache, 3.5" - WD8005FRYZ</a></td>
+      <td>8.00</td>
+      <td>239.99</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>159</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Bulk-WD10EURX-SATA/dp/B007X15MNO/ref=sr_1_27?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-27" target="_blank" title="Western Digital WD Bulk WD10EURX 1TB AV GP SATA 6Gbs 3.5", 1 TB">Western Digital WD Bulk WD10EURX 1TB AV GP SATA 6Gbs 3.5", 1 TB</a></td>
+      <td>1.00</td>
+      <td>30.00</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>160</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Blue-Internal-Drive/dp/B0C4X1JLD4/ref=sr_1_32?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-32" target="_blank" title="Western Digital 2TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 64 MB Cache, 3.5" - WD20EARZ">Western Digital 2TB WD Blue PC Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 64 MB Cache, 3.5" - WD20EARZ</a></td>
+      <td>2.00</td>
+      <td>59.99</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>161</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-ST3000DM001-Internal-Drive/dp/B00EEJP1N4/ref=sr_1_54?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-54" target="_blank" title="Seagate Barracuda ST3000DM001 3 TB 3.5 Internal Hard Drive - Bulk">Seagate Barracuda ST3000DM001 3 TB 3.5 Internal Hard Drive - Bulk</a></td>
+      <td>3.00</td>
+      <td>89.99</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>162</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd8005fryz-8tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822234563" target="_blank" title="WD Gold WD8005FRYZ 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives">WD Gold WD8005FRYZ 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives</a></td>
+      <td>8.00</td>
+      <td>239.99</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>163</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-024G4" target="_blank" title="Seagate Exos 7E10 4TB  SATA 7200RPM 256MB Internal Hard Drive ST4000NM000B">Seagate Exos 7E10 4TB  SATA 7200RPM 256MB Internal Hard Drive ST4000NM000B</a></td>
+      <td>4.00</td>
+      <td>119.99</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <td>164</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/12Gbps-Genuine-Dell-Certified-Refurbished/dp/B07GDST8HJ/ref=sr_1_76?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-76" target="_blank" title="2TB 7.2K 2.5in 12Gbps SAS Hard Drive (Genuine Dell) (FVX7C) (Renewed)">2TB 7.2K 2.5in 12Gbps SAS Hard Drive (Genuine Dell) (FVX7C) (Renewed)</a></td>
+      <td>2.00</td>
+      <td>61.25</td>
+      <td>30.62</td>
+    </tr>
+    <tr>
+      <td>165</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st6000vn0033-6tb/p/N82E16822172057" target="_blank" title="Seagate IronWolf 6TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST6000VN0033">Seagate IronWolf 6TB NAS Hard Drive 7200 RPM 256MB Cache SATA 6.0Gb/s CMR 3.5" Internal HDD for RAID Network Attached Storage ST6000VN0033</a></td>
+      <td>6.00</td>
+      <td>190.18</td>
+      <td>31.70</td>
+    </tr>
+    <tr>
+      <td>166</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-wd40efrx-4tb/p/N82E16822236599" target="_blank" title="WD Red Plus 4TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD40EFRX">WD Red Plus 4TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD40EFRX</a></td>
+      <td>4.00</td>
+      <td>126.79</td>
+      <td>31.70</td>
+    </tr>
+    <tr>
+      <td>167</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-st2000dm008-2tb-for-daily-computing-7200-rpm/p/N82E16822184773" target="_blank" title="Seagate BarraCuda ST2000DM008 2TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drive Bare Drive">Seagate BarraCuda ST2000DM008 2TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drive Bare Drive</a></td>
+      <td>2.00</td>
+      <td>64.99</td>
+      <td>32.49</td>
+    </tr>
+    <tr>
+      <td>168</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/blue-wd20ezbx-2tb-computer-hardware-for-daily-computing-7200-rpm/p/N82E16822234469" target="_blank" title="WD Blue 2TB Desktop Hard Disk Drive - 7200 RPM SATA 6Gb/s 256MB Cache 3.5 Inch - WD20EZBX">WD Blue 2TB Desktop Hard Disk Drive - 7200 RPM SATA 6Gb/s 256MB Cache 3.5 Inch - WD20EZBX</a></td>
+      <td>2.00</td>
+      <td>64.99</td>
+      <td>32.49</td>
+    </tr>
+    <tr>
+      <td>169</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-ST4000LM024-Internal-Drive/dp/B01LXCE9W9/ref=sr_1_37?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-37" target="_blank" title="Seagate Barracuda ST4000LM024 4 TB 2.5" Internal Hard Drive">Seagate Barracuda ST4000LM024 4 TB 2.5" Internal Hard Drive</a></td>
+      <td>4.00</td>
+      <td>130.00</td>
+      <td>32.50</td>
+    </tr>
+    <tr>
+      <td>170</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/western-digital-wd42purz-4tb-hard-drive/p/1Z4-0002-01CU7" target="_blank" title="Western Digital 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD42PURZ">Western Digital 4TB WD Purple Surveillance Internal Hard Drive HDD - SATA 6 Gb/s, 256 MB Cache, 3.5" - WD42PURZ</a></td>
+      <td>4.00</td>
+      <td>129.99</td>
+      <td>32.50</td>
+    </tr>
+    <tr>
+      <td>171</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-5400RPM-Cache-3-0Gb-Drive/dp/B07NGKRNVF/ref=sr_1_78?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-78" target="_blank" title="Toshiba 1TB 5400RPM 8MB Cache SATA 3.0Gb/s 2.5 inch PS3/PS4 Hard Drive - 3 Year Warranty">Toshiba 1TB 5400RPM 8MB Cache SATA 3.0Gb/s 2.5 inch PS3/PS4 Hard Drive - 3 Year Warranty</a></td>
+      <td>1.00</td>
+      <td>32.95</td>
+      <td>32.95</td>
+    </tr>
+    <tr>
+      <td>172</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-MQ01ABD-Internal-Drive-MQ01ABD100/dp/B009AYVNMQ/ref=sr_1_28?dib=eyJ2IjoiMSJ9.fg1C6qWxawMIIL4SLljJUWCrEdCh7OEeXD87Mk-UescI3Kd2UtIzHfT-b7cT1TBEPz_IxnOpvhkVruvXMsuWm2GtlEdV5cn1DrXA66-Oa-2YKBdRqGCc56F580ieFn9rdXGQSYpQE1wUK0RLPmcNObSg-4NTxNKzriB0kLBGtSbx6s2tseAAchORwRDxL_KQc1IdIC9-XGvxt6zFK7trN_Pi5U5DSZGD8XvnAz1JKMcOBfYlt4KzgPnbZScgxR6H2ngKYW2XAR0ZXpJKK5YFIveNxAfkJRQ6F-xJaUutpEA.ZWbRDni0v_B5uVHqX81BxnQ36is1aDgtZbLDExNzZh0&dib_tag=se&keywords=internal+hard+drive&qid=1747147389&s=pc&sr=1-28" target="_blank" title="Toshiba MQ01ABD 1 TB 2.5" Internal Hard Drive MQ01ABD100">Toshiba MQ01ABD 1 TB 2.5" Internal Hard Drive MQ01ABD100</a></td>
+      <td>1.00</td>
+      <td>32.99</td>
+      <td>32.99</td>
+    </tr>
+    <tr>
+      <td>173</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-3-5-Inch-ST2000DM006/dp/B01IEKG402/ref=sr_1_75?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-75" target="_blank" title="Seagate BarraCuda 2TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC Laptop (ST2000DM006)">Seagate BarraCuda 2TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC Laptop (ST2000DM006)</a></td>
+      <td>2.00</td>
+      <td>68.79</td>
+      <td>34.40</td>
+    </tr>
+    <tr>
+      <td>174</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-plus-wd80efzz-8tb/p/N82E16822234504" target="_blank" title="WD Red Plus 8TB CMR NAS Hard Drive HDD - 5640 RPM, SATA 6 Gb/s, 128MB Cache, 3.5" - WD80EFZZ">WD Red Plus 8TB CMR NAS Hard Drive HDD - 5640 RPM, SATA 6 Gb/s, 128MB Cache, 3.5" - WD80EFZZ</a></td>
+      <td>8.00</td>
+      <td>277.45</td>
+      <td>34.68</td>
+    </tr>
+    <tr>
+      <td>175</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-pro-wd6005ffbx-6tb-enterprise-nas-hard-drives-7200-rpm/p/N82E16822234561" target="_blank" title="WD Red Pro WD6005FFBX 6TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives">WD Red Pro WD6005FFBX 6TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Hard Drives</a></td>
+      <td>6.00</td>
+      <td>209.99</td>
+      <td>35.00</td>
+    </tr>
+    <tr>
+      <td>176</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-wd40efax-4tb/p/N82E16822234409" target="_blank" title="WD Red 4TB NAS Internal Hard Drive - 5400 RPM Class, SATA 6Gb/s, SMR, 256MB Cache, 3.5" - WD40EFAX">WD Red 4TB NAS Internal Hard Drive - 5400 RPM Class, SATA 6Gb/s, SMR, 256MB Cache, 3.5" - WD40EFAX</a></td>
+      <td>4.00</td>
+      <td>139.99</td>
+      <td>35.00</td>
+    </tr>
+    <tr>
+      <td>177</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-5400RPM-128MB-Internal-Gaming/dp/B08975MYC5/ref=sr_1_46?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-46" target="_blank" title="Toshiba 1TB 5400RPM 128MB Cache SATA 6Gb/s (7mm) 2.5in Internal Gaming PS3/PS4 Hard Drive - 3 Year Warranty">Toshiba 1TB 5400RPM 128MB Cache SATA 6Gb/s (7mm) 2.5in Internal Gaming PS3/PS4 Hard Drive - 3 Year Warranty</a></td>
+      <td>1.00</td>
+      <td>35.96</td>
+      <td>35.96</td>
+    </tr>
+    <tr>
+      <td>178</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/purple-wd23purz-2tb-for-video-surveillance-5400-rpm/p/N82E16822234548" target="_blank" title="WD Purple WD23PURZ 2TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - Video Surveillance System Device Supported - 3 Year Warranty">WD Purple WD23PURZ 2TB Hard Drive - 3.5" Internal - SATA (SATA/600) - Conventional Magnetic Recording (CMR) Method - Video Surveillance System Device Supported - 3 Year Warranty</a></td>
+      <td>2.00</td>
+      <td>72.99</td>
+      <td>36.49</td>
+    </tr>
+    <tr>
+      <td>179</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/synology-hat5310-8t-8tb-for-nas-systems-7200-rpm/p/N82E16822108821" target="_blank" title="Synology HAT5310-8T 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Enterprise 3.5" SATA HDD">Synology HAT5310-8T 8TB 7200 RPM 256MB Cache SATA 6.0Gb/s 3.5" Enterprise 3.5" SATA HDD</a></td>
+      <td>8.00</td>
+      <td>299.99</td>
+      <td>37.50</td>
+    </tr>
+    <tr>
+      <td>180</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-st4000nm0125-4tb/p/1Z4-002P-00GA0" target="_blank" title="Seagate ST4000NM0125 4 TB 3.5" Internal Hard Drive - SAS 7200rpm 128 MB Buffer">Seagate ST4000NM0125 4 TB 3.5" Internal Hard Drive - SAS 7200rpm 128 MB Buffer</a></td>
+      <td>4.00</td>
+      <td>149.99</td>
+      <td>37.50</td>
+    </tr>
+    <tr>
+      <td>181</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-2-5-inch-laptop-5400rpm-MQ01ABD050/dp/B008RZLSWE/ref=sr_1_75?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-75" target="_blank" title="Toshiba 500GB 2.5-inch SATA Laptop Hard Drive (5400rpm, 8MB Cache) MQ01ABD050, Mechanical Hard Disk">Toshiba 500GB 2.5-inch SATA Laptop Hard Drive (5400rpm, 8MB Cache) MQ01ABD050, Mechanical Hard Disk</a></td>
+      <td>0.50</td>
+      <td>18.98</td>
+      <td>37.96</td>
+    </tr>
+    <tr>
+      <td>182</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Red-3TB-NAS-Hard-Drive/dp/B008JJLW4M/ref=sr_1_89?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-89" target="_blank" title="Western Digital 3TB WD Red Plus NAS Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, CMR, 64 MB Cache, 3.5" - WD30EFRX">Western Digital 3TB WD Red Plus NAS Internal Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, CMR, 64 MB Cache, 3.5" - WD30EFRX</a></td>
+      <td>3.00</td>
+      <td>115.03</td>
+      <td>38.34</td>
+    </tr>
+    <tr>
+      <td>183</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-MQ01ABF050-Internal-Bare-Drive/dp/B00F60QH5G/ref=sr_1_96?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-96" target="_blank" title="Toshiba MQ01ABF050 500 GB 2.5" Internal Bare/OEM Hard Drive">Toshiba MQ01ABF050 500 GB 2.5" Internal Bare/OEM Hard Drive</a></td>
+      <td>0.50</td>
+      <td>19.30</td>
+      <td>38.60</td>
+    </tr>
+    <tr>
+      <td>184</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/WD-Notebook-Internal-5400RPM-WD10JPVX/dp/B01EMXO3DK/ref=sr_1_76?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-76" target="_blank" title="WD 2016 New Blue 1TB 2.5 inches Laptop Notebook Internal SATA 6Gb/s Hard Drive 9.5mm Height 5400RPM Model WD10JPVX">WD 2016 New Blue 1TB 2.5 inches Laptop Notebook Internal SATA 6Gb/s Hard Drive 9.5mm Height 5400RPM Model WD10JPVX</a></td>
+      <td>1.00</td>
+      <td>39.99</td>
+      <td>39.99</td>
+    </tr>
+    <tr>
+      <td>185</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Desktop-HDD-Hard-Drive/dp/B01KALOV08/ref=sr_1_77?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-77" target="_blank" title="Seagate 1TB Desktop HDD Hard Drive - Internal (ST1000DM003)">Seagate 1TB Desktop HDD Hard Drive - Internal (ST1000DM003)</a></td>
+      <td>1.00</td>
+      <td>39.99</td>
+      <td>39.99</td>
+    </tr>
+    <tr>
+      <td>186</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-plus-wd20efpx-2tb-hard-drive-for-nas-systems-5400-rpm/p/N82E16822234546" target="_blank" title="WD Red Plus 2TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD20EFPX">WD Red Plus 2TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD20EFPX</a></td>
+      <td>2.00</td>
+      <td>79.99</td>
+      <td>39.99</td>
+    </tr>
+    <tr>
+      <td>187</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-ironwolf-st6000vn001-6tb/p/N82E16822184840" target="_blank" title="Seagate IronWolf ST6000VN001 6TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive">Seagate IronWolf ST6000VN001 6TB 5400 RPM 256MB Cache SATA 6.0Gb/s 3.5" Internal Hard Drive Bare Drive</a></td>
+      <td>6.00</td>
+      <td>247.45</td>
+      <td>41.24</td>
+    </tr>
+    <tr>
+      <td>188</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-WD5000LUCT-5400RPM-Internal/dp/B07M7LNPTJ/ref=sr_1_100?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-100" target="_blank" title="Western Digital WD5000LUCT AV 500GB 5400RPM 16MB Cache (7mm) SATA 3.0Gb/s Internal 2.5inch Notebook Hard Drive">Western Digital WD5000LUCT AV 500GB 5400RPM 16MB Cache (7mm) SATA 3.0Gb/s Internal 2.5inch Notebook Hard Drive</a></td>
+      <td>0.50</td>
+      <td>20.68</td>
+      <td>41.36</td>
+    </tr>
+    <tr>
+      <td>189</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Toshiba-HDWL120XZSTA-Laptop-Internal-Height/dp/B07CT5RDDX/ref=sr_1_98?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-98" target="_blank" title="Toshiba HDWL120XZSTA L200 2TB Laptop PC Internal Hard Drive 5400 RPM SATA 6Gb/s 128 MB Cache 2.5" 9.5mm Height - 2000 Internal Bare/OEM Drive">Toshiba HDWL120XZSTA L200 2TB Laptop PC Internal Hard Drive 5400 RPM SATA 6Gb/s 128 MB Cache 2.5" 9.5mm Height - 2000 Internal Bare/OEM Drive</a></td>
+      <td>2.00</td>
+      <td>82.99</td>
+      <td>41.49</td>
+    </tr>
+    <tr>
+      <td>190</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-WD10EZEX-Desktop-7200rpm/dp/B0711YN12S/ref=sr_1_92?dib=eyJ2IjoiMSJ9.azwDvo6fvUCU3tejWw5TqGzzRFnhMOAh5twUaQnJtPDEHEyp4QhH2NfDP35v6mlrerSca5Gws7V3wMBYJD2wisJgJ-XzRueecTdwjDkdA3DHvifdrULPuxragSiRe_sZ1kP5GEm-gvCXWvkML-RbUtkND3uWnHWIUIu0qjXVBUJK2nB-6UT5UxYdypHXfFMZXxYcAS4ShSWs-F9EyU94JJpty1J6--6IEeFR3ho9Sj5kaYwYpMlU12JgrHLa_m5EXYZ3SWTjajF8r-7HtYAAQ0Rgt8sk2pXUNr89yewS_XY.3GTAvJjnfLbh0h759z31rOIV2Y-zNi4cOSvtCA9Le4o&dib_tag=se&keywords=internal+hard+drive&qid=1747147411&s=pc&sr=1-92" target="_blank" title="Western Digital 1TB 3.5" SATA HDD 7200RPM Internal Desktop Hard Drive for PC/Mac - OEM WD10EZEX 1 TB">Western Digital 1TB 3.5" SATA HDD 7200RPM Internal Desktop Hard Drive for PC/Mac - OEM WD10EZEX 1 TB</a></td>
+      <td>1.00</td>
+      <td>41.99</td>
+      <td>41.99</td>
+    </tr>
+    <tr>
+      <td>191</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd4004fryz-4tb/p/1Z4-0002-01PE1" target="_blank" title="WD Gold WD4004FRYZ 4 TB Hard Drive 3.5" Internal SATA SATA/600">WD Gold WD4004FRYZ 4 TB Hard Drive 3.5" Internal SATA SATA/600</a></td>
+      <td>4.00</td>
+      <td>169.99</td>
+      <td>42.50</td>
+    </tr>
+    <tr>
+      <td>192</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-exos-7e10-st4000nm001b-4tb/p/N82E16822185060" target="_blank" title="Seagate Exos 7E10 ST4000NM001B 4TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive">Seagate Exos 7E10 ST4000NM001B 4TB 7200 RPM 256MB Cache SAS 12Gb/s 3.5" Internal Hard Drive</a></td>
+      <td>4.00</td>
+      <td>174.98</td>
+      <td>43.74</td>
+    </tr>
+    <tr>
+      <td>193</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/p/1Z4-002P-02HY3" target="_blank" title="Seagate SkyHawk 2TB 3.5" SATA Internal Hard Disk Drive ST2000VX017">Seagate SkyHawk 2TB 3.5" SATA Internal Hard Disk Drive ST2000VX017</a></td>
+      <td>2.00</td>
+      <td>89.08</td>
+      <td>44.54</td>
+    </tr>
+    <tr>
+      <td>194</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/black-wd8002fzwx-8tb/p/N82E16822234500" target="_blank" title="WD Black WD8002FZWX 8TB 7200 RPM 128MB Cache SATA 6.0Gb/s 3.5" Hard Drives">WD Black WD8002FZWX 8TB 7200 RPM 128MB Cache SATA 6.0Gb/s 3.5" Hard Drives</a></td>
+      <td>8.00</td>
+      <td>377.45</td>
+      <td>47.18</td>
+    </tr>
+    <tr>
+      <td>195</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-Drive-2-5-Inch/dp/B07D99S8Z7/ref=sr_1_34?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-34" target="_blank" title="Seagate BarraCuda 2TB Internal Hard Drive HDD – 2.5 Inch SATA 6Gb/s 5400 RPM 128MB Cache for Computer Desktop PC – Frustration Free Packaging (ST2000LM015)">Seagate BarraCuda 2TB Internal Hard Drive HDD – 2.5 Inch SATA 6Gb/s 5400 RPM 128MB Cache for Computer Desktop PC – Frustration Free Packaging (ST2000LM015)</a></td>
+      <td>2.00</td>
+      <td>97.00</td>
+      <td>48.50</td>
+    </tr>
+    <tr>
+      <td>196</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Exos-ST6000NM021A-Hard-Drive/dp/B07W5VZDX5/ref=sr_1_60?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-60" target="_blank" title="Seagate Exos 7E8 ST6000NM021A 6 TB Hard Drive - Internal - SATA (SATA/600)">Seagate Exos 7E8 ST6000NM021A 6 TB Hard Drive - Internal - SATA (SATA/600)</a></td>
+      <td>6.00</td>
+      <td>299.00</td>
+      <td>49.83</td>
+    </tr>
+    <tr>
+      <td>197</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Blue-1TB-Mobile-Hard-Drive/dp/B071F9MLJJ/ref=sr_1_41?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-41" target="_blank" title="Western Digital 1TB WD Blue Mobile Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 128 MB Cache, 2.5" - WD10SPZX">Western Digital 1TB WD Blue Mobile Hard Drive HDD - 5400 RPM, SATA 6 Gb/s, 128 MB Cache, 2.5" - WD10SPZX</a></td>
+      <td>1.00</td>
+      <td>49.99</td>
+      <td>49.99</td>
+    </tr>
+    <tr>
+      <td>198</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-nas-hdd-st3000vn000-3tb/p/N82E16822178392" target="_blank" title="Seagate NAS HDD ST3000VN000 3TB 64MB Cache SATA 6.0Gb/s Internal Hard Drive">Seagate NAS HDD ST3000VN000 3TB 64MB Cache SATA 6.0Gb/s Internal Hard Drive</a></td>
+      <td>3.00</td>
+      <td>150.00</td>
+      <td>50.00</td>
+    </tr>
+    <tr>
+      <td>199</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/red-wd30efrx-3tb/p/N82E16822236344" target="_blank" title="WD Red Plus 3TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD30EFRX">WD Red Plus 3TB NAS Hard Disk Drive - 5400 RPM Class SATA 6Gb/s, CMR, 64MB Cache, 3.5 Inch - WD30EFRX</a></td>
+      <td>3.00</td>
+      <td>153.08</td>
+      <td>51.03</td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd2005fbyz-2tb/p/1Z4-0002-002V0" target="_blank" title="WD Gold 2TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 128MB Cache 3.5 Inch - WD2005FBYZ">WD Gold 2TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 128MB Cache 3.5 Inch - WD2005FBYZ</a></td>
+      <td>2.00</td>
+      <td>109.99</td>
+      <td>54.99</td>
+    </tr>
+    <tr>
+      <td>201</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-BarraCuda-Internal-3-5-Inch-ST1000DM010/dp/B01LNJBA2I/ref=sr_1_52?dib=eyJ2IjoiMSJ9.bKPidATmIIZ0My6RKa_Qmb6_lpiG1lQNfaGeT32sC-Z2Un6QUn93GL1sAScu076Qg_aOWJRO4e0xBDct4UXUm_TTybUBhnUJw4KNDjI4hjgjF-v-kZqwlE9gMDIOTdlT3NRb6fY3kLd-N7zfoPzEK7GoRIbVVNwyQOKffPI1XgVvTP-JPVRrcbfntjhoLNYzc0-6iR3YgTwY7yGa0hg3KTAN-fJtAF8N1Otquki2BjvF-hlFYff9beDJNWJKUP8GImmdgTzJrMZf2x5VD19YIgt4ktG-cRSaPh7tzCyFYU0.kzAGHtRuezGryiatNwn8ajgx8aOVP6ktTTNrmO-obQs&dib_tag=se&keywords=internal+hard+drive&qid=1747147396&s=pc&sr=1-52" target="_blank" title="Seagate BarraCuda 1TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC (ST1000DM010)">Seagate BarraCuda 1TB Internal Hard Drive HDD – 3.5 Inch SATA 6 Gb/s 7200 RPM 64MB Cache for Computer Desktop PC (ST1000DM010)</a></td>
+      <td>1.00</td>
+      <td>59.50</td>
+      <td>59.50</td>
+    </tr>
+    <tr>
+      <td>202</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Barracuda-ST500DM002-Internal-Drive/dp/B005EE5P84/ref=sr_1_52?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-52" target="_blank" title="Seagate Barracuda ESA-3502 Internal Hard Drive 3.5 Inches - 500 GB (ST500DM002) + Silicone HDD 3.5 Inch Protective Cover - White">Seagate Barracuda ESA-3502 Internal Hard Drive 3.5 Inches - 500 GB (ST500DM002) + Silicone HDD 3.5 Inch Protective Cover - White</a></td>
+      <td>0.50</td>
+      <td>29.99</td>
+      <td>59.98</td>
+    </tr>
+    <tr>
+      <td>203</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Western-Digital-Black-Performance-Mobile/dp/B082LWP1MQ/ref=sr_1_57?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-57" target="_blank" title="Western Digital 1TB WD Black Performance Mobile Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 64 MB Cache, 2.5" - WD10SPSX, Mechanical Hard Disk">Western Digital 1TB WD Black Performance Mobile Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 64 MB Cache, 2.5" - WD10SPSX, Mechanical Hard Disk</a></td>
+      <td>1.00</td>
+      <td>59.99</td>
+      <td>59.99</td>
+    </tr>
+    <tr>
+      <td>204</td>
+      <td>Amazon</td>
+      <td><a href="https://www.amazon.com/Seagate-Enterprise-ST2000NX0253-Internal-Drive/dp/B00QFZAU2W/ref=sr_1_56?dib=eyJ2IjoiMSJ9.f1C4BLff_HY1lqzH3c36aX0lXwcISAXOcnw2-B6c2bnhxFwWWle9Gr3U6KG-JA8vZ4v2o5bjT6cm_w4Skwihz9G9MHlsPWXseblTX3xQ20m_Lz76dVN64LHjjr4wOKDvpZbC9wJ9rFrcij72lzVfTwIGDZeUCHRKHEAXAR2um7s9U7HFGHYcKMX1dS6pIeOR5Emuzwk4sywEmX5b2Ge5-m3N_NVwTMNyqtZcO5vTdXr7BCxdFQMENDfIhgeDH-5LmKvIxKNK9j_qz0NdQDNiQM6zDlR5-egMJKxjlJm5B1g.bARl4vGNoveTHPoSiI2hW4b_RPSuPF8EPkXJvm7UJX4&dib_tag=se&keywords=internal+hard+drive&qid=1747147404&s=pc&sr=1-56" target="_blank" title="Seagate Enterprise ST2000NX0253 2 TB 2.5" Internal Hard Drive">Seagate Enterprise ST2000NX0253 2 TB 2.5" Internal Hard Drive</a></td>
+      <td>2.00</td>
+      <td>129.00</td>
+      <td>64.50</td>
+    </tr>
+    <tr>
+      <td>205</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-st1200mm0009-1-2tb/p/1B4-00VK-00018" target="_blank" title="Seagate Exos 10E2400 ST1200MM0009 1.2TB 10K RPM 512n SAS 12Gb/s 2.5-Inch Enterprise Hard Drive">Seagate Exos 10E2400 ST1200MM0009 1.2TB 10K RPM 512n SAS 12Gb/s 2.5-Inch Enterprise Hard Drive</a></td>
+      <td>2.00</td>
+      <td>140.00</td>
+      <td>70.00</td>
+    </tr>
+    <tr>
+      <td>206</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-pro-1tb-st1000lm049/p/1Z4-002P-009M2" target="_blank" title="Seagate 1TB BarraCuda 7200 RPM 128MB Cache SATA 6.0Gb/s 2.5" Laptop Internal Hard Drive ST1000LM049">Seagate 1TB BarraCuda 7200 RPM 128MB Cache SATA 6.0Gb/s 2.5" Laptop Internal Hard Drive ST1000LM049</a></td>
+      <td>1.00</td>
+      <td>73.28</td>
+      <td>73.28</td>
+    </tr>
+    <tr>
+      <td>207</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-1tb-st1000nx0423/p/1WK-0048-00024" target="_blank" title="Seagate 1TB Enterprise Capacity 2.5 Internal Hard Disk Drive SATA 6.0Gb/s 7200 RPM 128MB Cache Model ST1000NX0423">Seagate 1TB Enterprise Capacity 2.5 Internal Hard Disk Drive SATA 6.0Gb/s 7200 RPM 128MB Cache Model ST1000NX0423</a></td>
+      <td>1.00</td>
+      <td>82.00</td>
+      <td>82.00</td>
+    </tr>
+    <tr>
+      <td>208</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-1tb-st1000nx0373/p/N82E16822178731" target="_blank" title="Seagate Exos 7E2000 1TB 7200-RPM Dual-Port 512e SAS-12Gb/s 128MB-Cache 2.5-Inch Enterprise Capacity Data Center Hard Disk Drive (ST1000NX0373)">Seagate Exos 7E2000 1TB 7200-RPM Dual-Port 512e SAS-12Gb/s 128MB-Cache 2.5-Inch Enterprise Capacity Data Center Hard Disk Drive (ST1000NX0373)</a></td>
+      <td>1.00</td>
+      <td>82.10</td>
+      <td>82.10</td>
+    </tr>
+    <tr>
+      <td>209</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/gold-wd1005fbyz-1tb/p/1Z4-0002-002U9" target="_blank" title="WD Gold 1TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 128MB Cache 3.5 Inch - WD1005FBYZ">WD Gold 1TB Enterprise Class Hard Disk Drive - 7200 RPM Class SATA 6Gb/s 128MB Cache 3.5 Inch - WD1005FBYZ</a></td>
+      <td>1.00</td>
+      <td>84.99</td>
+      <td>84.99</td>
+    </tr>
+    <tr>
+      <td>210</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-constellation-es-st1000nm0001-1tb/p/N82E16822148868" target="_blank" title="Seagate Constellation ES ST1000NM0001 1TB 7200 RPM 64MB Cache SAS 6Gb/s 3.5" Internal Enterprise Hard Drive Bare Drive">Seagate Constellation ES ST1000NM0001 1TB 7200 RPM 64MB Cache SAS 6Gb/s 3.5" Internal Enterprise Hard Drive Bare Drive</a></td>
+      <td>1.00</td>
+      <td>94.99</td>
+      <td>94.99</td>
+    </tr>
+    <tr>
+      <td>211</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-cheetah-15k-7-st3450857ss-450gb/p/N82E16822148559" target="_blank" title="Seagate Cheetah 15K.7 ST3450857SS 450GB 15000 RPM 16MB Cache SAS 6Gb/s 3.5" Internal Enterprise Hard Drive Bare Drive">Seagate Cheetah 15K.7 ST3450857SS 450GB 15000 RPM 16MB Cache SAS 6Gb/s 3.5" Internal Enterprise Hard Drive Bare Drive</a></td>
+      <td>0.45</td>
+      <td>48.00</td>
+      <td>106.67</td>
+    </tr>
+    <tr>
+      <td>212</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-st900mm0128-900gb/p/N82E16822178672" target="_blank" title="Seagate ST900MM0128 900GB 10000 RPM 128MB Cache SAS 12Gb/s 2.5" Internal Hard Drive Bare Drive">Seagate ST900MM0128 900GB 10000 RPM 128MB Cache SAS 12Gb/s 2.5" Internal Hard Drive Bare Drive</a></td>
+      <td>0.90</td>
+      <td>119.99</td>
+      <td>133.32</td>
+    </tr>
+    <tr>
+      <td>213</td>
+      <td>Newegg</td>
+      <td><a href="https://www.newegg.com/seagate-barracuda-7200-9-st3160212a-160gb/p/N82E16822148093" target="_blank" title="Seagate BarraCuda 7200.9 ST3160212A 160GB 7200 RPM 2MB Cache IDE Ultra ATA100 / ATA-6 3.5" Hard Drive Bare Drive">Seagate BarraCuda 7200.9 ST3160212A 160GB 7200 RPM 2MB Cache IDE Ultra ATA100 / ATA-6 3.5" Hard Drive Bare Drive</a></td>
+      <td>0.16</td>
+      <td>69.95</td>
+      <td>437.19</td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        function applyTheme(theme) {
+            if (theme === 'dark') { body.classList.add('dark-mode'); toggleButton.textContent = 'Switch to Light Mode'; localStorage.setItem('theme', 'dark'); }
+            else { body.classList.remove('dark-mode'); toggleButton.textContent = 'Switch to Dark Mode'; localStorage.setItem('theme', 'light'); }
+        }
+        if (currentTheme) { applyTheme(currentTheme); }
+        else if (prefersDarkScheme.matches) { applyTheme('dark'); }
+        else { applyTheme('light'); }
+        toggleButton.addEventListener('click', () => { applyTheme(body.classList.contains('dark-mode') ? 'light' : 'dark'); });
+        prefersDarkScheme.addEventListener('change', (e) => { if (!localStorage.getItem('theme')) { applyTheme(e.matches ? 'dark' : 'light'); } });
+    </script>
+</body>
+</html>
