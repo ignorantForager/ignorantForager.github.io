@@ -8,7 +8,7 @@ icon: fas fa-hdd
 
 # Simpler approach: Make it an "external link" tab if Chirpy supports it directly in _tabs.
 # Some themes allow 'external_url' in the front matter for tabs:
-# external_url: /hdd_prices_report.html
+external_url: _pages/hdd_prices_report.html
 
 # If external_url is not directly supported in _tabs for your Chirpy version,
 # create a minimal page that redirects or just links.
