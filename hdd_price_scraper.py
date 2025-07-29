@@ -318,7 +318,10 @@ def scrape_newegg(search_term, page_size=96):
 
 
 def scrape_serverpartdeals(url):
-    """Scrapes ServerPartDeals collection page using Selenium."""
+    """
+    Scrapes ServerPartDeals collection page using Selenium.
+    Updated for the new site structure as of May 2024.
+    """
     logging.info(f"--- Scraping ServerPartDeals using Selenium ---")
     logging.info(f"Requesting SPD page via Selenium: {url}")
     results = []
@@ -343,7 +346,7 @@ def scrape_serverpartdeals(url):
         try:
             polite_delay()
             driver.get(url)
-            static_sleep_duration = 7
+            static_sleep_duration = 5
             logging.debug(f"Static sleep for {static_sleep_duration}s after get() for initial JS load...")
             time.sleep(static_sleep_duration)
 
@@ -373,53 +376,53 @@ def scrape_serverpartdeals(url):
                 except Exception as save_err: logging.error(f"Could not save blocked SPD page HTML: {save_err}")
                 logging.warning("Stopping SPD scrape due to detected prominent block.")
             else:
-                # Scroll and Wait for Inner Element Visibility
+                # Scroll and Wait for elements to be present in the DOM
                 try:
-                    logging.debug("Scrolling down the SPD page...")
-                    for _ in range(3):
-                        driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.6);")
-                        time.sleep(1.5)
+                    logging.debug("Scrolling down the SPD page to trigger lazy loading...")
+                    for i in range(5): # Scroll a few times to load more products
+                        driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.7);")
+                        logging.debug(f"Scroll #{i+1}, waiting...")
+                        time.sleep(2) # Wait for content to load after scroll
 
                     wait_timeout = 60
-                    inner_item_selector_str = "a.boost-pfs-filter-product-item-title"
-                    inner_item_selector = (By.CSS_SELECTOR, inner_item_selector_str)
-                    logging.debug(f"Waiting up to {wait_timeout}s for VISIBILITY of SPD inner item element '{inner_item_selector[1]}'...")
-                    WebDriverWait(driver, wait_timeout).until(EC.visibility_of_element_located(inner_item_selector))
-                    logging.info(f"SPD Page processed and inner item elements ('{inner_item_selector_str}') are visible.")
+                    item_container_selector_str = "div.product-item"
+                    item_selector_wait = (By.CSS_SELECTOR, item_container_selector_str)
+                    logging.debug(f"Waiting up to {wait_timeout}s for PRESENCE of SPD item element '{item_selector_wait[1]}'...")
+                    WebDriverWait(driver, wait_timeout).until(EC.presence_of_element_located(item_selector_wait))
+                    logging.info(f"SPD Page processed and item elements ('{item_container_selector_str}') are present.")
                     page_load_successful = True
 
                 except TimeoutException:
-                    logging.warning(f"Timeout ({wait_timeout}s) waiting for VISIBILITY of inner item element ('{inner_item_selector_str}') on SPD page, even after scrolling.")
+                    logging.warning(f"Timeout ({wait_timeout}s) waiting for PRESENCE of item element ('{item_container_selector_str}') on SPD page, even after scrolling.")
                     try:
-                        timeout_html_path = os.path.join(os.getcwd(), f"spd_timeout_page_inner_visibility.html")
+                        timeout_html_path = os.path.join(os.getcwd(), f"spd_timeout_page_presence.html")
                         with open(timeout_html_path, "w", encoding="utf-8") as f: f.write(driver.page_source)
-                        logging.info(f"Saved HTML source of timed-out (inner visibility) SPD page to: {timeout_html_path}")
-                    except Exception as e: logging.error(f"Error checking/saving SPD page source after inner visibility timeout: {e}")
+                        logging.info(f"Saved HTML source of timed-out (presence) SPD page to: {timeout_html_path}")
+                    except Exception as e: logging.error(f"Error checking/saving SPD page source after presence timeout: {e}")
                 except WebDriverException as e: logging.error(f"Selenium WebDriverException occurred during scroll/wait for SPD page: {e}")
 
         except Exception as page_load_err: logging.error(f"Unexpected error during SPD page load/block/wait phase: {page_load_err}", exc_info=True)
 
-        if page_load_successful: # Proceed only if page loaded successfully and wasn't blocked
+        if page_load_successful:
             try:
                 page_source = driver.page_source
                 soup = BeautifulSoup(page_source, 'lxml')
-                item_container_selector = "div.boost-pfs-filter-product-item-inner"
+                item_container_selector = "div.product-item"
                 items = soup.select(item_container_selector)
                 logging.info(f"Found {len(items)} potential items on SPD page using '{item_container_selector}'.")
-                if not items: logging.warning(f"Items visible by wait, but not found by BeautifulSoup('{item_container_selector}'). Parsing issue?")
+                if not items: logging.warning(f"Items detected by wait, but not found by BeautifulSoup('{item_container_selector}'). Parsing issue?")
                 else:
                     item_count_on_page = 0
                     for item in items:
                         data = {'Retailer': 'ServerPartDeals'}
-                        title_link_selector = "a.boost-pfs-filter-product-item-title"
+                        title_link_selector = "h3.product-item__title a"
                         title_element = item.select_one(title_link_selector)
                         if not title_element: continue
                         data['Title'] = title_element.get_text(strip=True)
                         href = title_element.get('href')
                         if href and href.startswith('/'): data['URL'] = base_url + href
                         else: continue
-
-                        price_selector = "span.boost-pfs-filter-product-item-regular-price"
+                        price_selector = "span.price"
                         price_element = item.select_one(price_selector)
                         price_str = None
                         if price_element:
@@ -452,7 +455,6 @@ def scrape_serverpartdeals(url):
 
     logging.info(f"Finished scraping ServerPartDeals using Selenium. Found a total of {len(results)} valid items.")
     return results
-
 
 # --- Main Execution ---
 
