@@ -318,10 +318,7 @@ def scrape_newegg(search_term, page_size=96):
 
 
 def scrape_serverpartdeals(url):
-    """
-    Scrapes ServerPartDeals collection page using Selenium.
-    Updated for the new site structure as of May 2024.
-    """
+    # Scrapes ServerPartDeals collection page using Selenium.
     logging.info(f"--- Scraping ServerPartDeals using Selenium ---")
     logging.info(f"Requesting SPD page via Selenium: {url}")
     results = []
@@ -329,6 +326,7 @@ def scrape_serverpartdeals(url):
 
     options = FirefoxOptions()
     if 'User-Agent' in HEADERS: options.add_argument(f'user-agent={HEADERS["User-Agent"]}')
+    # For debugging, you can comment out the next line to see the browser window
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
@@ -342,64 +340,49 @@ def scrape_serverpartdeals(url):
         logging.info("Selenium Firefox driver initialized for SPD.")
 
         page_load_successful = False
-        block_found = False
         try:
             polite_delay()
             driver.get(url)
-            static_sleep_duration = 5
-            logging.debug(f"Static sleep for {static_sleep_duration}s after get() for initial JS load...")
-            time.sleep(static_sleep_duration)
 
-            # Block Check
-            current_page_source_lower = driver.page_source.lower()
-            blocking_keywords = ["captcha", "verify", "challenge", "access denied", "forbidden"]
-            matched_keyword = None
-            soup_for_check = BeautifulSoup(driver.page_source, 'lxml')
-            for keyword in blocking_keywords:
-                if keyword in current_page_source_lower:
-                    h_tags = soup_for_check.select('h1, h2, h3, title')
-                    found_in_header = any(keyword in tag.get_text(strip=True).lower() for tag in h_tags)
-                    buttons = soup_for_check.select('button, input[type="submit"]')
-                    found_in_button = any(keyword in btn.get_text(strip=True).lower() or keyword in btn.get('value', '').lower() for btn in buttons)
-                    if found_in_header or found_in_button:
-                        logging.warning(f"Blocking keyword '{keyword}' detected prominently on SPD page.")
-                        block_found = True
-                        matched_keyword = keyword
-                        break
-                    else: logging.debug(f"Keyword '{keyword}' found in SPD source, but not prominently.")
+            # --- ESSENTIAL: Handle Cookie Consent Banner ---
+            try:
+                cookie_button_selector = (By.ID, "onetrust-accept-btn-handler")
+                logging.debug("Looking for cookie consent button...")
+                cookie_button = WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable(cookie_button_selector)
+                )
+                logging.info("Cookie consent button found. Clicking it...")
+                cookie_button.click()
+                time.sleep(2) # Give page time to react after click
+            except TimeoutException:
+                logging.info("Cookie consent banner not found or already handled. Continuing...")
+            except Exception as e:
+                logging.warning(f"An error occurred while trying to handle cookie banner: {e}")
 
-            if block_found:
+            # --- Scroll and Wait for elements to be present ---
+            try:
+                logging.debug("Scrolling down the SPD page to trigger lazy loading...")
+                for i in range(5): # Scroll a few times to load more products
+                    driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.8);")
+                    logging.debug(f"Scroll #{i+1}, waiting...")
+                    time.sleep(2.5)
+
+                wait_timeout = 60
+                item_container_selector_str = "div.boost-sd_product-item"
+                item_selector_wait = (By.CSS_SELECTOR, item_container_selector_str)
+                logging.debug(f"Waiting up to {wait_timeout}s for PRESENCE of SPD item element '{item_selector_wait[1]}'...")
+                WebDriverWait(driver, wait_timeout).until(EC.presence_of_element_located(item_selector_wait))
+                logging.info(f"SPD Page processed and item elements ('{item_container_selector_str}') are present.")
+                page_load_successful = True
+
+            except TimeoutException:
+                logging.error(f"FATAL: Timeout ({wait_timeout}s) waiting for item element ('{item_container_selector_str}') on SPD page, even after handling cookies and scrolling.")
                 try:
-                    blocked_html_path = os.path.join(os.getcwd(), f"spd_blocked_{matched_keyword}_page.html")
-                    with open(blocked_html_path, "w", encoding="utf-8") as f: f.write(driver.page_source)
-                    logging.info(f"Saved HTML source of suspected blocked SPD page to: {blocked_html_path}")
-                except Exception as save_err: logging.error(f"Could not save blocked SPD page HTML: {save_err}")
-                logging.warning("Stopping SPD scrape due to detected prominent block.")
-            else:
-                # Scroll and Wait for elements to be present in the DOM
-                try:
-                    logging.debug("Scrolling down the SPD page to trigger lazy loading...")
-                    for i in range(5): # Scroll a few times to load more products
-                        driver.execute_script("window.scrollBy(0, document.body.scrollHeight * 0.7);")
-                        logging.debug(f"Scroll #{i+1}, waiting...")
-                        time.sleep(2) # Wait for content to load after scroll
-
-                    wait_timeout = 60
-                    item_container_selector_str = "div.product-item"
-                    item_selector_wait = (By.CSS_SELECTOR, item_container_selector_str)
-                    logging.debug(f"Waiting up to {wait_timeout}s for PRESENCE of SPD item element '{item_selector_wait[1]}'...")
-                    WebDriverWait(driver, wait_timeout).until(EC.presence_of_element_located(item_selector_wait))
-                    logging.info(f"SPD Page processed and item elements ('{item_container_selector_str}') are present.")
-                    page_load_successful = True
-
-                except TimeoutException:
-                    logging.warning(f"Timeout ({wait_timeout}s) waiting for PRESENCE of item element ('{item_container_selector_str}') on SPD page, even after scrolling.")
-                    try:
-                        timeout_html_path = os.path.join(os.getcwd(), f"spd_timeout_page_presence.html")
-                        with open(timeout_html_path, "w", encoding="utf-8") as f: f.write(driver.page_source)
-                        logging.info(f"Saved HTML source of timed-out (presence) SPD page to: {timeout_html_path}")
-                    except Exception as e: logging.error(f"Error checking/saving SPD page source after presence timeout: {e}")
-                except WebDriverException as e: logging.error(f"Selenium WebDriverException occurred during scroll/wait for SPD page: {e}")
+                    timeout_html_path = os.path.join(os.getcwd(), f"spd_fatal_timeout_page.html")
+                    with open(timeout_html_path, "w", encoding="utf-8") as f: f.write(driver.page_source)
+                    logging.error(f"Saved HTML source of the failed page to: {timeout_html_path}. Please inspect this file.")
+                except Exception as e: logging.error(f"Error saving SPD page source after fatal timeout: {e}")
+            except WebDriverException as e: logging.error(f"Selenium WebDriverException occurred during scroll/wait for SPD page: {e}")
 
         except Exception as page_load_err: logging.error(f"Unexpected error during SPD page load/block/wait phase: {page_load_err}", exc_info=True)
 
@@ -407,22 +390,27 @@ def scrape_serverpartdeals(url):
             try:
                 page_source = driver.page_source
                 soup = BeautifulSoup(page_source, 'lxml')
-                item_container_selector = "div.product-item"
+                item_container_selector = "div.boost-sd_product-item"
                 items = soup.select(item_container_selector)
                 logging.info(f"Found {len(items)} potential items on SPD page using '{item_container_selector}'.")
-                if not items: logging.warning(f"Items detected by wait, but not found by BeautifulSoup('{item_container_selector}'). Parsing issue?")
+                
+                if not items: 
+                    logging.warning(f"Items detected by wait, but not found by BeautifulSoup. Parsing issue?")
                 else:
                     item_count_on_page = 0
                     for item in items:
                         data = {'Retailer': 'ServerPartDeals'}
-                        title_link_selector = "h3.product-item__title a"
+                        title_link_selector = "a.boost-sd_product-link"
                         title_element = item.select_one(title_link_selector)
                         if not title_element: continue
                         data['Title'] = title_element.get_text(strip=True)
                         href = title_element.get('href')
-                        if href and href.startswith('/'): data['URL'] = base_url + href
+                        if href and href.startswith('/'): 
+                            data['URL'] = base_url + href
+                        elif href and href.startswith('http'):
+                            data['URL'] = href
                         else: continue
-                        price_selector = "span.price"
+                        price_selector = "span.boost-sd_format-currency"
                         price_element = item.select_one(price_selector)
                         price_str = None
                         if price_element:
@@ -438,7 +426,8 @@ def scrape_serverpartdeals(url):
                             results.append(data)
                             item_count_on_page += 1
                     logging.info(f"Successfully parsed {item_count_on_page} valid items from SPD page.")
-            except Exception as parse_error: logging.error(f"Error parsing SPD page content after loading: {parse_error}", exc_info=True)
+            except Exception as parse_error: 
+                logging.error(f"Error parsing SPD page content after loading: {parse_error}", exc_info=True)
 
     except WebDriverException as setup_error:
         logging.error(f"Failed to initialize or use Selenium WebDriver for SPD: {setup_error}")
@@ -451,7 +440,8 @@ def scrape_serverpartdeals(url):
             try:
                 driver.quit()
                 logging.info("Selenium Firefox driver quit for SPD.")
-            except Exception as quit_error: logging.error(f"Error quitting Selenium driver for SPD: {quit_error}")
+            except Exception as quit_error: 
+                logging.error(f"Error quitting Selenium driver for SPD: {quit_error}")
 
     logging.info(f"Finished scraping ServerPartDeals using Selenium. Found a total of {len(results)} valid items.")
     return results
