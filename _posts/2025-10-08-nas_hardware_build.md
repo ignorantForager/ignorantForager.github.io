@@ -1,5 +1,5 @@
 ---
-title: Part 1: Building a 300TB NAS and the Hardware That Hated Me
+title: Part 1 - Building a 300TB NAS and the Hardware That Hated Me
 date: 2025-10-08 00:00:00 -7
 categories: [homelab, nas]
 tags: [nas, truenas, hardware, homelab, storage]
