@@ -1,0 +1,11 @@
+@media (prefers-color-scheme: dark) {
+  body { background: #1e1e1e; color: #000000; }
+  h1, h2, h3, h4, h5, h6 { color: #000000; }
+  a { color: #8cc3ea; }
+  a:hover { color: #8cc3ea; }
+  hr { background-color: #444444; }
+  .highlight pre {background: #2d2d2d; color: #cccccc; }
+  #banner h1 a { color: #f5f5f5 !important; }
+  #banner h1 a:hover { color: #C74451 !important; }
+}
+article ul li { margin-bottom: 0.2em; }
