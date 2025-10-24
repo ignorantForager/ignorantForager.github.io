@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HomeLab Documents - networking</title><link href="https://ignorantforager.com/" rel="alternate"/><link href="https://ignorantforager.com/feeds/networking.atom.xml" rel="self"/><id>https://ignorantforager.com/</id><updated>2025-04-15T00:00:00-07:00</updated><entry><title>Passing the Cisco DevNet Associate Exam</title><link href="https://ignorantforager.com/passing-the-cisco-devnet-associate-exam.html" rel="alternate"/><published>2025-04-15T00:00:00-07:00</published><updated>2025-04-15T00:00:00-07:00</updated><author><name>Cadence James</name></author><id>tag:ignorantforager.com,2025-04-15:/passing-the-cisco-devnet-associate-exam.html</id><summary type="html">&lt;h1&gt;🚀 How I Passed the Cisco DevNet Associate Exam: My Study Strategy and Takeaways&lt;/h1&gt;
+&lt;p&gt;Passing the &lt;strong&gt;Cisco Certified DevNet Associate&lt;/strong&gt; exam (DevAsc) was a major milestone on my journey into network automation and programmability. I want to share my study process in hopes it can help others approaching this certification.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;🧠 My Study Approach: Structured Learning with Iterative Quizzing&lt;/h2&gt;
+&lt;h3&gt;1. &lt;strong&gt;Starting with CBT Nuggets&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;I began by diving into the &lt;strong&gt;CBT Nuggets course&lt;/strong&gt; titled &lt;em&gt;Cisco DevNet Associate (200-901 DEVASC)&lt;/em&gt;. This course was comprehensive and provided a solid foundation on the key concepts of network automation and programmability. It covered topics like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cisco …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h1&gt;🚀 How I Passed the Cisco DevNet Associate Exam: My Study Strategy and Takeaways&lt;/h1&gt;
+&lt;p&gt;Passing the &lt;strong&gt;Cisco Certified DevNet Associate&lt;/strong&gt; exam (DevAsc) was a major milestone on my journey into network automation and programmability. I want to share my study process in hopes it can help others approaching this certification.&lt;/p&gt;
+&lt;!-- PELICAN_END_SUMMARY --&gt;
+
+&lt;hr&gt;
+&lt;h2&gt;🧠 My Study Approach: Structured Learning with Iterative Quizzing&lt;/h2&gt;
+&lt;h3&gt;1. &lt;strong&gt;Starting with CBT Nuggets&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;I began by diving into the &lt;strong&gt;CBT Nuggets course&lt;/strong&gt; titled &lt;em&gt;Cisco DevNet Associate (200-901 DEVASC)&lt;/em&gt;. This course was comprehensive and provided a solid foundation on the key concepts of network automation and programmability. It covered topics like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cisco platforms (e.g., Intersight, DNA Center, Meraki, NSO)&lt;/li&gt;
+&lt;li&gt;Automation tools (e.g., Ansible, Netmiko, Python)&lt;/li&gt;
+&lt;li&gt;APIs (REST, SOAP, AXL, CTI in CUCM)&lt;/li&gt;
+&lt;li&gt;Authentication mechanisms (OAuth 2.0, Basic Auth, Bearer)&lt;/li&gt;
+&lt;li&gt;Network protocols (SNMP, MDT)&lt;/li&gt;
+&lt;li&gt;CI/CD practices and Infrastructure as Code (IaC)&lt;/li&gt;
+&lt;li&gt;Unit testing and more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course gave me a good theoretical foundation, but I knew I needed to test my knowledge more rigorously.&lt;/p&gt;
+&lt;h3&gt;2. &lt;strong&gt;Taking the Kaplan Practice Test&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Next, I took a &lt;strong&gt;practice test&lt;/strong&gt; provided by &lt;strong&gt;Kaplan&lt;/strong&gt;, which was included as part of the CBT Nuggets course. This gave me a solid gauge of where I stood in terms of readiness. The only downside was that it created a quiz based on a question bank of only 200 questions, which I quickly went through. However, I was able to pinpoint the areas where I needed further improvement. This step was crucial in tailoring the next phase of my study plan.&lt;/p&gt;
+&lt;h3&gt;3. &lt;strong&gt;Using ChatGPT for Targeted Learning and Quizzes&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Once I identified the areas I struggled with, I turned to &lt;strong&gt;ChatGPT&lt;/strong&gt; for deeper explanations and to create &lt;strong&gt;custom quizzes&lt;/strong&gt;. ChatGPT helped me dig deeper into topics like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;API request methods (GET, POST, PUT, DELETE)&lt;/li&gt;
+&lt;li&gt;JSON, YAML, YANG, and NETCONF&lt;/li&gt;
+&lt;li&gt;Ansible vs. Python scripting&lt;/li&gt;
+&lt;li&gt;SD-WAN and Meraki comparisons&lt;/li&gt;
+&lt;li&gt;Authentication methods (OAuth vs. Basic Auth)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ChatGPT quizzes were incredibly helpful as they allowed me to test my understanding of specific concepts. Initially, I started with standard multiple-choice questions but quickly wanted a more challenging approach. Instead of simply receiving a question with answer choices, I asked ChatGPT to provide the question alone. I would then explain my reasoning and how I arrived at my answer. ChatGPT would confirm whether my response was correct and offer additional context to help solidify my understanding.&lt;/p&gt;
+&lt;p&gt;If I got a question wrong, I would take the time to pause the quizzing and do a quick &lt;strong&gt;deep dive&lt;/strong&gt; on that specific topic to reinforce my understanding. This process of revisiting areas where I was weak allowed me to improve steadily and get comfortable with even the trickier concepts.&lt;/p&gt;
+&lt;h3&gt;4. &lt;strong&gt;Expanding to a General Overview with ChatGPT Quizzes&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;After successfully improving in the targeted areas, I broadened my review with more &lt;strong&gt;general DevNet exam questions&lt;/strong&gt;. ChatGPT provided quizzes that spanned the entire exam, covering topics from APIs to CI/CD, and everything in between. The quizzes helped me solidify my knowledge and ensure I was prepared for any part of the exam.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🔁 Learning by Iteration&lt;/h2&gt;
+&lt;p&gt;One of the biggest takeaways for me was the power of &lt;strong&gt;active learning&lt;/strong&gt;. Rather than just reading through material, I actively engaged by taking quizzes, working through problems, and using ChatGPT to clarify difficult concepts. By iterating on what I had learned, I gained a much stronger grasp of the material.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;📘 Exam Tips&lt;/h2&gt;
+&lt;p&gt;Here are some of the key things I recommend you focus on when studying for the DevNet Associate exam:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cisco platforms&lt;/strong&gt;: Be able to compare and contrast them (e.g., when to use NSO vs. Meraki).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP methods&lt;/strong&gt;: Know the difference between &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt;, &lt;code&gt;PUT&lt;/code&gt;, &lt;code&gt;DELETE&lt;/code&gt;, and where they fit in REST APIs.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data formats&lt;/strong&gt;: Understand the ins and outs of &lt;strong&gt;JSON&lt;/strong&gt;, &lt;strong&gt;YAML&lt;/strong&gt;, &lt;strong&gt;YANG&lt;/strong&gt;, and &lt;strong&gt;NETCONF&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CI/CD pipelines&lt;/strong&gt;: Be familiar with concepts around &lt;strong&gt;Continuous Integration&lt;/strong&gt; and &lt;strong&gt;Continuous Delivery&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Version control&lt;/strong&gt;: Understand how &lt;strong&gt;Git&lt;/strong&gt; works and its role in collaboration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Authentication mechanisms&lt;/strong&gt;: Differentiate between &lt;strong&gt;OAuth 2.0&lt;/strong&gt; and &lt;strong&gt;Basic Auth&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unit testing&lt;/strong&gt;: Know when to use &lt;strong&gt;unit testing&lt;/strong&gt; frameworks like &lt;code&gt;unittest&lt;/code&gt; and how they fit into the DevNet workflow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;📋 My Exam Experience&lt;/h2&gt;
+&lt;p&gt;I’ve gotten into the habit of taking exams in a &lt;strong&gt;testing center&lt;/strong&gt; instead of at home. This helps me focus and ensures I’m in the right mindset as well as removing any potential distractions and worries that I have my work area all set up. Since I started taking exams in testing centers (knock on wood), I haven’t failed any of the exams I’ve taken there.&lt;/p&gt;
+&lt;p&gt;When I first sat down for the exam, I’ll admit, I was nervous. However, once I got into the groove of answering the questions, those nerves started to fade away. The ChatGPT quizzes were incredibly helpful, and there were at least two questions that were directly related to my learning there. Otherwise, there was never a point where I felt completely thrown off. All of the questions were in line with the practice quizzes I had taken, and I felt prepared for what came my way.&lt;/p&gt;
+&lt;p&gt;Of course, there were a few questions where I didn’t know the exact answer or wasn’t sure about the reasoning behind the options, but what would a quiz be without a few challenges?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;💬 Final Thoughts&lt;/h2&gt;
+&lt;p&gt;Passing the DevNet Associate exam wasn’t just about memorizing concepts; it was about actively engaging with the material, testing my knowledge, and iterating until I was confident. By combining the &lt;strong&gt;CBT Nuggets course&lt;/strong&gt;, &lt;strong&gt;Kaplan practice tests&lt;/strong&gt;, and &lt;strong&gt;ChatGPT quizzes&lt;/strong&gt;, I was able to build a strong foundation and thoroughly prepare for the exam.&lt;/p&gt;</content><category term="networking"/><category term="cisco"/><category term="exam"/></entry><entry><title>Querying Service Desk Call Metrics with Python</title><link href="https://ignorantforager.com/querying-service-desk-call-metrics-with-python.html" rel="alternate"/><published>2025-02-28T00:00:00-08:00</published><updated>2025-02-28T00:00:00-08:00</updated><author><name>Cadence James</name></author><id>tag:ignorantforager.com,2025-02-28:/querying-service-desk-call-metrics-with-python.html</id><summary type="html">&lt;h1&gt;Extracting Metrics from Cisco Unified Call Manager (CUCM)&lt;/h1&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;About a year and a half ago, I was asked to find a way to extract metrics from Cisco Unified Call Manager (CUCM) to support our Service Desk team. They needed basic insights:
+- How many calls were made to the service desk
+- Who answered the calls
+- How many calls went to voicemail&lt;/p&gt;
+&lt;p&gt;Over time, additional requests came in, such as tracking evening-hour calls to determine if extra support was needed.&lt;/p&gt;
+&lt;h2&gt;Initial Challenges&lt;/h2&gt;
+&lt;p&gt;After some research, I found that CUCM didn’t provide an easy way to access this information through its …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Extracting Metrics from Cisco Unified Call Manager (CUCM)&lt;/h1&gt;
+&lt;h2&gt;Background&lt;/h2&gt;
+&lt;p&gt;About a year and a half ago, I was asked to find a way to extract metrics from Cisco Unified Call Manager (CUCM) to support our Service Desk team. They needed basic insights:
+- How many calls were made to the service desk
+- Who answered the calls
+- How many calls went to voicemail&lt;/p&gt;
+&lt;p&gt;Over time, additional requests came in, such as tracking evening-hour calls to determine if extra support was needed.&lt;/p&gt;
+&lt;h2&gt;Initial Challenges&lt;/h2&gt;
+&lt;p&gt;After some research, I found that CUCM didn’t provide an easy way to access this information through its GUI. Eventually, I discovered the Call Detail Record (CDR) page, but it had significant limitations:
+- It only allowed me to export 30 days of logs manually as a CSV file.
+- There was no built-in automation for data retrieval.
+- Each CSV contained tens of thousands of rows of call data.&lt;/p&gt;
+&lt;p&gt;The challenge then became parsing through it to extract meaningful information.&lt;/p&gt;
+&lt;h2&gt;Key CDR Fields&lt;/h2&gt;
+&lt;p&gt;I won’t go into all the details of the CDR fields—it’s a massive dataset—but a few key fields for my purposes were:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;dateTimeOrigination&lt;/code&gt;&lt;/strong&gt;: The date and time when the user goes off the hook or when an H.323 SETUP message is received for an incoming call.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;originalCalledPartyPattern&lt;/code&gt;&lt;/strong&gt;: The original call destination before any translations are applied.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;finalCalledPartyPattern&lt;/code&gt;&lt;/strong&gt;: The final call destination before it is answered or ringing ends.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;destDeviceName&lt;/code&gt;&lt;/strong&gt;: The name of the destination device.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For a more comprehensive breakdown of CDR fields, I found this resource invaluable: &lt;a href="https://www.voipdetective.com/unified-communications/reading-and-understanding-cucm-cdr-files/"&gt;Understanding CUCM CDR Files&lt;/a&gt;. Additionally, here’s an official Cisco link with CDR codes: &lt;a href="https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucm/service/12_5_1/cdrdef/cucm_b_cdr-admin-guide-1251/cucm_b_cdr-admin-guide-1251_chapter_0110.html"&gt;Cisco CDR Codes&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Initial Solution: PowerShell Script&lt;/h2&gt;
+&lt;p&gt;With this information in hand, I needed a way to process it efficiently. At the time, I relied on PowerShell for automation, so I wrote a script to:
+1. Parse the CDR.
+2. Filter for Help Desk calls.
+3. Extract the requested details.&lt;/p&gt;
+&lt;p&gt;After parsing the data, I would then put all of this data neatly into an excel file with PivotTables and PivotCharts. Then sent the information out to the parties requesting the information.&lt;/p&gt;
+&lt;h3&gt;Issues with PowerShell Approach&lt;/h3&gt;
+&lt;p&gt;However, the PowerShell solution had major flaws:
+- &lt;strong&gt;Not dynamic&lt;/strong&gt;: I had to manually list all help desk phones by device name.
+- &lt;strong&gt;Required manual updates&lt;/strong&gt;: Any staff changes meant manually updating the script.
+- &lt;strong&gt;Inefficient and slow&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;For the past year and a half, I dealt with these limitations. But this week, I decided to fix them.&lt;/p&gt;
+&lt;h2&gt;Improved Solution: Python Script&lt;/h2&gt;
+&lt;p&gt;Below is a Python script that replicates the PowerShell functionality with crucial improvements, mainly minimizing manual input.&lt;/p&gt;
+&lt;p&gt;I achieved this using the CUCM &lt;strong&gt;SOAP/AXL API&lt;/strong&gt;. (If you're unfamiliar with it, I wrote a &lt;a href="https://ignorantforager.com/posts/query-cucm-sql/"&gt;previous post&lt;/a&gt; about it. While it’s not exhaustive, it’s a good starting point if you're interested.)&lt;/p&gt;
+&lt;h3&gt;Key Improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dynamic device retrieval&lt;/strong&gt;: A custom SQL query now fetches the current list of Help Desk devices from CUCM, eliminating the need for manual updates.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Device correlation&lt;/strong&gt;: Each device is linked with its description and primary phone number using a non-SQL query to CUCM.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;warnings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pytz&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Initialize CUCM settings&lt;/span&gt;
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;192.168.1.1/axl&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# Adjust URL for CUCM Publisher IP Address&lt;/span&gt;
+&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Authorization&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Basic &amp;lt;BASIC AUTH HERE&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# Replace with actual authentication&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Cookie&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;COOKIE HERE&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# Replace with actual cookie if required&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filterwarnings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ignore&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;category&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urllib3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InsecureRequestsWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Suppress SSL warnings&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define XML namespace for parsing responses&lt;/span&gt;
+&lt;span class="n"&gt;ns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;soapenv&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;ns&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://www.cisco.com/AXL/API/14.0&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Define constants&lt;/span&gt;
+&lt;span class="n"&gt;helpDesk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;5551234&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# Help desk phone number&lt;/span&gt;
+&lt;span class="n"&gt;voicemail_server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;VOICEMAIL_SERVER&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;# Voicemail server identifier&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Read CDR (Call Detail Records) from CSV file&lt;/span&gt;
+&lt;span class="n"&gt;cdr_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cdr.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;low_memory&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Setting time zones and converting timestamps&lt;/span&gt;
+&lt;span class="n"&gt;utc_zone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utc&lt;/span&gt;
+&lt;span class="n"&gt;eastern_zone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pytz&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;timezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;America/New_York&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Convert start time to Eastern Time&lt;/span&gt;
+&lt;span class="n"&gt;startTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cdr_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;startTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;startTime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;startTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;startTime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt; %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Convert end time to Eastern Time&lt;/span&gt;
+&lt;span class="n"&gt;endTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cdr_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iloc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;endTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;endTime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tzinfo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utc_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astimezone&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;endTime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;endTime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;%Y-%m-&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt; %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Retrieve help desk phone devices via AXL API (replace the fknumplan id with the one specific to the help desk line)&lt;/span&gt;
+&lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;lt;soapenv:Envelope xmlns:soapenv=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;http://schemas.xmlsoap.org/soap/envelope/&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt; xmlns:ns=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;http://www.cisco.com/AXL/API/14.0&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;        &amp;lt;soapenv:Header /&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;        &amp;lt;soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;            &amp;lt;ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                &amp;lt;sql&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    SELECT d.name, d.description&lt;/span&gt;
+&lt;span class="s2"&gt;                    FROM devicenumplanmap as dnpm&lt;/span&gt;
+&lt;span class="s2"&gt;                    INNER JOIN device AS d ON dnpm.fkdevice = d.pkid&lt;/span&gt;
+&lt;span class="s2"&gt;                    WHERE dnpm.fknumplan = &amp;#39;c3f97eb6-aeae-280d-1aaf-9d2c47528011&amp;#39;&lt;/span&gt;
+&lt;span class="s2"&gt;                &amp;lt;/sql&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;            &amp;lt;/ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;        &amp;lt;/soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;lt;/soapenv:Envelope&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;responseText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;responseText&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Parse device names and descriptions from XML response&lt;/span&gt;
+&lt;span class="n"&gt;device_names&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;//ns:executeSQLQueryResponse/return/row/name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;descriptions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;//ns:executeSQLQueryResponse/return/row/description&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;namespace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;phones&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;device_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;device_name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;device_names&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;descriptions&lt;/span&gt;&lt;span class="p"&gt;)}&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Sort calls into different categories&lt;/span&gt;
+&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cdr_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cdr_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;originalCalledPartyPattern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;helpDesk&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;helpDeskAnswered&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finalCalledPartyPattern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;helpDesk&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Identify calls that reached voicemail&lt;/span&gt;
+&lt;span class="n"&gt;voicemailCalls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;finalCalledPartyPattern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8888&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tz_convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Convert call timestamps&lt;/span&gt;
+&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;utc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeOrigination&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tz_convert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eastern_zone&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Identify calls made between 5 PM and 8 PM&lt;/span&gt;
+&lt;span class="n"&gt;eveningCalls&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hour&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hour&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Count calls per device&lt;/span&gt;
+&lt;span class="n"&gt;calling_numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;destDeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;calling_numbers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;value_counts&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset_index&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;CallCount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;phones&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;voicemail_server&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Voicemail&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fillna&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Unknown&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Retrieve phone numbers for devices using AXL API&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterrows&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;voicemail_server&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;PhoneNumber&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;8888&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;continue&lt;/span&gt;
+    &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;        &amp;lt;soapenv:Envelope xmlns:soapenv=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;http://schemas.xmlsoap.org/soap/envelope/&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt; xmlns:ns=&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;http://www.cisco.com/AXL/API/14.0&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s2"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;            &amp;lt;soapenv:Header /&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;            &amp;lt;soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                &amp;lt;ns:getPhone&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                    &amp;lt;name&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;device&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;                &amp;lt;/ns:getPhone&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;            &amp;lt;/soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;        &amp;lt;/soapenv:Envelope&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;responseText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;responseText&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;phone_numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;//ns:getPhoneResponse/return/phone/lines/line/dirn/pattern&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;namespaces&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;phone_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;phone_numbers&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;phone_numbers&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Unknown&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;PhoneNumber&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;phone_number&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Organize call counts data&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reindex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;PhoneNumber&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;DeviceName&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;CallCount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;call_counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;PhoneNumber&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Output evening and voicemail calls to text files&lt;/span&gt;
+&lt;span class="n"&gt;evening_calls_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eveningCalls&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;evening_calls.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;evening_calls_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;voicemail_calls_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateTimeEastern&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;voicemail_calls.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;voicemail_calls_text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#### Print summary information&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;---------------------------&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Start Time: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;startTime&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; ET&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;End Time: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;endTime&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; ET&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;---------------------------&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Calls: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cdr_df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Help Desk Calls: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;helpDeskCalls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total Help Desk Voicemails: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;voicemailCalls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Total 5-8 Calls made: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;eveningCalls&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;---------------------------&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;call_counts&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;---------------------------&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Remaining Challenges&lt;/h2&gt;
+&lt;p&gt;This solution is about &lt;strong&gt;75% automated&lt;/strong&gt; (98.7% of all stats are made up, this one included). The biggest remaining manual task is &lt;strong&gt;downloading the CSV file&lt;/strong&gt;. Additionally, I still &lt;strong&gt;import the data into Excel&lt;/strong&gt; for visualization. Though I know Python has libraries for this, I lack the access to Python’s visualization tools, which is an unfortunate limitation for now.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall, this approach is a significant improvement over my previous workflow, making Service Desk call metrics tracking much more efficient.&lt;/p&gt;</content><category term="networking"/><category term="cisco"/><category term="cucm"/><category term="sql"/><category term="api"/><category term="python"/></entry><entry><title>A Practical Approach to Finding 100GB QSFPs</title><link href="https://ignorantforager.com/a-practical-approach-to-finding-100gb-qsfps.html" rel="alternate"/><published>2024-05-02T00:00:00-07:00</published><updated>2024-05-02T00:00:00-07:00</updated><author><name>Cadence James</name></author><id>tag:ignorantforager.com,2024-05-02:/a-practical-approach-to-finding-100gb-qsfps.html</id><summary type="html">&lt;h2&gt;Automating 100GB QSFP Transceiver Inventory with PowerShell&lt;/h2&gt;
+&lt;p&gt;Understanding the quantity and distribution of 100GB QSFP transceivers in your data center can be essential for optimizing network performance. But how can you efficiently gather this information across multiple devices? Let me share with you a straightforward method I’ve developed using PowerShell, which you can adapt to suit your environment.&lt;/p&gt;
+&lt;p&gt;Firstly, I typically start by SSH’ing into my devices to manually gather information. This initial exploration helps me identify patterns that can be automated later. One command I’ve found to be particularly useful is &lt;code&gt;show interface transceiver&lt;/code&gt;, which lists …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Automating 100GB QSFP Transceiver Inventory with PowerShell&lt;/h2&gt;
+&lt;p&gt;Understanding the quantity and distribution of 100GB QSFP transceivers in your data center can be essential for optimizing network performance. But how can you efficiently gather this information across multiple devices? Let me share with you a straightforward method I’ve developed using PowerShell, which you can adapt to suit your environment.&lt;/p&gt;
+&lt;p&gt;Firstly, I typically start by SSH’ing into my devices to manually gather information. This initial exploration helps me identify patterns that can be automated later. One command I’ve found to be particularly useful is &lt;code&gt;show interface transceiver&lt;/code&gt;, which lists all SFP transceivers used on the device. By filtering for lines containing &lt;code&gt;40/100&lt;/code&gt;, I can quickly identify 100GB QSFPs.&lt;/p&gt;
+&lt;h3&gt;PowerShell Script for Automating the Process&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c"&gt;# Prompt the user to enter a username and password&lt;/span&gt;
+&lt;span class="nv"&gt;$username&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Read-Host&lt;/span&gt; &lt;span class="n"&gt;-Prompt&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Username&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;$password&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Read-Host&lt;/span&gt; &lt;span class="n"&gt;-Prompt&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Password&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;-AsSecureString&lt;/span&gt;
+
+&lt;span class="c"&gt;# Convert the SecureString password into a plain text string (security risk!)&lt;/span&gt;
+&lt;span class="nv"&gt;$temppass&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="no"&gt;[System.Runtime.InteropServices.Marshal]&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;SecureStringToCoTaskMemUnicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$password&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;$password&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="no"&gt;[System.Runtime.InteropServices.Marshal]&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;PtrToStringUni&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$temppass&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Import device list from a CSV file (expects a file named &amp;#39;devices.csv&amp;#39; in the same directory)&lt;/span&gt;
+&lt;span class="nv"&gt;$devices&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Import-Csv&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.\devices.csv&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# Initialize counters and a variable to store transceiver count&lt;/span&gt;
+&lt;span class="nv"&gt;$totalcount&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;$count&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt;
+&lt;span class="nv"&gt;$t&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$null&lt;/span&gt;
+
+&lt;span class="c"&gt;# Loop through each device listed in the CSV file&lt;/span&gt;
+&lt;span class="k"&gt;foreach&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$device&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;$devices&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;Clear &lt;/span&gt; &lt;span class="c"&gt;# Clears the screen for a cleaner output&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Display progress information&lt;/span&gt;
+    &lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; ------------------------&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;-foreground&lt;/span&gt; &lt;span class="n"&gt;Cyan&lt;/span&gt;
+    &lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; Querying device: $count of &lt;/span&gt;&lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$devices&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;-foreground&lt;/span&gt; &lt;span class="n"&gt;Cyan&lt;/span&gt;
+    &lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; ------------------------&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;-foreground&lt;/span&gt; &lt;span class="n"&gt;Cyan&lt;/span&gt;
+    &lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Test connectivity to the device using its IP address (returns $True if reachable)&lt;/span&gt;
+    &lt;span class="nv"&gt;$testconnection&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Test-Connection&lt;/span&gt; &lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$device&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipaddress&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;-Count&lt;/span&gt; &lt;span class="n"&gt;1&lt;/span&gt; &lt;span class="n"&gt;-Quiet&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$testconnection&lt;/span&gt; &lt;span class="o"&gt;-eq&lt;/span&gt; &lt;span class="nv"&gt;$True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c"&gt;# Attempt an SSH connection using Plink (first echo y to accept new SSH host keys)&lt;/span&gt;
+        &lt;span class="nb"&gt;echo &lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="n"&gt;plink&lt;/span&gt; &lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$device&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipaddress&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;-ssh&lt;/span&gt;
+
+        &lt;span class="c"&gt;# Execute a command remotely to check for 40/100Gb transceivers&lt;/span&gt;
+        &lt;span class="nv"&gt;$t&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="n"&gt;plink&lt;/span&gt; &lt;span class="p"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$device&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ipaddress&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;-l&lt;/span&gt; &lt;span class="nv"&gt;$username&lt;/span&gt; &lt;span class="n"&gt;-pw&lt;/span&gt; &lt;span class="nv"&gt;$password&lt;/span&gt; &lt;span class="n"&gt;-batch&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;show interface transceiver | include 40/100&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="c"&gt;# Add the count of detected transceivers to the total&lt;/span&gt;
+        &lt;span class="nv"&gt;$totalcount&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$totalcount&lt;/span&gt; &lt;span class="p"&gt;+&lt;/span&gt; &lt;span class="nv"&gt;$t&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Increment the counter for device tracking&lt;/span&gt;
+    &lt;span class="nv"&gt;$count&lt;/span&gt;&lt;span class="p"&gt;++&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c"&gt;# Display the total count of detected QSFP transceivers&lt;/span&gt;
+&lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;Write-Host&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; Total 100GB QSFP Transceivers: $totalcount&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Key Considerations&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Password Handling:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This script converts the secure string into a regular string due to Plink’s inability to handle secure strings correctly.&lt;/li&gt;
+&lt;li&gt;While it prevents shoulder surfing during password entry, handling passwords as plain text, even temporarily, poses security risks.&lt;/li&gt;
+&lt;li&gt;Consider using SSH keys or credential vaults for improved security.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Device Input:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The script imports device information from a CSV file.&lt;/li&gt;
+&lt;li&gt;You can adapt it to read from a text file if that better suits your setup.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Manual Progress Display:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instead of PowerShell’s built-in progress bar module, a manual display is used.&lt;/li&gt;
+&lt;li&gt;The built-in progress bar tends to drift off-screen after iterating through many devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Plink Usage:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plink, the PuTTY CLI interface, is used for SSH access to Cisco devices.&lt;/li&gt;
+&lt;li&gt;It provides a convenient way to query information across multiple devices.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Feel free to tailor this script to your needs and environment. With automation, you can streamline the process of gathering network inventory data, enabling better decision-making and optimization of your data center infrastructure.&lt;/p&gt;</content><category term="networking"/><category term="cisco"/><category term="powershell"/><category term="plink"/><category term="qsfp"/></entry><entry><title>Querying CUCM Database using SQL</title><link href="https://ignorantforager.com/querying-cucm-database-using-sql.html" rel="alternate"/><published>2024-05-01T00:00:00-07:00</published><updated>2024-05-01T00:00:00-07:00</updated><author><name>Cadence James</name></author><id>tag:ignorantforager.com,2024-05-01:/querying-cucm-database-using-sql.html</id><summary type="html">&lt;h2&gt;Exploring Cisco Unity Call Manager (CUCM) Database Access via Postman and SOAP/AXL API&lt;/h2&gt;
+&lt;p&gt;Delving into the intricacies of Cisco Unity Call Manager (CUCM) database access via Postman and SOAP/AXL API opens up a realm of possibilities. While this won’t serve as a step-by-step guide, consider it a tour through a few essential examples, primarily focusing on leveraging custom SQL queries within Postman requests.&lt;/p&gt;
+&lt;p&gt;If SQL isn’t in your skill set, this isn’t the tutorial where you’ll find comprehensive lessons. I’m no SQL guru myself, having only dabbled in it sparingly. Below, I’ll …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Exploring Cisco Unity Call Manager (CUCM) Database Access via Postman and SOAP/AXL API&lt;/h2&gt;
+&lt;p&gt;Delving into the intricacies of Cisco Unity Call Manager (CUCM) database access via Postman and SOAP/AXL API opens up a realm of possibilities. While this won’t serve as a step-by-step guide, consider it a tour through a few essential examples, primarily focusing on leveraging custom SQL queries within Postman requests.&lt;/p&gt;
+&lt;p&gt;If SQL isn’t in your skill set, this isn’t the tutorial where you’ll find comprehensive lessons. I’m no SQL guru myself, having only dabbled in it sparingly. Below, I’ll showcase a few examples of what I’ve managed to achieve with my modest understanding.&lt;/p&gt;
+&lt;h3&gt;Querying End Users&lt;/h3&gt;
+&lt;p&gt;To retrieve comprehensive details of a specific end user from the &lt;code&gt;enduser&lt;/code&gt; table, the following snippet can be employed within the Postman request body. Simply substitute &lt;code&gt;xxxxx&lt;/code&gt; in the SQL query’s last line with the target user’s username.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;soapenv:Envelope&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="na"&gt;xmlns:soapenv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="na"&gt;xmlns:ns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.cisco.com/AXL/API/14.0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;soapenv:Header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;sql&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;SELECT&lt;span class="w"&gt; &lt;/span&gt;*
+&lt;span class="w"&gt;            &lt;/span&gt;FROM&lt;span class="w"&gt; &lt;/span&gt;enduser
+&lt;span class="w"&gt;            &lt;/span&gt;WHERE&lt;span class="w"&gt; &lt;/span&gt;userid&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;&amp;#39;xxxxx&amp;#39;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/sql&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/soapenv:Envelope&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Querying End Users and Their Associated Groups&lt;/h3&gt;
+&lt;p&gt;This query is slightly more intricate but yields essential information about a user’s Primary Key ID (PKID) and the Foreign Key (FK) of the group(s) they belong to. Similar to the previous example, substitute &lt;code&gt;xxxxx&lt;/code&gt; with the target user’s ID.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;soapenv:Envelope&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="na"&gt;xmlns:soapenv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://schemas.xmlsoap.org/soap/envelope/&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="na"&gt;xmlns:ns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.cisco.com/AXL/API/14.0&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;soapenv:Header&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;sql&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;SELECT&lt;span class="w"&gt; &lt;/span&gt;e.pkid,&lt;span class="w"&gt; &lt;/span&gt;m.fkdirgroup
+&lt;span class="w"&gt;            &lt;/span&gt;FROM&lt;span class="w"&gt; &lt;/span&gt;enduserdirgroupmap&lt;span class="w"&gt; &lt;/span&gt;AS&lt;span class="w"&gt; &lt;/span&gt;m
+&lt;span class="w"&gt;            &lt;/span&gt;INNER&lt;span class="w"&gt; &lt;/span&gt;JOIN&lt;span class="w"&gt; &lt;/span&gt;enduser&lt;span class="w"&gt; &lt;/span&gt;AS&lt;span class="w"&gt; &lt;/span&gt;e&lt;span class="w"&gt; &lt;/span&gt;ON&lt;span class="w"&gt; &lt;/span&gt;m.fkenduser&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;e.pkid
+&lt;span class="w"&gt;            &lt;/span&gt;WHERE&lt;span class="w"&gt; &lt;/span&gt;e.userid&lt;span class="w"&gt; &lt;/span&gt;=&lt;span class="w"&gt; &lt;/span&gt;&amp;#39;xxxxx&amp;#39;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/sql&amp;gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/ns:executeSQLQuery&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/soapenv:Body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/soapenv:Envelope&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Exploring the capabilities of Cisco Unity Call Manager’s database through Postman and SQL queries unveils a world of administrative potential. While these examples offer a glimpse into its functionality, mastering these techniques can significantly amplify one’s ability to manage and optimize Cisco’s ecosystem efficiently.&lt;/p&gt;
+&lt;p&gt;Whether you’re a seasoned administrator seeking to streamline operations or an enthusiast eager to dive into the intricacies of CUCM, leveraging Postman and SQL queries provides a powerful toolkit. With continued exploration and practice, you’ll unlock even greater insights and efficiencies within your Cisco infrastructure.&lt;/p&gt;</content><category term="networking"/><category term="cisco"/><category term="cucm"/><category term="sql"/><category term="api"/><category term="postman"/></entry></feed>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>HomeLab Documents - security</title><link href="https://ignorantforager.com/" rel="alternate"/><link href="https://ignorantforager.com/feeds/security.atom.xml" rel="self"/><id>https://ignorantforager.com/</id><updated>2025-10-22T00:00:00-07:00</updated><entry><title>How to Protect Your Digital Life</title><link href="https://ignorantforager.com/how-to-protect-your-digital-life.html" rel="alternate"/><published>2025-10-22T00:00:00-07:00</published><updated>2025-10-22T00:00:00-07:00</updated><author><name>Cadence James</name></author><id>tag:ignorantforager.com,2025-10-22:/how-to-protect-your-digital-life.html</id><summary type="html">&lt;h2&gt;Are Your Passwords as Strong as You Think? How to Protect Your Digital Life&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;A quick note: This article was originally written as an assignment for a college course and has been updated and adapted for my website.&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;In an era of ever-evolving cyber threats, robust password practices and trustworthy password managers are crucial for protecting both personal and corporate data. While new technologies like biometrics and passkeys are on the rise, passwords remain a ubiquitous part of our daily online lives, making their security a top priority.&lt;/p&gt;
+&lt;h3&gt;The Reality of Password Habits&lt;/h3&gt;
+&lt;p&gt;Recent statistics from various cybersecurity sources paint …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Are Your Passwords as Strong as You Think? How to Protect Your Digital Life&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;A quick note: This article was originally written as an assignment for a college course and has been updated and adapted for my website.&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;In an era of ever-evolving cyber threats, robust password practices and trustworthy password managers are crucial for protecting both personal and corporate data. While new technologies like biometrics and passkeys are on the rise, passwords remain a ubiquitous part of our daily online lives, making their security a top priority.&lt;/p&gt;
+&lt;h3&gt;The Reality of Password Habits&lt;/h3&gt;
+&lt;p&gt;Recent statistics from various cybersecurity sources paint a concerning picture of password security. Consider these facts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A staggering &lt;strong&gt;84% of users admit to reusing passwords&lt;/strong&gt; across multiple sites.&lt;/li&gt;
+&lt;li&gt;Globally, &lt;strong&gt;only about 34% of people use a password manager&lt;/strong&gt; to keep their accounts secure.&lt;/li&gt;
+&lt;li&gt;At work, the situation isn't much better, with &lt;strong&gt;only 25% of users worldwide being required to use a password manager&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Worryingly, &lt;strong&gt;41.7% of employees have shared their workplace passwords&lt;/strong&gt;, with many sharing them with family members or friends.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These numbers highlight a critical vulnerability in our collective online security. But what can we do to improve? The answer lies in creating strong passwords, eliminating password reuse, and utilizing password managers.&lt;/p&gt;
+&lt;h3&gt;The Building Blocks of a Strong Password&lt;/h3&gt;
+&lt;p&gt;According to the Cybersecurity &amp;amp; Infrastructure Security Agency (CISA), three simple steps can significantly boost your password security:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Go for Length:&lt;/strong&gt; Aim for at least 16 characters or more.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embrace Randomness:&lt;/strong&gt; Use a random mix of characters or a passphrase of 4-7 unrelated words.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keep it Unique:&lt;/strong&gt; Use a different password for every single account.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The strength of a password can be measured by its "password entropy," which in simple terms, is how hard it is for someone to guess. The higher the entropy (measured in bits), the more secure the password. You can increase entropy by making your password longer and more complex.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Password Entropy and Strength" src="./images/password_entropy.png"&gt;&lt;/p&gt;
+&lt;p&gt;While adding a mix of lowercase and uppercase letters, numbers, and special characters (like !@#$%) increases the pool of possible characters for a hacker to guess from, &lt;strong&gt;randomness is key&lt;/strong&gt;. A password like &lt;code&gt;Password123!&lt;/code&gt; is not as strong as it seems because it follows common patterns. As CISA warns, "Using an easy-to-guess password is like locking the door but leaving the key in the lock." Your passwords should ideally be random and not personally identifiable.&lt;/p&gt;
+&lt;p&gt;The third step is a fundamental rule of password hygiene: &lt;strong&gt;don't reuse passwords&lt;/strong&gt;. If one account is compromised, using unique passwords for each of your other accounts prevents a domino effect of security breaches. But how can you possibly remember a unique, 16+ character password for every online account? That’s where password managers come in.&lt;/p&gt;
+&lt;h3&gt;Password Managers: Your Digital Vault&lt;/h3&gt;
+&lt;p&gt;Storing all your passwords in one place might sound counterintuitive, but the technology behind password managers makes it a secure and efficient solution.&lt;/p&gt;
+&lt;p&gt;Here’s how they work:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Encrypted Vault:&lt;/strong&gt; All your passwords are stored in a heavily encrypted vault.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Master Password:&lt;/strong&gt; This vault is locked with a single, strong master password. Without it, accessing the stored information is nearly impossible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Modern password managers also come with a suite of features to enhance your security:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Password Generation:&lt;/strong&gt; They can create strong, random passwords for you, which you don't have to remember.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Health Monitoring:&lt;/strong&gt; They can assess the strength of your existing passwords, identify reused passwords, and even alert you if your credentials have been exposed in a data breach.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;The Future is Passwordless: Exploring Alternatives&lt;/h3&gt;
+&lt;p&gt;While password managers help us cope with passwords, the ultimate goal for the tech industry is to eliminate them entirely. Several exciting and more secure alternatives are becoming increasingly common.&lt;/p&gt;
+&lt;h4&gt;Passkeys&lt;/h4&gt;
+&lt;p&gt;Passkeys are quickly replacing passwords on major platforms. Instead of a password you create, a passkey uses a unique cryptographic key pair. A private key is stored securely on your device (like your phone or computer), and a public key is stored on the website's server. To log in, you simply authenticate on your device using your fingerprint, face, or PIN. This method is resistant to phishing and much easier for users.&lt;/p&gt;
+&lt;h4&gt;Hardware Keys and Tokens&lt;/h4&gt;
+&lt;p&gt;For an even higher level of security, many people use hardware authentication.
+*   &lt;strong&gt;Physical Security Keys (e.g., YubiKey):&lt;/strong&gt; These are small devices that you plug into your computer's USB port or tap on your phone (using NFC). When you log in, you must physically touch the key to approve the login, proving that you are present. This method is a form of Multi-Factor Authentication (MFA).
+*   &lt;strong&gt;Smart Cards (e.g., CACs):&lt;/strong&gt; Common Access Cards (CACs) are used extensively by the military and other government agencies. They are a type of smart card that contains a chip with the user's credentials and requires a card reader and a PIN to authenticate.
+*   &lt;strong&gt;Authentication Tokens:&lt;/strong&gt; These can be hardware fobs that generate a rotating code every 30-60 seconds or software-based authenticators on your phone. You enter the code along with your password to prove your identity.&lt;/p&gt;
+&lt;p&gt;These methods provide robust protection against remote attacks and are becoming the standard for securing sensitive accounts.&lt;/p&gt;
+&lt;h3&gt;Final Thoughts&lt;/h3&gt;
+&lt;p&gt;In today's digital world, safeguarding our data is non-negotiable. While strong password habits are a great start, the future of digital security lies in passwordless solutions. By embracing technologies like passkeys and hardware tokens and using a password manager for any remaining password-based accounts, we can create a much safer online experience for everyone.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;&lt;strong&gt;Sources&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Cybersecurity &amp;amp; Infrastructure Security Agency. (n.d.). &lt;em&gt;Use strong passwords&lt;/em&gt;. U.S. Department of Homeland Security. Retrieved from https://www.cisa.gov/secure-our-world/use-strong-passwords&lt;/p&gt;
+&lt;p&gt;Cruz, B., &amp;amp; Turner, G. (2025). &lt;em&gt;The best password managers of 2025&lt;/em&gt;. Security.org. Retrieved from https://www.security.org/password-manager/&lt;/p&gt;
+&lt;p&gt;Smith, D. A. (2022, October 27). &lt;em&gt;Top 15 password management best practices&lt;/em&gt;. BeyondTrust. Retrieved from https://www.beyondtrust.com/blog/entry/top-15-password-management-best-practices&lt;/p&gt;</content><category term="security"/><category term="password"/></entry></feed>

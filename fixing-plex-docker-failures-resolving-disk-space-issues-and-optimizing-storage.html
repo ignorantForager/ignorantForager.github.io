@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <meta name="generator" content="Pelican" />
+                        <title>Fixing Plex Docker Failures - Resolving Disk Space Issues and Optimizing Storage</title>
+                        <link rel="stylesheet" href="https://ignorantforager.com/theme/css/main.css" />
+                        <link rel="stylesheet" href="https://ignorantforager.com/theme/css/custom.css" />
+                        <link rel="stylesheet" href="https://ignorantforager.com/theme/css/pygment.css" />
+                                <link href="https://ignorantforager.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="HomeLab Documents Atom Feed" />
+    <meta name="description" content="Introduction Managing disk space efficiently is crucial for maintaining a stable Plex Media Server, especially when running it as a Docker..." />
+        </head>
+
+        <body id="index" class="home">
+                <header id="banner" class="body">
+                        <h1><center><a href="https://ignorantforager.com/">HomeLab Documents</a></center></h1>
+                        <nav><ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/tags">Tags</a></li>
+                                        <li><a href="/categories">Categories</a></li>
+                                                <li><a href="https://ignorantforager.com/pages/about.html">About</a></li>
+                        </ul></nav>
+                </header><!-- /#banner -->
+  <section id="content" class="body">
+    <article>
+      <header>
+        <h1 class="entry-title">
+          <a href="https://ignorantforager.com/fixing-plex-docker-failures-resolving-disk-space-issues-and-optimizing-storage.html" rel="bookmark"
+             title="Permalink to Fixing Plex Docker Failures - Resolving Disk Space Issues and Optimizing Storage">Fixing Plex Docker Failures - Resolving Disk Space Issues and Optimizing Storage</a></h1>
+      </header>
+
+      <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2025-02-11T00:00:00-08:00">
+                Published: Tue 11 February 2025
+        </abbr>
+
+                <address class="vcard author">
+                        By                                 <a class="url fn" href="https://ignorantforager.com/author/cadence-james.html">Cadence James</a>
+                </address>
+        <p>In <a href="https://ignorantforager.com/category/homelab.html">homelab</a>.</p>
+<p>tags: <a href="https://ignorantforager.com/tag/homelab.html">homelab</a> <a href="https://ignorantforager.com/tag/plex.html">plex</a> <a href="https://ignorantforager.com/tag/docker.html">docker</a> <a href="https://ignorantforager.com/tag/storage.html">storage</a> </p>        
+</footer><!-- /.post-info -->        <h2>Introduction</h2>
+<p>Managing disk space efficiently is crucial for maintaining a stable Plex Media Server, especially when running it as a Docker container on an Ubuntu Live Server VM. Recently, I encountered a critical issue where Plex failed to start and transcode media due to insufficient disk space. Additionally, system updates were blocked due to a full root partition. This post details the root cause analysis, troubleshooting steps, and resolution strategies, including mounting a secondary drive for Plex storage. By following these steps, you can prevent similar issues and optimize your Plex server’s performance.</p>
+<hr>
+<h3><strong>Issue Summary:</strong></h3>
+<p>Plex Media Server, running as a Docker container on an Ubuntu Live Server VM (hosted on Proxmox), was failing to start properly. Additionally, Plex playback issues occurred when attempting to transcode media, displaying an error stating, "There's not enough space to convert this item." Furthermore, attempting to update Ubuntu (<code>sudo apt update &amp;&amp; sudo apt upgrade</code>) resulted in the following error:</p>
+<div class="highlight"><pre><span></span><code><span class="n">You</span><span class="w"> </span><span class="n">don</span><span class="s1">&#39;t have enough free space in /var/cache/apt/archives/.</span>
+</code></pre></div>
+
+<h4><strong>Error Messages from Plex Logs:</strong></h4>
+<p>Upon examining the Plex logs, the following critical error was identified:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Starting</span><span class="w"> </span><span class="nx">Plex</span><span class="w"> </span><span class="nx">Media</span><span class="w"> </span><span class="nx">Server</span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="nx">you</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">ignore</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">libusb_init</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="nx">libc</span><span class="o">++</span><span class="nx">abi</span><span class="p">:</span><span class="w"> </span><span class="nx">terminating</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">uncaught</span><span class="w"> </span><span class="nx">exception</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nx">std</span><span class="o">::</span><span class="nx">runtime_error</span><span class="p">:</span><span class="w"> </span><span class="nx">Codecs</span><span class="p">:</span><span class="w"> </span><span class="nx">Initialize</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">boost</span><span class="o">::</span><span class="nx">filesystem</span><span class="o">::</span><span class="nx">create_directories</span><span class="p">:</span><span class="w"> </span><span class="nx">No</span><span class="w"> </span><span class="nx">space</span><span class="w"> </span><span class="nx">left</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">device</span><span class="w"> </span><span class="p">[</span><span class="nx">system</span><span class="p">:</span><span class="mi">28</span><span class="p">]:</span><span class="w"> </span><span class="s">&quot;/config/Library/Application Support/Plex Media Server/Codecs/e613bce-97f23d579c1001d8e9cc0d2e-linux-x86_64&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/config/Library/Application Support/Plex Media Server/Codecs/e613bce-97f23d579c1001d8e9cc0d2e-linux-x86_64&quot;</span><span class="err">&#39;</span>
+<span class="o">******</span><span class="w"> </span><span class="nx">PLEX</span><span class="w"> </span><span class="nx">MEDIA</span><span class="w"> </span><span class="nx">SERVER</span><span class="w"> </span><span class="nx">CRASHED</span><span class="p">,</span><span class="w"> </span><span class="nx">CRASH</span><span class="w"> </span><span class="nx">REPORT</span><span class="w"> </span><span class="nx">WRITTEN</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">config</span><span class="o">/</span><span class="nx">Library</span><span class="o">/</span><span class="nx">Application</span><span class="w"> </span><span class="nx">Support</span><span class="o">/</span><span class="nx">Plex</span><span class="w"> </span><span class="nx">Media</span><span class="w"> </span><span class="nx">Server</span><span class="o">/</span><span class="nx">Crash</span><span class="w"> </span><span class="nx">Reports</span><span class="o">/</span>
+</code></pre></div>
+
+<h3><strong>Root Cause Analysis:</strong></h3>
+<ol>
+<li><strong>Root Filesystem Full:</strong></li>
+<li>Running <code>df -h</code> revealed that the root partition (<code>/dev/mapper/ubuntu--vg-ubuntu--lv</code>) was <strong>100% full</strong>, preventing Plex from writing necessary codec files and causing transcode failures.</li>
+<li>
+<p>The Plex container's <code>/config</code> directory was mapped to <code>/var/plex/config</code>, which resided on the full root partition.</p>
+</li>
+<li>
+<p><strong>Newly Added 2TB Drive Not Utilized:</strong></p>
+</li>
+<li>The Proxmox VM had a secondary <strong>2TB drive</strong> (<code>/dev/sdb</code>), but it was not formatted, mounted, or used.</li>
+<li>
+<p>Plex was relying on the small root partition for cache, transcoding, and metadata storage, causing failures.</p>
+</li>
+<li>
+<p><strong>Docker Storage Usage:</strong></p>
+</li>
+<li>Running <code>docker system df</code> showed that there were no unused images or containers, so <code>docker system prune</code> was not necessary.</li>
+</ol>
+<h3><strong>Resolution Steps:</strong></h3>
+<p>To resolve the issue, we took the following steps:</p>
+<h4><strong>Step 1: Free Up Space on Root Filesystem</strong></h4>
+<ol>
+<li><strong>Clean APT cache:</strong>
+   <code>bash
+   sudo apt clean</code></li>
+<li><strong>Remove old logs:</strong>
+   <code>bash
+   sudo journalctl --vacuum-time=3d
+   sudo rm -rf /var/log/*.gz /var/log/*.1</code></li>
+<li><strong>Identify and remove large unnecessary files:</strong>
+   <code>bash
+   sudo du -ahx / | sort -rh | head -20</code></li>
+</ol>
+<h4><strong>Step 2: Mount the 2TB Drive and Move Plex Config and Transcoding Data</strong></h4>
+<ol>
+<li><strong>Format the 2TB disk (<code>/dev/sdb</code>):</strong>
+   <code>bash
+   sudo mkfs.ext4 /dev/sdb</code></li>
+<li><strong>Create a mount point:</strong>
+   <code>bash
+   sudo mkdir -p /mnt/plex_config</code></li>
+<li><strong>Mount the new drive:</strong>
+   <code>bash
+   sudo mount /dev/sdb /mnt/plex_config</code></li>
+<li><strong>Move Plex configuration and transcode directories to the new drive:</strong>
+   <code>bash
+   docker stop plex
+   sudo mv /var/plex/config /mnt/plex_config/
+   sudo mv /var/plex/transcode /mnt/plex_config/</code></li>
+<li><strong>Ensure correct permissions:</strong>
+   <code>bash
+   sudo chown -R administrator:administrator /mnt/plex_config</code></li>
+<li><strong>Update Docker container settings to use the new location:</strong></li>
+<li>Modify <code>docker-compose.yml</code> or the <code>docker run</code> command to reflect the new paths:
+     <code>bash
+     -v /mnt/plex_config/config:/config
+     -v /mnt/plex_config/transcode:/transcode</code></li>
+<li><strong>Persist the mount by adding it to <code>/etc/fstab</code>:</strong>
+   <code>bash
+   /dev/sdb /mnt/plex_config ext4 defaults 0 2</code></li>
+<li><strong>Reboot and verify the mount persists:</strong>
+   <code>bash
+   sudo reboot</code></li>
+</ol>
+<h4><strong>Step 3: Restart Plex and Verify Functionality</strong></h4>
+<ol>
+<li><strong>Start the Plex container:</strong>
+   <code>bash
+   docker start plex</code></li>
+<li><strong>Verify Plex is running without errors:</strong>
+   <code>bash
+   docker logs plex -f</code></li>
+<li><strong>Attempt media playback and confirm that transcoding works without errors.</strong></li>
+</ol>
+<h3><strong>Final Outcome:</strong></h3>
+<p>✅ Plex no longer crashes due to disk space issues.<br>
+✅ APT updates and system operations work without errors.<br>
+✅ Transcoding and playback are stable.<br>
+✅ The root filesystem has ample free space, preventing future failures.  </p>
+<h3><strong>Preventive Measures for Future Issues:</strong></h3>
+<ol>
+<li><strong>Monitor disk usage regularly:</strong>
+   <code>bash
+   df -h
+   docker system df</code></li>
+<li><strong>Periodically clean up old logs and temporary files.</strong></li>
+<li><strong>Ensure new storage devices are properly formatted, mounted, and utilized as needed.</strong></li>
+</ol>
+      </div><!-- /.entry-content -->
+
+    </article>
+  </section>
+
+                <footer id="contentinfo" class="body">
+                        <address id="about" class="vcard body">
+                                Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+                        </address><!-- /#about -->
+                </footer><!-- /#contentinfo -->
+
+        </body>
+</html>
