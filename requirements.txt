@@ -9,8 +9,8 @@ markdown-it-py==4.0.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
 ordered-set==4.1.0
-pelican==4.11.0
-Pygments==2.19.2
+pelican
+Pygments
 python-dateutil==2.9.0.post0
 rich==14.2.0
 six==1.17.0
