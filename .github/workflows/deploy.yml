@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -28,11 +28,11 @@ jobs:
 
       - name: Build the Site
         # use publishconf.py for the production build
-        with: pelican content -s publishconf.py
+        run: pelican content -s publishconf.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
           cname: ignorantforager.com
