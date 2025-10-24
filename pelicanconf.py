@@ -21,5 +21,9 @@ AUTHOR_FEED_RSS = None
 LINKS = ()
 SOCIAL = ()
 DEFAULT_PAGINATION = 10
+STATIC_PATHS = ['images', 'extra/favicon.ico'
+EXTRA_PATH_METADATA = {
+    'extra/favicon.ico': {'path': 'favicon.ico'},
+}
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
