@@ -38,7 +38,6 @@ Navy submariner turned network engineer:
 - Over 13 years in the IT field, 4 of those as a Network Engineer
 - CCNP, CCNA (Automation, Cybersecurity, general), CompTIA A+/Security+/Cloud+/Project+, ITIL Foundation, LPI Linux Essentials
 - B.S. in Network Engineering and Security
-- Security clearance (TS/SCI with CI Poly)
 
 ## Known Projects
 
