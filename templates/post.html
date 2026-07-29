@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="post">
+  <header class="post-header">
+    <div class="post-meta">
+      <span class="dot dot-{{ post.category }}"></span>
+      <time>{{ post.date.strftime('%d %b %Y') }}</time>
+      <span class="category-label">{{ post.category }}</span>
+    </div>
+    <h1 class="post-title">{{ post.title }}</h1>
+    {% if post.tags %}
+    <div class="pill-row">
+      {% for tag in post.tags %}<span class="pill">{{ tag }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ post.html|safe }}
+  </div>
+
+  <footer class="post-footer">
+    <a href="{{ url_for('index') }}">&larr; Back to all posts</a>
+  </footer>
+</article>
+{% endblock %}

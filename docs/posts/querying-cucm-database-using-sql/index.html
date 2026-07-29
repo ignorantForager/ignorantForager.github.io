@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Querying CUCM Database using SQL — ignorantforager</title>
+  
+  <link rel="icon" type="image/png" href="/static/favicon.png" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="site-title" href="/">ignorantforager</a>
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        
+        <a href="/about/">About</a>
+        
+        <a href="/thoughts-on-ai/">My Views on AI</a>
+        
+      </nav>
+    </header>
+
+    <main class="site-main">
+      
+<article class="post">
+  <header class="post-header">
+    <div class="post-meta">
+      <span class="dot dot-networking"></span>
+      <time>01 May 2024</time>
+      <span class="category-label">networking</span>
+    </div>
+    <h1 class="post-title">Querying CUCM Database using SQL</h1>
+    
+    <div class="pill-row">
+      <span class="pill">cisco</span><span class="pill">cucm</span><span class="pill">sql</span><span class="pill">api</span><span class="pill">postman</span>
+    </div>
+    
+  </header>
+
+  <div class="post-content">
+    <p>Delving into the intricacies of Cisco Unity Call Manager (CUCM) database access via Postman and SOAP/AXL API opens up a realm of possibilities. While this won't serve as a step-by-step guide, consider it a tour through a few essential examples, primarily focusing on leveraging custom SQL queries within Postman requests.</p>
+<p>If SQL isn't in your skill set, this isn't the tutorial where you'll find comprehensive lessons. I'm no SQL guru myself, having only dabbled in it sparingly. Below, I'll showcase a few examples of what I've managed to achieve with my modest understanding.</p>
+<h3>Querying End Users</h3>
+<p>To retrieve comprehensive details of a specific end user from the <code>enduser</code> table, the following snippet can be employed within the Postman request body. Simply substitute <code>xxxxx</code> in the SQL query's last line with the target user's username.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;soapenv:Envelope</span><span class="w"> </span><span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="w"> </span><span class="na">xmlns:ns=</span><span class="s">&quot;http://www.cisco.com/AXL/API/14.0&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;soapenv:Header</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;soapenv:Body&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ns:executeSQLQuery&gt;</span>
+<span class="w">        </span><span class="nt">&lt;sql&gt;</span>
+<span class="w">            </span>SELECT<span class="w"> </span>*
+<span class="w">            </span>FROM<span class="w"> </span>enduser
+<span class="w">            </span>WHERE<span class="w"> </span>userid<span class="w"> </span>=<span class="w"> </span>&#39;xxxxx&#39;
+<span class="w">        </span><span class="nt">&lt;/sql&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/ns:executeSQLQuery&gt;</span>
+<span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre></div>
+<h3>Querying End Users and Their Associated Groups</h3>
+<p>This query is slightly more intricate but yields essential information about a user's Primary Key ID (PKID) and the Foreign Key (FK) of the group(s) they belong to. Similar to the previous example, substitute <code>xxxxx</code> with the target user's ID.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;soapenv:Envelope</span><span class="w"> </span><span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="w"> </span><span class="na">xmlns:ns=</span><span class="s">&quot;http://www.cisco.com/AXL/API/14.0&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;soapenv:Header</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;soapenv:Body&gt;</span>
+<span class="w">    </span><span class="nt">&lt;ns:executeSQLQuery&gt;</span>
+<span class="w">        </span><span class="nt">&lt;sql&gt;</span>
+<span class="w">            </span>SELECT<span class="w"> </span>e.pkid,<span class="w"> </span>m.fkdirgroup
+<span class="w">            </span>FROM<span class="w"> </span>enduserdirgroupmap<span class="w"> </span>AS<span class="w"> </span>m
+<span class="w">            </span>INNER<span class="w"> </span>JOIN<span class="w"> </span>enduser<span class="w"> </span>AS<span class="w"> </span>e<span class="w"> </span>ON<span class="w"> </span>m.fkenduser<span class="w"> </span>=<span class="w"> </span>e.pkid
+<span class="w">            </span>WHERE<span class="w"> </span>e.userid<span class="w"> </span>=<span class="w"> </span>&#39;xxxxx&#39;
+<span class="w">        </span><span class="nt">&lt;/sql&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/ns:executeSQLQuery&gt;</span>
+<span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</code></pre></div>
+<h3>Conclusion</h3>
+<p>Exploring the capabilities of Cisco Unity Call Manager's database through Postman and SQL queries unveils a world of administrative potential. While these examples offer a glimpse into its functionality, mastering these techniques can significantly amplify one's ability to manage and optimize Cisco's ecosystem efficiently.</p>
+<p>Whether you're a seasoned administrator seeking to streamline operations or an enthusiast eager to dive into the intricacies of CUCM, leveraging Postman and SQL queries provides a powerful toolkit. With continued exploration and practice, you'll unlock even greater insights and efficiencies within your Cisco infrastructure.</p>
+  </div>
+
+  <footer class="post-footer">
+    <a href="/">&larr; Back to all posts</a>
+  </footer>
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+      <span>ignorantforager.com</span>
+      <a href="https://github.com/cadencejames" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://library.ignorantforager.com" target="_blank" rel="noopener">Library</a>
+    </footer>
+  </div>
+</body>
+</html>

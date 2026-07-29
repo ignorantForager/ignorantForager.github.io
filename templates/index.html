@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if latest %}
+<article class="latest-post">
+  <div class="post-meta">
+    <span class="dot dot-{{ latest.category }}"></span>
+    <time>{{ latest.date.strftime('%d %b %Y') }}</time>
+    <span class="category-label">{{ latest.category }}</span>
+  </div>
+  <h1 class="latest-post-title">
+    <a href="{{ url_for('post', slug=latest.slug) }}">{{ latest.title }}</a>
+  </h1>
+  {% if latest.tags %}
+  <div class="pill-row">
+    {% for tag in latest.tags %}<span class="pill">{{ tag }}</span>{% endfor %}
+  </div>
+  {% endif %}
+  <div class="latest-post-excerpt">
+    {{ latest.excerpt|safe }}
+  </div>
+  <a class="read-more" href="{{ url_for('post', slug=latest.slug) }}">Read more &rarr;</a>
+</article>
+{% endif %}
+
+{% if rest %}
+<section class="other-articles">
+  <h2 class="other-articles-heading">Other articles</h2>
+  <ul class="post-title-list">
+    {% for post in rest %}
+    <li>
+      <a href="{{ url_for('post', slug=post.slug) }}">{{ post.title }}</a>
+      <time>{{ post.date.strftime('%d %b %Y') }}</time>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% endblock %}
