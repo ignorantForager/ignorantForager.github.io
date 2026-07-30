@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="page books-page">
+  {% for year in page.years %}
+  <section class="book-year">
+    <h2 class="book-year-heading">{{ year.year }}</h2>
+    <ul class="book-list">
+      {% for book in year.books %}
+      <li class="book-entry">
+        <span class="book-title">{{ book.html|safe }}</span>
+        {% if book.rating %}
+        <span class="star-rating" title="{{ book.rating }} / 5 stars" aria-label="{{ book.rating }} out of 5 stars">
+          <span class="star-track">★★★★★</span>
+          <span class="star-fill" style="width: {{ (book.rating / 5 * 100)|round(2) }}%;">★★★★★</span>
+        </span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+</article>
+{% endblock %}

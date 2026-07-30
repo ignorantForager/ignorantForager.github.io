@@ -41,6 +41,51 @@ MD = markdown.Markdown(
 )
 
 
+def render_inline(text):
+    """Run a single line through the shared markdown pipeline (for link/emphasis
+    syntax inside a book-list line) and strip the wrapping <p> it produces."""
+    MD.reset()
+    html = MD.convert(text)
+    return re.sub(r"^<p>(.*)</p>$", r"\1", html, flags=re.S).strip()
+
+
+RATING_RE = re.compile(r"\(\s*(\d+(?:\.\d+)?)\s*stars?\)\s*$", re.IGNORECASE)
+YEAR_RE = re.compile(r"^\d{4}$")
+DASHES_RE = re.compile(r"^-+$")
+
+
+def parse_book_list(text):
+    """Parse the 'YEAR / dashes / one book per line' format into
+    [{"year": "2026", "books": [{"html": ..., "rating": 3.5 or None}, ...]}, ...]
+    Books support optional trailing "(N stars)" (any decimal - quarter/half/etc.)
+    and optional [title](url) markdown link syntax."""
+    lines = text.splitlines()
+    years = []
+    current = None
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        if not line:
+            i += 1
+            continue
+        if (
+            YEAR_RE.match(line)
+            and i + 1 < len(lines)
+            and DASHES_RE.match(lines[i + 1].strip())
+        ):
+            current = {"year": line, "books": []}
+            years.append(current)
+            i += 2
+            continue
+        if current is not None:
+            m = RATING_RE.search(line)
+            rating = float(m.group(1)) if m else None
+            book_text = line[: m.start()].rstrip() if m else line
+            current["books"].append({"html": render_inline(book_text), "rating": rating})
+        i += 1
+    return years
+
+
 class Content:
     """Wraps a parsed markdown file (page or post)."""
 
@@ -49,8 +94,13 @@ class Content:
         self.slug = path.stem
         self.meta = post.metadata
         self.title = self.meta.get("title", self.slug.replace("-", " ").title())
-        MD.reset()
-        self.html = MD.convert(post.content)
+        self.layout = self.meta.get("layout", "default")
+        if self.layout == "books":
+            self.html = ""
+            self.years = parse_book_list(post.content)
+        else:
+            MD.reset()
+            self.html = MD.convert(post.content)
 
     @property
     def date(self):
@@ -141,7 +191,8 @@ def page(slug):
     p = PAGES.get(slug)
     if p is None:
         abort(404)
-    return render_template("page.html", page=p, title=p.title)
+    template_name = f"page-{p.layout}.html" if p.layout != "default" else "page.html"
+    return render_template(template_name, page=p, title=p.title)
 
 
 freezer = Freezer(app)

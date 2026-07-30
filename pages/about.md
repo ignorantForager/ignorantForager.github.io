@@ -45,7 +45,7 @@ Navy submariner turned network engineer:
 
 ## What I Enjoy
 
-I read a lot, mostly sci-fi and fantasy, and mostly physical books.
+I read a lot, mostly sci-fi and fantasy, and mostly physical books. I keep a running [list of what I've read](/books/) by year.
 
 **Recommendations (in absolutely no particular order):**
 

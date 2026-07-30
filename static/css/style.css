@@ -318,6 +318,10 @@ a:hover { text-decoration: underline; }
   padding: 1px 6px;
   color: var(--teal-text);
   white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: bottom;
 }
 
 /* Code inside a fenced block: flat, no pill styling, just the font */
@@ -418,9 +422,70 @@ a:hover { text-decoration: underline; }
 .codehilite .hll { background: #1e2030; }
 .codehilite .gp { color: var(--amber); font-weight: bold; }
 
+/* ---------- Books page ---------- */
+
+.book-year {
+  margin-bottom: 32px;
+}
+.book-year-heading {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-highlight);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.book-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.book-entry {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--row-sep);
+}
+.book-entry:last-child { border-bottom: none; }
+
+.book-title { color: var(--text-primary); }
+.book-title a { color: var(--blue-text); }
+
+/* Star rating: two identical rows of 5 stars stacked - a muted
+   background row, and a colored row clipped to a % width equal to
+   rating/5. The clip-by-width approach supports any fractional
+   precision (quarter, half, whatever) with no extra icon variants. */
+.star-rating {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 3px;
+  white-space: nowrap;
+  cursor: default;
+}
+.star-track {
+  display: block;
+  color: var(--border);
+}
+.star-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--amber);
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
   .site-shell { padding: 24px 16px 40px; }
   .post-title { font-size: 26px; }
   body { font-size: 15px; }
+  .book-entry { flex-direction: column; gap: 4px; }
 }
