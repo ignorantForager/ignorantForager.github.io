@@ -5,7 +5,7 @@ layout: books
 
 2026
 ---------------
-Demon in White by Christopher Ruocchio (4 stars)
+[Demon in White](https://app.thestorygraph.com/books/aaf2c24e-d08c-407d-a427-3ed5c1970f74) by Christopher Ruocchio (4 stars)
 Howling Dark by Christopher Ruocchio (3.5 stars)
 Lonely Castle in the Mirror by Mizuki Tsujimura (3.5 stars)
 Of Monsters and Mainframes by Barbara Truelove (4.5 stars)
