@@ -44,7 +44,7 @@ libc++abi: terminating with uncaught exception of type std::runtime_error: Codec
 
 ### **Resolution Steps:**
 
-To resolve the issue, we took the following steps:
+To resolve the issue, I took the following steps:
 
 #### **Step 1: Free Up Space on Root Filesystem**
 

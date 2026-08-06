@@ -43,16 +43,20 @@
 
   <div class="post-content">
     <h2>Background</h2>
-<p>About a year and a half ago, I was asked to find a way to extract metrics from Cisco Unified Call Manager (CUCM) to support our Service Desk team. They needed basic insights:
-- How many calls were made to the service desk
-- Who answered the calls
-- How many calls went to voicemail</p>
+<p>About a year and a half ago, I was asked to find a way to extract metrics from Cisco Unified Call Manager (CUCM) to support our Service Desk team. They needed basic insights:</p>
+<ul>
+<li>How many calls were made to the service desk</li>
+<li>Who answered the calls</li>
+<li>How many calls went to voicemail</li>
+</ul>
 <p>Over time, additional requests came in, such as tracking evening-hour calls to determine if extra support was needed.</p>
 <h2>Initial Challenges</h2>
-<p>After some research, I found that CUCM didn't provide an easy way to access this information through its GUI. Eventually, I discovered the Call Detail Record (CDR) page, but it had significant limitations:
-- It only allowed me to export 30 days of logs manually as a CSV file.
-- There was no built-in automation for data retrieval.
-- Each CSV contained tens of thousands of rows of call data.</p>
+<p>After some research, I found that CUCM didn't provide an easy way to access this information through its GUI. Eventually, I discovered the Call Detail Record (CDR) page, but it had significant limitations:</p>
+<ul>
+<li>It only allowed me to export 30 days of logs manually as a CSV file.</li>
+<li>There was no built-in automation for data retrieval.</li>
+<li>Each CSV contained tens of thousands of rows of call data.</li>
+</ul>
 <p>The challenge then became parsing through it to extract meaningful information.</p>
 <h2>Key CDR Fields</h2>
 <p>I won't go into all the details of the CDR fields—it's a massive dataset—but a few key fields for my purposes were:</p>
@@ -64,16 +68,20 @@
 </ul>
 <p>For a more comprehensive breakdown of CDR fields, I found this resource invaluable: <a href="https://www.voipdetective.com/unified-communications/reading-and-understanding-cucm-cdr-files/">Understanding CUCM CDR Files</a>. Additionally, here's an official Cisco link with CDR codes: <a href="https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucm/service/12_5_1/cdrdef/cucm_b_cdr-admin-guide-1251/cucm_b_cdr-admin-guide-1251_chapter_0110.html">Cisco CDR Codes</a>.</p>
 <h2>Initial Solution: PowerShell Script</h2>
-<p>With this information in hand, I needed a way to process it efficiently. At the time, I relied on PowerShell for automation, so I wrote a script to:
-1. Parse the CDR.
-2. Filter for Help Desk calls.
-3. Extract the requested details.</p>
+<p>With this information in hand, I needed a way to process it efficiently. At the time, I relied on PowerShell for automation, so I wrote a script to:</p>
+<ol>
+<li>Parse the CDR.</li>
+<li>Filter for Help Desk calls.</li>
+<li>Extract the requested details.</li>
+</ol>
 <p>After parsing the data, I would then put all of this data neatly into an excel file with PivotTables and PivotCharts. Then sent the information out to the parties requesting the information.</p>
 <h3>Issues with PowerShell Approach</h3>
-<p>However, the PowerShell solution had major flaws:
-- <strong>Not dynamic</strong>: I had to manually list all help desk phones by device name.
-- <strong>Required manual updates</strong>: Any staff changes meant manually updating the script.
-- <strong>Inefficient and slow</strong>.</p>
+<p>However, the PowerShell solution had major flaws:</p>
+<ul>
+<li><strong>Not dynamic</strong>: I had to manually list all help desk phones by device name.</li>
+<li><strong>Required manual updates</strong>: Any staff changes meant manually updating the script.</li>
+<li><strong>Inefficient and slow</strong>.</li>
+</ul>
 <p>For the past year and a half, I dealt with these limitations. But this week, I decided to fix them.</p>
 <h2>Improved Solution: Python Script</h2>
 <p>Below is a Python script that replicates the PowerShell functionality with crucial improvements, mainly minimizing manual input.</p>

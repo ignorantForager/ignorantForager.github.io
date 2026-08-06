@@ -65,19 +65,23 @@ Write-Host " Total 100GB QSFP Transceivers: $totalcount"
 ### Key Considerations
 
 1. **Password Handling:**
+
    - This script converts the secure string into a regular string due to Plink's inability to handle secure strings correctly.
    - While it prevents shoulder surfing during password entry, handling passwords as plain text, even temporarily, poses security risks.
    - Consider using SSH keys or credential vaults for improved security.
 
 2. **Device Input:**
+
    - The script imports device information from a CSV file.
    - You can adapt it to read from a text file if that better suits your setup.
 
 3. **Manual Progress Display:**
+
    - Instead of PowerShell's built-in progress bar module, a manual display is used.
    - The built-in progress bar tends to drift off-screen after iterating through many devices.
 
 4. **Plink Usage:**
+
    - Plink, the PuTTY CLI interface, is used for SSH access to Cisco devices.
    - It provides a convenient way to query information across multiple devices.
 

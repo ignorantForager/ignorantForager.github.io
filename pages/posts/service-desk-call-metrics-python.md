@@ -8,6 +8,7 @@ tags: [cisco, cucm, sql, api, python]
 ## Background
 
 About a year and a half ago, I was asked to find a way to extract metrics from Cisco Unified Call Manager (CUCM) to support our Service Desk team. They needed basic insights:
+
 - How many calls were made to the service desk
 - Who answered the calls
 - How many calls went to voicemail
@@ -17,6 +18,7 @@ Over time, additional requests came in, such as tracking evening-hour calls to d
 ## Initial Challenges
 
 After some research, I found that CUCM didn't provide an easy way to access this information through its GUI. Eventually, I discovered the Call Detail Record (CDR) page, but it had significant limitations:
+
 - It only allowed me to export 30 days of logs manually as a CSV file.
 - There was no built-in automation for data retrieval.
 - Each CSV contained tens of thousands of rows of call data.
@@ -37,6 +39,7 @@ For a more comprehensive breakdown of CDR fields, I found this resource invaluab
 ## Initial Solution: PowerShell Script
 
 With this information in hand, I needed a way to process it efficiently. At the time, I relied on PowerShell for automation, so I wrote a script to:
+
 1. Parse the CDR.
 2. Filter for Help Desk calls.
 3. Extract the requested details.
@@ -46,6 +49,7 @@ After parsing the data, I would then put all of this data neatly into an excel f
 ### Issues with PowerShell Approach
 
 However, the PowerShell solution had major flaws:
+
 - **Not dynamic**: I had to manually list all help desk phones by device name.
 - **Required manual updates**: Any staff changes meant manually updating the script.
 - **Inefficient and slow**.

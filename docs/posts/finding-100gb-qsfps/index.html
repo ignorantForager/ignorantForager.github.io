@@ -96,28 +96,34 @@
 </code></pre></div>
 <h3>Key Considerations</h3>
 <ol>
-<li>
-<p><strong>Password Handling:</strong>
-   - This script converts the secure string into a regular string due to Plink's inability to handle secure strings correctly.
-   - While it prevents shoulder surfing during password entry, handling passwords as plain text, even temporarily, poses security risks.
-   - Consider using SSH keys or credential vaults for improved security.</p>
-</li>
-<li>
-<p><strong>Device Input:</strong>
-   - The script imports device information from a CSV file.
-   - You can adapt it to read from a text file if that better suits your setup.</p>
-</li>
-<li>
-<p><strong>Manual Progress Display:</strong>
-   - Instead of PowerShell's built-in progress bar module, a manual display is used.
-   - The built-in progress bar tends to drift off-screen after iterating through many devices.</p>
-</li>
-<li>
-<p><strong>Plink Usage:</strong>
-   - Plink, the PuTTY CLI interface, is used for SSH access to Cisco devices.
-   - It provides a convenient way to query information across multiple devices.</p>
-</li>
+<li><strong>Password Handling:</strong></li>
 </ol>
+<ul>
+<li>This script converts the secure string into a regular string due to Plink's inability to handle secure strings correctly.</li>
+<li>While it prevents shoulder surfing during password entry, handling passwords as plain text, even temporarily, poses security risks.</li>
+<li>Consider using SSH keys or credential vaults for improved security.</li>
+</ul>
+<ol start="2">
+<li><strong>Device Input:</strong></li>
+</ol>
+<ul>
+<li>The script imports device information from a CSV file.</li>
+<li>You can adapt it to read from a text file if that better suits your setup.</li>
+</ul>
+<ol start="3">
+<li><strong>Manual Progress Display:</strong></li>
+</ol>
+<ul>
+<li>Instead of PowerShell's built-in progress bar module, a manual display is used.</li>
+<li>The built-in progress bar tends to drift off-screen after iterating through many devices.</li>
+</ul>
+<ol start="4">
+<li><strong>Plink Usage:</strong></li>
+</ol>
+<ul>
+<li>Plink, the PuTTY CLI interface, is used for SSH access to Cisco devices.</li>
+<li>It provides a convenient way to query information across multiple devices.</li>
+</ul>
 <p>Feel free to tailor this script to your needs and environment. With automation, you can streamline the process of gathering network inventory data, enabling better decision-making and optimization of your data center infrastructure.</p>
   </div>
 
