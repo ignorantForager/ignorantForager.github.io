@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[My Big Goblin Space Program 2](https://app.thestorygraph.com/books/e5b51cc7-ad6a-4df8-b101-6b335f136cca) by Scott Warren (4.5 stars)
 [Demon in White](https://app.thestorygraph.com/books/aaf2c24e-d08c-407d-a427-3ed5c1970f74) by Christopher Ruocchio (4 stars)
 [Howling Dark](https://app.thestorygraph.com/books/40071f88-e2e5-4c3f-8a8b-b9b4a7ce10a0) by Christopher Ruocchio (3.5 stars)
 [Lonely Castle in the Mirror](https://app.thestorygraph.com/books/2099c9a9-be07-4d98-8f00-f46726c5d786) by Mizuki Tsujimura (3.5 stars)
