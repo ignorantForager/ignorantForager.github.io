@@ -5,6 +5,8 @@ layout: books
 
 2026
 ---------------
+[Carl's Doomsday Scenario](https://app.thestorygraph.com/books/8a786e89-8d14-4fdd-a894-301c4aff6a34) by Matt Dinnimin (4.5 stars)
+[My Big Goblin Space Program 3](https://app.thestorygraph.com/books/070b3ec0-6609-42fa-9651-464323b066bf) by Scott Warren (4.5 stars)
 [My Big Goblin Space Program 2](https://app.thestorygraph.com/books/e5b51cc7-ad6a-4df8-b101-6b335f136cca) by Scott Warren (4.5 stars)
 [Demon in White](https://app.thestorygraph.com/books/aaf2c24e-d08c-407d-a427-3ed5c1970f74) by Christopher Ruocchio (4 stars)
 [Howling Dark](https://app.thestorygraph.com/books/40071f88-e2e5-4c3f-8a8b-b9b4a7ce10a0) by Christopher Ruocchio (3.5 stars)
