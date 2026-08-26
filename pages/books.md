@@ -5,7 +5,7 @@ layout: books
 
 2026
 ---------------
-[Hounded](https://app.thestorygraph.com/books/3a662956-3004-4509-92d0-d79ed5d02ac5) by Kevin Hearne (4.75)
+[Hounded](https://app.thestorygraph.com/books/3a662956-3004-4509-92d0-d79ed5d02ac5) by Kevin Hearne (4.75 stars)
 [Carl's Doomsday Scenario](https://app.thestorygraph.com/books/8a786e89-8d14-4fdd-a894-301c4aff6a34) by Matt Dinnimin (4.5 stars)
 [My Big Goblin Space Program 3](https://app.thestorygraph.com/books/070b3ec0-6609-42fa-9651-464323b066bf) by Scott Warren (4.5 stars)
 [My Big Goblin Space Program 2](https://app.thestorygraph.com/books/e5b51cc7-ad6a-4df8-b101-6b335f136cca) by Scott Warren (4.5 stars)
