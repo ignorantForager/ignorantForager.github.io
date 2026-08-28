@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[Hexed](https://app.thestorygraph.com/books/2c8bc2df-d40e-412c-9feb-47c46bd2837f) by Kevin Hearne (4.5 stars)
 [Hounded](https://app.thestorygraph.com/books/3a662956-3004-4509-92d0-d79ed5d02ac5) by Kevin Hearne (4.75 stars)
 [Carl's Doomsday Scenario](https://app.thestorygraph.com/books/8a786e89-8d14-4fdd-a894-301c4aff6a34) by Matt Dinnimin (4.5 stars)
 [My Big Goblin Space Program 3](https://app.thestorygraph.com/books/070b3ec0-6609-42fa-9651-464323b066bf) by Scott Warren (4.5 stars)
