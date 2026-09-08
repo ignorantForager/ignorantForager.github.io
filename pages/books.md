@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[Portrait of a Witch Undone](https://app.thestorygraph.com/books/72deff58-5b6d-4a64-bd38-70b9e0e17845) by K.S. Shay (4.5 stars)
 [The Song of Achilles](https://app.thestorygraph.com/books/7e020018-45d4-40a2-9787-c385f5d930a6) by Madeline Miller (4.0 stars)
 [Hexed](https://app.thestorygraph.com/books/2c8bc2df-d40e-412c-9feb-47c46bd2837f) by Kevin Hearne (4.5 stars)
 [Hounded](https://app.thestorygraph.com/books/3a662956-3004-4509-92d0-d79ed5d02ac5) by Kevin Hearne (4.75 stars)
