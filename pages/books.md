@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[Watership Down](https://app.thestorygraph.com/books/1c40d4d6-d2c8-4ff8-87a2-8cb8acf6aeee) by Richard Adams (4.25 stars)
 [Portrait of a Witch Undone](https://app.thestorygraph.com/books/72deff58-5b6d-4a64-bd38-70b9e0e17845) by K.S. Shay (4.5 stars)
 [The Song of Achilles](https://app.thestorygraph.com/books/7e020018-45d4-40a2-9787-c385f5d930a6) by Madeline Miller (4.0 stars)
 [Hexed](https://app.thestorygraph.com/books/2c8bc2df-d40e-412c-9feb-47c46bd2837f) by Kevin Hearne (4.5 stars)
