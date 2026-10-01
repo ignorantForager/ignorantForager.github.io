@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[The 7 1/2 Deaths of Evelyn Hardcastle](https://app.thestorygraph.com/books/e79e4cca-7cc4-40a3-a212-a0e2a48f0b28) by Stuart Turton (5 stars)
 [The Lies of Locke Lamora](https://app.thestorygraph.com/books/3366609e-64db-4d22-8c1a-16e251ffaba3) by Scott Lynch (4.5 stars)
 [Watership Down](https://app.thestorygraph.com/books/1c40d4d6-d2c8-4ff8-87a2-8cb8acf6aeee) by Richard Adams (4.25 stars)
 [Portrait of a Witch Undone](https://app.thestorygraph.com/books/72deff58-5b6d-4a64-bd38-70b9e0e17845) by K.S. Shay (4.5 stars)
