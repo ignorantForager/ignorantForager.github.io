@@ -5,6 +5,7 @@ layout: books
 
 2026
 ---------------
+[The Gate of the Feral Gods](https://app.thestorygraph.com/books/8157d1b8-3946-4417-a3a8-42de7968c7cf) by Matt Dinniman (4 stars)
 [The Dungeon Anarchists Cookbook](https://app.thestorygraph.com/books/e35a363b-dab7-4808-bf22-96ff6f712a24) by Matt Dinniman (4 stars)
 [The 7 1/2 Deaths of Evelyn Hardcastle](https://app.thestorygraph.com/books/e79e4cca-7cc4-40a3-a212-a0e2a48f0b28) by Stuart Turton (5 stars)
 [The Lies of Locke Lamora](https://app.thestorygraph.com/books/3366609e-64db-4d22-8c1a-16e251ffaba3) by Scott Lynch (4.5 stars)
